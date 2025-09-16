@@ -1,0 +1,13 @@
+Pods/
+DerivedData/
+Products/
+Podfile.lock
+out/
+xcschememanagement.plist
+xcshareddata/
+*.xcscmblueprint
+xcuserdata/
+Podfile_cp
+.DS_S*
+.DS_Store
+node_modules
