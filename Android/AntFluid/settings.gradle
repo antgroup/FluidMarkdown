@@ -1,0 +1,33 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "AntFluidMarkdown"
+include ':app-sample'
+include ':markwon-core'
+include ':markwon-syntax-highlight'
+include ':markwon-inline-parser'
+include ':markwon-image'
+include ':markwon-html'
+include ':markwon-ext-tasklist'
+include ':markwon-ext-tables'
+include ':markwon-ext-strikethrough'
+include ':markwon-ext-latex'
+include ':fluid-markdown'

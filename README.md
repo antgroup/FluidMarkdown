@@ -84,9 +84,7 @@ config.codeBlockConfig.backgroundColor = [UIColor greenColor];
     1. The `StreamPreviewViewController` class is a sample page for previewing streaming output.
     2. The `AIChatViewController` class demonstrates FluidMarkdown usage in simulated AI conversation scenarios. Note that the conversation data is statically defined and intended solely for rendering demonstration purposes.
 
-[StreamingPreview](https://github.com/antgroup/FluidMarkdown/blob/main/media/StreamViewController.gif)
-
-[AIChat](https://github.com/antgroup/FluidMarkdown/blob/main/media/AIChatViewController.gif)
+![StreamingPreview](https://github.com/antgroup/FluidMarkdown/blob/main/media/StreamViewController.gif)![AIChat](https://github.com/antgroup/FluidMarkdown/blob/main/media/AIChatViewController.gif)
 
 ## Android
 1. Initialize by calling AFMInitializer.init(context, backgroundTaskHandler, imageHandler, logHandler) once globally. Except for context, all other parameters can be null.
@@ -117,9 +115,7 @@ markdownTextView.setMarkdownText(markdown);
     - PrinterActivity - Streaming print sample.
     - ListActivity - Streaming print list sample.
 
-[print](https://github.com/antgroup/FluidMarkdown/blob/main/media/android-print.gif)
-
-[list](https://github.com/antgroup/FluidMarkdown/blob/main/media/android-list.gif)
+![print](https://github.com/antgroup/FluidMarkdown/blob/main/media/android-print.gif)![list](https://github.com/antgroup/FluidMarkdown/blob/main/media/android-list.gif)
 
 # Known Issues
 + Clickable elements within tables appear as plain text and are not interactive.
@@ -130,7 +126,7 @@ markdownTextView.setMarkdownText(markdown);
 The FluidMarkdown team welcomes individual or team contributions. For more informations, please refer to the file [CONTRIBUTING](https://github.com/antgroup/FluidMarkdown/blob/main/CONTRIBUTING.md).
 
 # Licensing
-All source code is licensed under the Apache 2.0 license. For details, please refer to [LICENSE](https://yuque.antfin.com/cube-x/st1iqq/cc593bvmor72kgpm).
+All source code is licensed under the Apache 2.0 license. For details, please refer to [LICENSE](https://github.com/antgroup/FluidMarkdown/blob/main/LICENSE.md).
 
 We acknowledge the following open-source projects:
 

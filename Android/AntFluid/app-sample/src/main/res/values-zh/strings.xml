@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AntFluidMarkdown</string>
+    <string name="printer">Printer</string>
+    <string name="start">开始</string>
+    <string name="appendText">追加文字</string>
+    <string name="stop">停止</string>
+    <string name="delete">×</string>
+    <string name="append">append:</string>
+    <string name="demo">Demo</string>
+    <string name="input_markdown_text">输入markdown原文</string>
+    <string name="resume">继续</string>
+    <string name="pause">暂停</string>
+    <string name="toPrinter"><![CDATA[ <br/><iconlink link="open://printer" src="local://mipmap/link" style="color:#1296DB;font-size:26px">流式打印Demo</iconlink>\n\n ]]></string>
+    <string name="toList"><![CDATA[ <iconlink link="open://list_printer" src="local://mipmap/link" style="color:#1296DB;font-size:26px">流式打印列表demo</iconlink>\n\n ]]></string>
+    <string name="sample"><![CDATA[# 一级标题\n我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文我是正文\n\n## 二级标题\n### 三级标题\n#### 四级标题\n##### 五级标题\n###### 六级标题\n**加粗文本**\n*斜体文本*  \n***加粗斜体文本***  \n~~删除线文本~~  \n\n---\n\n### 列表\n- 无序列表项1\n- 无序列表项2\n\t- 子列表项1\n\t- 子列表项2\n1. 有序列表项1\n2. 有序列表项2\n\t1. 子列表项1\n\t2. 子列表项2\n\t3. 子列表项3\n\n---\n\n### 引用\n> 引用内容\n> 多行引用内容\n> 引用中**加粗文本**\n> Dorothy followed her through many of the beautiful rooms in her castle.\n>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.\n\n---\n\n### 链接与图片\n[这是一个链接](https://www.example.com)  \n\n![图片描述1](https://gw.alipayobjects.com/zos/bmw-prod/4c49eb9a-88c1-4bd2-afa3-d3054331e983/kvgaht9k_w849_h375.png) \n\n![图片描述2](https://gw.alipayobjects.com/zos/bmw-prod/79ea98f0-303b-4816-ba27-5638a04ca353/kvgahl7g_w849_h375.png)\n\n---\n\n### 表格\n| 表头1 | 表头2 | 表头3 |\n|-------|-------|-------|\n| 内容1 | 内容2 | 内容3 |\n| 内容4 | 内容5 | 内容6 |\n\n---\n\n### 代码\n行内代码：`inline code`\n\n```python\n# 代码块\ndef hello_world():\n    print(\"Hello, World!\")\n```\n\n---\n\n### 分隔线\n\n---\n\n### 脚注\n这是一个脚注示例[^1][^2].\n。\n\n---\n\n### 内嵌HTML\n<a href=\"https://www.example.com\" style=\"color: blue;text-decoration: underline;\"> 我是一个a标签。</a><u>我是下划线</u>]]></string>
+    <string name="stopped">（已终止）</string>
+    <string name="list">多markdown列表</string>
+    <string name="add">添加数据</string>
+
+
+</resources>

@@ -1,0 +1,48 @@
+name: AntMarkdown2
+options:
+  bundleIdPrefix: com.alipay.$(PRODUCT_NAME:rfc1034identifier)
+  deploymentTarget:
+    iOS: "12.0"
+  usesTabs: false
+  tabWidth: 4
+  indentWidth: 4
+  defaultConfig: Release
+settings:
+  base:
+    LD_RUNPATH_SEARCH_PATHS:
+      - /usr/lib/swift
+      - $(inherited)
+    LIBRARY_SEARCH_PATHS:
+      - $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+      - $(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)
+      - $(inherited)
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+    GCC_C_LANGUAGE_STANDARD: gnu99
+    CLANG_CXX_LANGUAGE_STANDARD: gnu++0x
+  configs:
+    Debug:
+      COPY_PHASE_STRIP: false
+      GCC_SYMBOLS_PRIVATE_EXTERN: false
+      MTL_ENABLE_DEBUG_INFO: true
+    Release:
+      COPY_PHASE_STRIP: true
+      MTL_ENABLE_DEBUG_INFO: false
+targets:
+  AntMarkdown:
+    type: framework
+    platform: iOS
+    sources:
+      - Sources
+      - path: Sources
+        includes: 
+          - Sources/**/*.h
+          - Sources/**/*.c
+          - Sources/**/*.m
+          - Sources/**/*.mm
+      - path: Sources/Public/AntMarkdown.h
+        buildPhase: headers
+        headerVisibility: public
+    headers:
+    resources:
+      - Resources
+      - path: Resources

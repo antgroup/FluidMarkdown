@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		774C570F2E77BAED003034DC /* highlightjs.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 774C570C2E77BAED003034DC /* highlightjs.bundle */; };
+		774C57102E77BAED003034DC /* data3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 774C570B2E77BAED003034DC /* data3.txt */; };
+		774C57112E77BAED003034DC /* mathFonts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 774C570D2E77BAED003034DC /* mathFonts.bundle */; };
+		774C57122E77BAED003034DC /* data1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 774C57092E77BAED003034DC /* data1.txt */; };
+		774C57132E77BAED003034DC /* AntMarkdown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 774C57082E77BAED003034DC /* AntMarkdown.bundle */; };
+		774C57142E77BAED003034DC /* data2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 774C570A2E77BAED003034DC /* data2.txt */; };
+		77AF91272E77D0890047A558 /* AntMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF91242E77D07E0047A558 /* AntMarkdown.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77AF91232E77D07E0047A558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77AF911F2E77D07E0047A558 /* AntMarkdown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A2E9D38A170BD37D00B11F5E;
+			remoteInfo = AntMarkdown;
+		};
+		77AF91252E77D0850047A558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77AF911F2E77D07E0047A558 /* AntMarkdown.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A2E9D389170BD37D00B11F5E;
+			remoteInfo = AntMarkdown;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		774C563F2E77B5B4003034DC /* FluidMarkdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluidMarkdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		774C57082E77BAED003034DC /* AntMarkdown.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AntMarkdown.bundle; sourceTree = "<group>"; };
+		774C57092E77BAED003034DC /* data1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data1.txt; sourceTree = "<group>"; };
+		774C570A2E77BAED003034DC /* data2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data2.txt; sourceTree = "<group>"; };
+		774C570B2E77BAED003034DC /* data3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data3.txt; sourceTree = "<group>"; };
+		774C570C2E77BAED003034DC /* highlightjs.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = highlightjs.bundle; sourceTree = "<group>"; };
+		774C570D2E77BAED003034DC /* mathFonts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mathFonts.bundle; sourceTree = "<group>"; };
+		77AF911F2E77D07E0047A558 /* AntMarkdown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AntMarkdown.xcodeproj; path = AntMarkdown/AntMarkdown.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		774C56562E77B5B5003034DC /* Exceptions for "FluidMarkdown" folder in "FluidMarkdown" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 774C563E2E77B5B4003034DC /* FluidMarkdown */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		774C56412E77B5B4003034DC /* FluidMarkdown */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				774C56562E77B5B5003034DC /* Exceptions for "FluidMarkdown" folder in "FluidMarkdown" target */,
+			);
+			path = FluidMarkdown;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		774C563C2E77B5B4003034DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77AF91272E77D0890047A558 /* AntMarkdown.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		774C56362E77B5B4003034DC = {
+			isa = PBXGroup;
+			children = (
+				77AF911F2E77D07E0047A558 /* AntMarkdown.xcodeproj */,
+				774C570E2E77BAED003034DC /* Resources */,
+				774C56412E77B5B4003034DC /* FluidMarkdown */,
+				774C56C92E77B9EF003034DC /* Frameworks */,
+				774C56402E77B5B4003034DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		774C56402E77B5B4003034DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				774C563F2E77B5B4003034DC /* FluidMarkdown.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		774C56C92E77B9EF003034DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		774C570E2E77BAED003034DC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				774C57082E77BAED003034DC /* AntMarkdown.bundle */,
+				774C57092E77BAED003034DC /* data1.txt */,
+				774C570A2E77BAED003034DC /* data2.txt */,
+				774C570B2E77BAED003034DC /* data3.txt */,
+				774C570C2E77BAED003034DC /* highlightjs.bundle */,
+				774C570D2E77BAED003034DC /* mathFonts.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		77AF91202E77D07E0047A558 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77AF91242E77D07E0047A558 /* AntMarkdown.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		774C563E2E77B5B4003034DC /* FluidMarkdown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 774C56572E77B5B5003034DC /* Build configuration list for PBXNativeTarget "FluidMarkdown" */;
+			buildPhases = (
+				774C563B2E77B5B4003034DC /* Sources */,
+				774C563C2E77B5B4003034DC /* Frameworks */,
+				774C563D2E77B5B4003034DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77AF91262E77D0850047A558 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				774C56412E77B5B4003034DC /* FluidMarkdown */,
+			);
+			name = FluidMarkdown;
+			packageProductDependencies = (
+			);
+			productName = FluidMarkdown;
+			productReference = 774C563F2E77B5B4003034DC /* FluidMarkdown.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		774C56372E77B5B4003034DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					774C563E2E77B5B4003034DC = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = 774C563A2E77B5B4003034DC /* Build configuration list for PBXProject "FluidMarkdown" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 774C56362E77B5B4003034DC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 774C56402E77B5B4003034DC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 77AF91202E77D07E0047A558 /* Products */;
+					ProjectRef = 77AF911F2E77D07E0047A558 /* AntMarkdown.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				774C563E2E77B5B4003034DC /* FluidMarkdown */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		77AF91242E77D07E0047A558 /* AntMarkdown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AntMarkdown.framework;
+			remoteRef = 77AF91232E77D07E0047A558 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		774C563D2E77B5B4003034DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				774C570F2E77BAED003034DC /* highlightjs.bundle in Resources */,
+				774C57102E77BAED003034DC /* data3.txt in Resources */,
+				774C57112E77BAED003034DC /* mathFonts.bundle in Resources */,
+				774C57122E77BAED003034DC /* data1.txt in Resources */,
+				774C57132E77BAED003034DC /* AntMarkdown.bundle in Resources */,
+				774C57142E77BAED003034DC /* data2.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		774C563B2E77B5B4003034DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77AF91262E77D0850047A558 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AntMarkdown;
+			targetProxy = 77AF91252E77D0850047A558 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		774C56582E77B5B5003034DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D4NA563L94;
+				EXCLUDED_ARCHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FluidMarkdown/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alipay.card.FluidMarkdown;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		774C56592E77B5B5003034DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D4NA563L94;
+				EXCLUDED_ARCHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FluidMarkdown/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alipay.card.FluidMarkdown;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		774C565A2E77B5B5003034DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
+				);
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXCLUDED_ARCHS = arm64;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		774C565B2E77B5B5003034DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
+				);
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXCLUDED_ARCHS = arm64;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		774C563A2E77B5B4003034DC /* Build configuration list for PBXProject "FluidMarkdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				774C565A2E77B5B5003034DC /* Debug */,
+				774C565B2E77B5B5003034DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		774C56572E77B5B5003034DC /* Build configuration list for PBXNativeTarget "FluidMarkdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				774C56582E77B5B5003034DC /* Debug */,
+				774C56592E77B5B5003034DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 774C56372E77B5B4003034DC /* Project object */;
+}

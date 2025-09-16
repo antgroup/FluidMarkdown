@@ -1,0 +1,5 @@
+<resources>
+    <string name="copy_failed">复制失败</string>
+    <string name="copied">复制成功</string>
+    <string name="table">表格</string>
+</resources>

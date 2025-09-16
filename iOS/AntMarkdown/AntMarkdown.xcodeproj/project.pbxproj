@@ -1,0 +1,1310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A8283772D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8283762D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.m */; };
+		0A8283782D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8283752D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.h */; };
+		0E449DC22D806CFC001E7430 /* CMHorizontalRuleAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E449DC12D806CFC001E7430 /* CMHorizontalRuleAttachment.m */; };
+		0E449DC32D806CFC001E7430 /* CMHorizontalRuleAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E449DC02D806CFC001E7430 /* CMHorizontalRuleAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		771F1B9D2E1674570009C5B5 /* AMIconAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F1B9C2E1674570009C5B5 /* AMIconAttachment.m */; };
+		771F1B9E2E1674570009C5B5 /* AMIconAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 771F1B9B2E1674570009C5B5 /* AMIconAttachment.h */; };
+		77A5FD682D9CE399009B0C1D /* AMIconLinkAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5FD672D9CE399009B0C1D /* AMIconLinkAttachment.m */; };
+		77A5FD692D9CE399009B0C1D /* AMIconLinkAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 77A5FD662D9CE399009B0C1D /* AMIconLinkAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77EB5F0B2E69B3FA0042F5BD /* AMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EB5F0A2E69B3FA0042F5BD /* AMUtils.m */; };
+		9C3EA8682CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C3EA8662CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C3EA8692CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3EA8672CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.m */; };
+		9C48DDDB2CE4C5BE00E10317 /* AMUnderline.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C48DDD92CE4C5BE00E10317 /* AMUnderline.m */; };
+		9C48DDDC2CE4C5BE00E10317 /* AMUnderline.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C48DDDA2CE4C5BE00E10317 /* AMUnderline.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C48DDE02CE5953400E10317 /* AMGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C48DDDE2CE5953400E10317 /* AMGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C48DDE12CE5953400E10317 /* AMGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C48DDDF2CE5953400E10317 /* AMGradientView.m */; };
+		9C7D1B172CEF21AD00EFB06A /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7922CDB9D8200451CBD /* Ono.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C7D1B182CEF21B200EFB06A /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7932CDB9D8200451CBD /* ONOXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CB413932CDC657D0000585E /* NSString+AntMarkdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB413912CDC657D0000585E /* NSString+AntMarkdown.m */; };
+		9CB413942CDC657D0000585E /* NSString+AntMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CB413922CDC657D0000585E /* NSString+AntMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CB413AB2CDC90EB0000585E /* cmark-gfm_export.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E72E2CDB9D8200451CBD /* cmark-gfm_export.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CB413AC2CDC90F50000585E /* cmark-gfm_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E72F2CDB9D8200451CBD /* cmark-gfm_version.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CB413B32CDDC31B0000585E /* AMImageTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CB413B12CDDC31B0000585E /* AMImageTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CB413B42CDDC31B0000585E /* AMImageTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB413B22CDDC31B0000585E /* AMImageTextAttachment.m */; };
+		9CF1E7972CDB9D8200451CBD /* AMAttributedStringRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6BC2CDB9D8200451CBD /* AMAttributedStringRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7982CDB9D8200451CBD /* AMAttributedStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6BD2CDB9D8200451CBD /* AMAttributedStringRenderer.m */; };
+		9CF1E7992CDB9D8200451CBD /* AMBlockMathAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6BE2CDB9D8200451CBD /* AMBlockMathAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E79A2CDB9D8200451CBD /* AMBlockMathAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6BF2CDB9D8200451CBD /* AMBlockMathAttachment.m */; };
+		9CF1E79B2CDB9D8200451CBD /* AMCodeHighlighter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6C02CDB9D8200451CBD /* AMCodeHighlighter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E79C2CDB9D8200451CBD /* AMCodeHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6C12CDB9D8200451CBD /* AMCodeHighlighter.m */; };
+		9CF1E79D2CDB9D8200451CBD /* AMCodeViewAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6C22CDB9D8200451CBD /* AMCodeViewAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E79E2CDB9D8200451CBD /* AMCodeViewAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6C32CDB9D8200451CBD /* AMCodeViewAttachment.m */; };
+		9CF1E79F2CDB9D8200451CBD /* AMDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6C42CDB9D8200451CBD /* AMDrawable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7A02CDB9D8200451CBD /* AMDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6C52CDB9D8200451CBD /* AMDrawable.m */; };
+		9CF1E7A12CDB9D8200451CBD /* AMGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6C62CDB9D8200451CBD /* AMGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7A22CDB9D8200451CBD /* AMGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6C72CDB9D8200451CBD /* AMGradient.m */; };
+		9CF1E7A32CDB9D8200451CBD /* AMHTMLTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6C82CDB9D8200451CBD /* AMHTMLTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7A42CDB9D8200451CBD /* AMHTMLTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6C92CDB9D8200451CBD /* AMHTMLTransformer.m */; };
+		9CF1E7A52CDB9D8200451CBD /* AMInlineMathAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6CA2CDB9D8200451CBD /* AMInlineMathAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7A62CDB9D8200451CBD /* AMInlineMathAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6CB2CDB9D8200451CBD /* AMInlineMathAttachment.m */; };
+		9CF1E7A72CDB9D8200451CBD /* AMLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6CC2CDB9D8200451CBD /* AMLayoutManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7A82CDB9D8200451CBD /* AMLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6CD2CDB9D8200451CBD /* AMLayoutManager.m */; };
+		9CF1E7A92CDB9D8200451CBD /* AMMarkdownCodeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6CE2CDB9D8200451CBD /* AMMarkdownCodeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7AA2CDB9D8200451CBD /* AMMarkdownCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6CF2CDB9D8200451CBD /* AMMarkdownCodeView.m */; };
+		9CF1E7AB2CDB9D8200451CBD /* AMMarkdownTableLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6D02CDB9D8200451CBD /* AMMarkdownTableLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7AC2CDB9D8200451CBD /* AMMarkdownTableLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6D12CDB9D8200451CBD /* AMMarkdownTableLayout.m */; };
+		9CF1E7AD2CDB9D8200451CBD /* AMMarkdownTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6D22CDB9D8200451CBD /* AMMarkdownTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7AE2CDB9D8200451CBD /* AMMarkdownTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6D32CDB9D8200451CBD /* AMMarkdownTableView.m */; };
+		9CF1E7AF2CDB9D8200451CBD /* AMTableViewAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6D42CDB9D8200451CBD /* AMTableViewAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7B02CDB9D8200451CBD /* AMTableViewAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6D52CDB9D8200451CBD /* AMTableViewAttachment.m */; };
+		9CF1E7B12CDB9D8200451CBD /* AMTextBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6D62CDB9D8200451CBD /* AMTextBackground.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7B22CDB9D8200451CBD /* AMTextBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6D72CDB9D8200451CBD /* AMTextBackground.m */; };
+		9CF1E7B32CDB9D8200451CBD /* AMTextStyles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6D82CDB9D8200451CBD /* AMTextStyles.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7B42CDB9D8200451CBD /* AMTextStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6D92CDB9D8200451CBD /* AMTextStyles.m */; };
+		9CF1E7B52CDB9D8200451CBD /* AMUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6DA2CDB9D8200451CBD /* AMUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7B72CDB9D8200451CBD /* AMViewAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6DC2CDB9D8200451CBD /* AMViewAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7B82CDB9D8200451CBD /* AMViewAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6DD2CDB9D8200451CBD /* AMViewAttachment.m */; };
+		9CF1E7B92CDB9D8200451CBD /* AntMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6DE2CDB9D8200451CBD /* AntMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7BA2CDB9D8200451CBD /* UILabel+AntMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6DF2CDB9D8200451CBD /* UILabel+AntMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7BB2CDB9D8200451CBD /* UILabel+AntMarkdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6E02CDB9D8200451CBD /* UILabel+AntMarkdown.m */; };
+		9CF1E7BC2CDB9D8200451CBD /* UITextView+AntMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6E12CDB9D8200451CBD /* UITextView+AntMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E7BD2CDB9D8200451CBD /* UITextView+AntMarkdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6E22CDB9D8200451CBD /* UITextView+AntMarkdown.m */; };
+		9CF1E7BE2CDB9D8200451CBD /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6E42CDB9D8200451CBD /* autolink.c */; };
+		9CF1E7C22CDB9D8200451CBD /* core-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6E82CDB9D8200451CBD /* core-extensions.c */; };
+		9CF1E7C32CDB9D8200451CBD /* ext_scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6E92CDB9D8200451CBD /* ext_scanners.c */; };
+		9CF1E7C62CDB9D8200451CBD /* math_mark.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6EC2CDB9D8200451CBD /* math_mark.c */; };
+		9CF1E7C82CDB9D8200451CBD /* strikethrough.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6EE2CDB9D8200451CBD /* strikethrough.c */; };
+		9CF1E7CA2CDB9D8200451CBD /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6F02CDB9D8200451CBD /* table.c */; };
+		9CF1E7CC2CDB9D8200451CBD /* tagfilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6F22CDB9D8200451CBD /* tagfilter.c */; };
+		9CF1E7CE2CDB9D8200451CBD /* tasklist.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6F42CDB9D8200451CBD /* tasklist.c */; };
+		9CF1E7D02CDB9D8200451CBD /* arena.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6F72CDB9D8200451CBD /* arena.c */; };
+		9CF1E7D12CDB9D8200451CBD /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6F82CDB9D8200451CBD /* blocks.c */; };
+		9CF1E7D22CDB9D8200451CBD /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6F92CDB9D8200451CBD /* buffer.c */; };
+		9CF1E7D72CDB9D8200451CBD /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E6FE2CDB9D8200451CBD /* cmark_ctype.c */; };
+		9CF1E7DC2CDB9D8200451CBD /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7032CDB9D8200451CBD /* cmark.c */; };
+		9CF1E7DD2CDB9D8200451CBD /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7042CDB9D8200451CBD /* commonmark.c */; };
+		9CF1E7E02CDB9D8200451CBD /* footnotes.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7072CDB9D8200451CBD /* footnotes.c */; };
+		9CF1E7E22CDB9D8200451CBD /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7092CDB9D8200451CBD /* houdini_href_e.c */; };
+		9CF1E7E32CDB9D8200451CBD /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E70A2CDB9D8200451CBD /* houdini_html_e.c */; };
+		9CF1E7E42CDB9D8200451CBD /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E70B2CDB9D8200451CBD /* houdini_html_u.c */; };
+		9CF1E7E62CDB9D8200451CBD /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E70D2CDB9D8200451CBD /* html.c */; };
+		9CF1E7E82CDB9D8200451CBD /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E70F2CDB9D8200451CBD /* inlines.c */; };
+		9CF1E7EA2CDB9D8200451CBD /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7112CDB9D8200451CBD /* iterator.c */; };
+		9CF1E7EC2CDB9D8200451CBD /* latex.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7132CDB9D8200451CBD /* latex.c */; };
+		9CF1E7EE2CDB9D8200451CBD /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7152CDB9D8200451CBD /* linked_list.c */; };
+		9CF1E7EF2CDB9D8200451CBD /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7162CDB9D8200451CBD /* man.c */; };
+		9CF1E7F02CDB9D8200451CBD /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7172CDB9D8200451CBD /* map.c */; };
+		9CF1E7F22CDB9D8200451CBD /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7192CDB9D8200451CBD /* node.c */; };
+		9CF1E7F52CDB9D8200451CBD /* plaintext.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E71C2CDB9D8200451CBD /* plaintext.c */; };
+		9CF1E7F62CDB9D8200451CBD /* plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E71D2CDB9D8200451CBD /* plugin.c */; };
+		9CF1E7F82CDB9D8200451CBD /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E71F2CDB9D8200451CBD /* references.c */; };
+		9CF1E7FA2CDB9D8200451CBD /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7212CDB9D8200451CBD /* registry.c */; };
+		9CF1E7FC2CDB9D8200451CBD /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7232CDB9D8200451CBD /* render.c */; };
+		9CF1E7FE2CDB9D8200451CBD /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7252CDB9D8200451CBD /* scanners.c */; };
+		9CF1E8012CDB9D8200451CBD /* syntax_extension.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7282CDB9D8200451CBD /* syntax_extension.c */; };
+		9CF1E8032CDB9D8200451CBD /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E72A2CDB9D8200451CBD /* utf8.c */; };
+		9CF1E8052CDB9D8200451CBD /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E72C2CDB9D8200451CBD /* xml.c */; };
+		9CF1E8092CDB9D8200451CBD /* CMAttributedStringRenderer_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7332CDB9D8200451CBD /* CMAttributedStringRenderer_Private.h */; };
+		9CF1E80A2CDB9D8200451CBD /* CMAttributedStringRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7342CDB9D8200451CBD /* CMAttributedStringRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E80B2CDB9D8200451CBD /* CMAttributedStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7352CDB9D8200451CBD /* CMAttributedStringRenderer.m */; };
+		9CF1E80C2CDB9D8200451CBD /* CMAttributeRun.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7362CDB9D8200451CBD /* CMAttributeRun.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E80D2CDB9D8200451CBD /* CMAttributeRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7372CDB9D8200451CBD /* CMAttributeRun.m */; };
+		9CF1E80E2CDB9D8200451CBD /* CMBlockTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7382CDB9D8200451CBD /* CMBlockTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E80F2CDB9D8200451CBD /* CMBlockTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7392CDB9D8200451CBD /* CMBlockTextAttachment.m */; };
+		9CF1E8102CDB9D8200451CBD /* CMCascadingAttributeStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E73A2CDB9D8200451CBD /* CMCascadingAttributeStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8112CDB9D8200451CBD /* CMCascadingAttributeStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E73B2CDB9D8200451CBD /* CMCascadingAttributeStack.m */; };
+		9CF1E8122CDB9D8200451CBD /* CMDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E73C2CDB9D8200451CBD /* CMDocument_Private.h */; };
+		9CF1E8132CDB9D8200451CBD /* CMDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E73D2CDB9D8200451CBD /* CMDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8142CDB9D8200451CBD /* CMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E73E2CDB9D8200451CBD /* CMDocument.m */; };
+		9CF1E8152CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E73F2CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8162CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7402CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.m */; };
+		9CF1E8172CDB9D8200451CBD /* CMDocument+HTMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7412CDB9D8200451CBD /* CMDocument+HTMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8182CDB9D8200451CBD /* CMDocument+HTMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7422CDB9D8200451CBD /* CMDocument+HTMLAdditions.m */; };
+		9CF1E8192CDB9D8200451CBD /* CMHTMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7432CDB9D8200451CBD /* CMHTMLElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E81A2CDB9D8200451CBD /* CMHTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7442CDB9D8200451CBD /* CMHTMLElement.m */; };
+		9CF1E81B2CDB9D8200451CBD /* CMHTMLElementTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7452CDB9D8200451CBD /* CMHTMLElementTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E81C2CDB9D8200451CBD /* CMHTMLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7462CDB9D8200451CBD /* CMHTMLRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E81D2CDB9D8200451CBD /* CMHTMLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7472CDB9D8200451CBD /* CMHTMLRenderer.m */; };
+		9CF1E81E2CDB9D8200451CBD /* CMHTMLScriptTransformer_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7482CDB9D8200451CBD /* CMHTMLScriptTransformer_Private.h */; };
+		9CF1E81F2CDB9D8200451CBD /* CMHTMLScriptTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7492CDB9D8200451CBD /* CMHTMLScriptTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8202CDB9D8200451CBD /* CMHTMLScriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E74A2CDB9D8200451CBD /* CMHTMLScriptTransformer.m */; };
+		9CF1E8212CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E74B2CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8222CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E74C2CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.m */; };
+		9CF1E8232CDB9D8200451CBD /* CMHTMLSubscriptTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E74D2CDB9D8200451CBD /* CMHTMLSubscriptTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8242CDB9D8200451CBD /* CMHTMLSubscriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E74E2CDB9D8200451CBD /* CMHTMLSubscriptTransformer.m */; };
+		9CF1E8252CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E74F2CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8262CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7502CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.m */; };
+		9CF1E8272CDB9D8200451CBD /* CMHTMLUnderlineTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7512CDB9D8200451CBD /* CMHTMLUnderlineTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8282CDB9D8200451CBD /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7522CDB9D8200451CBD /* CMHTMLUnderlineTransformer.m */; };
+		9CF1E8292CDB9D8200451CBD /* CMHTMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7532CDB9D8200451CBD /* CMHTMLUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E82A2CDB9D8200451CBD /* CMHTMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7542CDB9D8200451CBD /* CMHTMLUtilities.m */; };
+		9CF1E82B2CDB9D8200451CBD /* CMImageTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7552CDB9D8200451CBD /* CMImageTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E82C2CDB9D8200451CBD /* CMImageTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7562CDB9D8200451CBD /* CMImageTextAttachment.m */; };
+		9CF1E82D2CDB9D8200451CBD /* CMInlineTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7572CDB9D8200451CBD /* CMInlineTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E82E2CDB9D8200451CBD /* CMInlineTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7582CDB9D8200451CBD /* CMInlineTextAttachment.m */; };
+		9CF1E82F2CDB9D8200451CBD /* CMIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7592CDB9D8200451CBD /* CMIterator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8302CDB9D8200451CBD /* CMIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E75A2CDB9D8200451CBD /* CMIterator.m */; };
+		9CF1E8322CDB9D8200451CBD /* CMNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E75C2CDB9D8200451CBD /* CMNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8332CDB9D8200451CBD /* CMNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E75D2CDB9D8200451CBD /* CMNode.m */; };
+		9CF1E8342CDB9D8200451CBD /* CMNode+Table.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E75E2CDB9D8200451CBD /* CMNode+Table.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8352CDB9D8200451CBD /* CMNode+Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E75F2CDB9D8200451CBD /* CMNode+Table.m */; };
+		9CF1E8362CDB9D8200451CBD /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7602CDB9D8200451CBD /* CMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8372CDB9D8200451CBD /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7612CDB9D8200451CBD /* CMParser.m */; };
+		9CF1E8382CDB9D8200451CBD /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7622CDB9D8200451CBD /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8392CDB9D8200451CBD /* CMStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7632CDB9D8200451CBD /* CMStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E83A2CDB9D8200451CBD /* CMStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7642CDB9D8200451CBD /* CMStack.m */; };
+		9CF1E83B2CDB9D8200451CBD /* CMTextAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7652CDB9D8200451CBD /* CMTextAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E83C2CDB9D8200451CBD /* CMTextAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7662CDB9D8200451CBD /* CMTextAttributes.m */; };
+		9CF1E83D2CDB9D8200451CBD /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7672CDB9D8200451CBD /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8402CDB9D8200451CBD /* MTMathAtomFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E76B2CDB9D8200451CBD /* MTMathAtomFactory.m */; };
+		9CF1E8422CDB9D8200451CBD /* MTMathList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E76D2CDB9D8200451CBD /* MTMathList.m */; };
+		9CF1E8442CDB9D8200451CBD /* MTMathListBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E76F2CDB9D8200451CBD /* MTMathListBuilder.m */; };
+		9CF1E8462CDB9D8200451CBD /* MTMathListIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7712CDB9D8200451CBD /* MTMathListIndex.m */; };
+		9CF1E8482CDB9D8200451CBD /* MTUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7732CDB9D8200451CBD /* MTUnicode.m */; };
+		9CF1E84B2CDB9D8200451CBD /* MTFontMathTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7772CDB9D8200451CBD /* MTFontMathTable.m */; };
+		9CF1E84E2CDB9D8200451CBD /* MTTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E77A2CDB9D8200451CBD /* MTTypesetter.m */; };
+		9CF1E8512CDB9D8200451CBD /* MTFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E77E2CDB9D8200451CBD /* MTFont.m */; };
+		9CF1E8532CDB9D8200451CBD /* MTFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7802CDB9D8200451CBD /* MTFontManager.m */; };
+		9CF1E8552CDB9D8200451CBD /* MTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7822CDB9D8200451CBD /* MTLabel.m */; };
+		9CF1E8572CDB9D8200451CBD /* MTMathListDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7842CDB9D8200451CBD /* MTMathListDisplay.m */; };
+		9CF1E8592CDB9D8200451CBD /* MTMathUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7862CDB9D8200451CBD /* MTMathUILabel.m */; };
+		9CF1E85B2CDB9D8200451CBD /* NSBezierPath+addLineToPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7882CDB9D8200451CBD /* NSBezierPath+addLineToPoint.m */; };
+		9CF1E85D2CDB9D8200451CBD /* NSColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E78A2CDB9D8200451CBD /* NSColor+HexString.m */; };
+		9CF1E85F2CDB9D8200451CBD /* NSView+backgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E78C2CDB9D8200451CBD /* NSView+backgroundColor.m */; };
+		9CF1E8612CDB9D8200451CBD /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E78E2CDB9D8200451CBD /* UIColor+HexString.m */; };
+		9CF1E8652CDB9D8200451CBD /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1E7942CDB9D8200451CBD /* ONOXMLDocument.m */; };
+		9CF1E8682CDB9FE300451CBD /* mathFonts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CF1E8662CDB9FE300451CBD /* mathFonts.bundle */; };
+		9CF1E8692CDB9FE300451CBD /* highlightjs.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CF1E8672CDB9FE300451CBD /* highlightjs.bundle */; };
+		9CF1E86C2CDBA3FB00451CBD /* AntMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF1E86B2CDBA3FB00451CBD /* AntMarkdown.framework */; };
+		9CF1E86D2CDBA56200451CBD /* strikethrough.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6EF2CDB9D8200451CBD /* strikethrough.h */; };
+		9CF1E86E2CDBA56200451CBD /* tagfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6F32CDB9D8200451CBD /* tagfilter.h */; };
+		9CF1E86F2CDBA56200451CBD /* table.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6F12CDB9D8200451CBD /* table.h */; };
+		9CF1E8702CDBA56200451CBD /* math_mark.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6ED2CDB9D8200451CBD /* math_mark.h */; };
+		9CF1E8712CDBA56200451CBD /* tasklist.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6F52CDB9D8200451CBD /* tasklist.h */; };
+		9CF1E8722CDBA56200451CBD /* autolink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6E52CDB9D8200451CBD /* autolink.h */; };
+		9CF1E8732CDBA56200451CBD /* cmark-gfm-core-extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6E72CDB9D8200451CBD /* cmark-gfm-core-extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8742CDBA56200451CBD /* ext_scanners.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6EA2CDB9D8200451CBD /* ext_scanners.h */; };
+		9CF1E8752CDBA59300451CBD /* chunk.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6FC2CDB9D8200451CBD /* chunk.h */; };
+		9CF1E8762CDBA59300451CBD /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6FA2CDB9D8200451CBD /* buffer.h */; };
+		9CF1E8772CDBA59800451CBD /* cmark_ctype.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E6FF2CDB9D8200451CBD /* cmark_ctype.h */; };
+		9CF1E8782CDBA59F00451CBD /* references.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7202CDB9D8200451CBD /* references.h */; };
+		9CF1E8792CDBA59F00451CBD /* registry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7222CDB9D8200451CBD /* registry.h */; };
+		9CF1E87A2CDBA59F00451CBD /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7242CDB9D8200451CBD /* render.h */; };
+		9CF1E87B2CDBA59F00451CBD /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E71A2CDB9D8200451CBD /* node.h */; };
+		9CF1E87C2CDBA59F00451CBD /* footnotes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7082CDB9D8200451CBD /* footnotes.h */; };
+		9CF1E87D2CDBA59F00451CBD /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7122CDB9D8200451CBD /* iterator.h */; };
+		9CF1E87E2CDBA59F00451CBD /* scanners.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7262CDB9D8200451CBD /* scanners.h */; };
+		9CF1E87F2CDBA59F00451CBD /* inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7102CDB9D8200451CBD /* inlines.h */; };
+		9CF1E8802CDBA59F00451CBD /* houdini.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E70C2CDB9D8200451CBD /* houdini.h */; };
+		9CF1E8812CDBA59F00451CBD /* map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7182CDB9D8200451CBD /* map.h */; };
+		9CF1E8822CDBA59F00451CBD /* plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E71E2CDB9D8200451CBD /* plugin.h */; };
+		9CF1E8832CDBA59F00451CBD /* syntax_extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7292CDB9D8200451CBD /* syntax_extension.h */; };
+		9CF1E8842CDBA59F00451CBD /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E71B2CDB9D8200451CBD /* parser.h */; };
+		9CF1E8852CDBA59F00451CBD /* html.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E70E2CDB9D8200451CBD /* html.h */; };
+		9CF1E8862CDBA59F00451CBD /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E72B2CDB9D8200451CBD /* utf8.h */; };
+		9CF1E8872CDBA5B100451CBD /* cmark-gfm-extension_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7012CDB9D8200451CBD /* cmark-gfm-extension_api.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8882CDBA5B500451CBD /* cmark-gfm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E7022CDB9D8200451CBD /* cmark-gfm.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CF1E8892CDBA5F500451CBD /* CMNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF1E75B2CDB9D8200451CBD /* CMNode_Private.h */; };
+		A2CA04A0188A78A900D1E152 /* AntMarkdown-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2CA0499188A78A900D1E152 /* AntMarkdown-Info.plist */; };
+		A2CA04A1188A78A900D1E152 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2CA049B188A78A900D1E152 /* InfoPlist.strings */; };
+		A2E668DD2D310BA2005CC3B6 /* AMGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E668DC2D310BA2005CC3B6 /* AMGradientLayer.m */; };
+		A2E668DE2D310BA2005CC3B6 /* AMGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A2E668DB2D310BA2005CC3B6 /* AMGradientLayer.h */; };
+		AAC068C2188D1F8E001B468D /* AntMarkdown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC068C1188D1F8E001B468D /* AntMarkdown.bundle */; };
+		EC2133272D9AB6F700C86B39 /* CMTaskCheckAttachment+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EC2133242D9AB6F700C86B39 /* CMTaskCheckAttachment+Private.h */; };
+		EC3578F52D816E8200F10E01 /* AMLayoutManager+Quote.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3578F42D816E8200F10E01 /* AMLayoutManager+Quote.m */; };
+		EC3578F62D816E8200F10E01 /* AMLayoutManager+Quote.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3578F32D816E8200F10E01 /* AMLayoutManager+Quote.h */; };
+		EC5421962D928E5E00510C86 /* AMEmojiManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5421942D928E5E00510C86 /* AMEmojiManager.h */; };
+		EC5421972D928E5E00510C86 /* AMEmojiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5421952D928E5E00510C86 /* AMEmojiManager.m */; };
+		ECE1C84D2D924D930034FEE2 /* emoji.c in Sources */ = {isa = PBXBuildFile; fileRef = ECE1C84C2D924D930034FEE2 /* emoji.c */; };
+		ECE1C84E2D924D930034FEE2 /* emoji.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE1C84B2D924D930034FEE2 /* emoji.h */; };
+		ECF404AC2D9A45C400B04B59 /* CMTaskCheckAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF404AA2D9A45C400B04B59 /* CMTaskCheckAttachment.h */; };
+		ECF404AD2D9A45C400B04B59 /* CMTaskCheckAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF404AB2D9A45C400B04B59 /* CMTaskCheckAttachment.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A8283752D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMMarkDownTableViewBlowUpControllerViewController.h; sourceTree = "<group>"; };
+		0A8283762D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMMarkDownTableViewBlowUpControllerViewController.m; sourceTree = "<group>"; };
+		0E449DC02D806CFC001E7430 /* CMHorizontalRuleAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMHorizontalRuleAttachment.h; sourceTree = "<group>"; };
+		0E449DC12D806CFC001E7430 /* CMHorizontalRuleAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMHorizontalRuleAttachment.m; sourceTree = "<group>"; };
+		771F1B9B2E1674570009C5B5 /* AMIconAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMIconAttachment.h; sourceTree = "<group>"; };
+		771F1B9C2E1674570009C5B5 /* AMIconAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMIconAttachment.m; sourceTree = "<group>"; };
+		77A5FD662D9CE399009B0C1D /* AMIconLinkAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMIconLinkAttachment.h; sourceTree = "<group>"; };
+		77A5FD672D9CE399009B0C1D /* AMIconLinkAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMIconLinkAttachment.m; sourceTree = "<group>"; };
+		77EB5F0A2E69B3FA0042F5BD /* AMUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMUtils.m; sourceTree = "<group>"; };
+		9C3EA8662CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AntMarkdown.h"; sourceTree = "<group>"; };
+		9C3EA8672CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AntMarkdown.m"; sourceTree = "<group>"; };
+		9C48DDD92CE4C5BE00E10317 /* AMUnderline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUnderline.m; sourceTree = "<group>"; };
+		9C48DDDA2CE4C5BE00E10317 /* AMUnderline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUnderline.h; sourceTree = "<group>"; };
+		9C48DDDE2CE5953400E10317 /* AMGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMGradientView.h; sourceTree = "<group>"; };
+		9C48DDDF2CE5953400E10317 /* AMGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMGradientView.m; sourceTree = "<group>"; };
+		9CB413912CDC657D0000585E /* NSString+AntMarkdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AntMarkdown.m"; sourceTree = "<group>"; };
+		9CB413922CDC657D0000585E /* NSString+AntMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AntMarkdown.h"; sourceTree = "<group>"; };
+		9CB413B12CDDC31B0000585E /* AMImageTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMImageTextAttachment.h; sourceTree = "<group>"; };
+		9CB413B22CDDC31B0000585E /* AMImageTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMImageTextAttachment.m; sourceTree = "<group>"; };
+		9CF1E6BC2CDB9D8200451CBD /* AMAttributedStringRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAttributedStringRenderer.h; sourceTree = "<group>"; };
+		9CF1E6BD2CDB9D8200451CBD /* AMAttributedStringRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAttributedStringRenderer.m; sourceTree = "<group>"; };
+		9CF1E6BE2CDB9D8200451CBD /* AMBlockMathAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBlockMathAttachment.h; sourceTree = "<group>"; };
+		9CF1E6BF2CDB9D8200451CBD /* AMBlockMathAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBlockMathAttachment.m; sourceTree = "<group>"; };
+		9CF1E6C02CDB9D8200451CBD /* AMCodeHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCodeHighlighter.h; sourceTree = "<group>"; };
+		9CF1E6C12CDB9D8200451CBD /* AMCodeHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCodeHighlighter.m; sourceTree = "<group>"; };
+		9CF1E6C22CDB9D8200451CBD /* AMCodeViewAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCodeViewAttachment.h; sourceTree = "<group>"; };
+		9CF1E6C32CDB9D8200451CBD /* AMCodeViewAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCodeViewAttachment.m; sourceTree = "<group>"; };
+		9CF1E6C42CDB9D8200451CBD /* AMDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDrawable.h; sourceTree = "<group>"; };
+		9CF1E6C52CDB9D8200451CBD /* AMDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDrawable.m; sourceTree = "<group>"; };
+		9CF1E6C62CDB9D8200451CBD /* AMGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMGradient.h; sourceTree = "<group>"; };
+		9CF1E6C72CDB9D8200451CBD /* AMGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMGradient.m; sourceTree = "<group>"; };
+		9CF1E6C82CDB9D8200451CBD /* AMHTMLTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMHTMLTransformer.h; sourceTree = "<group>"; };
+		9CF1E6C92CDB9D8200451CBD /* AMHTMLTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMHTMLTransformer.m; sourceTree = "<group>"; };
+		9CF1E6CA2CDB9D8200451CBD /* AMInlineMathAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMInlineMathAttachment.h; sourceTree = "<group>"; };
+		9CF1E6CB2CDB9D8200451CBD /* AMInlineMathAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMInlineMathAttachment.m; sourceTree = "<group>"; };
+		9CF1E6CC2CDB9D8200451CBD /* AMLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLayoutManager.h; sourceTree = "<group>"; };
+		9CF1E6CD2CDB9D8200451CBD /* AMLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLayoutManager.m; sourceTree = "<group>"; };
+		9CF1E6CE2CDB9D8200451CBD /* AMMarkdownCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMarkdownCodeView.h; sourceTree = "<group>"; };
+		9CF1E6CF2CDB9D8200451CBD /* AMMarkdownCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMarkdownCodeView.m; sourceTree = "<group>"; };
+		9CF1E6D02CDB9D8200451CBD /* AMMarkdownTableLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMarkdownTableLayout.h; sourceTree = "<group>"; };
+		9CF1E6D12CDB9D8200451CBD /* AMMarkdownTableLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMarkdownTableLayout.m; sourceTree = "<group>"; };
+		9CF1E6D22CDB9D8200451CBD /* AMMarkdownTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMarkdownTableView.h; sourceTree = "<group>"; };
+		9CF1E6D32CDB9D8200451CBD /* AMMarkdownTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMarkdownTableView.m; sourceTree = "<group>"; };
+		9CF1E6D42CDB9D8200451CBD /* AMTableViewAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTableViewAttachment.h; sourceTree = "<group>"; };
+		9CF1E6D52CDB9D8200451CBD /* AMTableViewAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTableViewAttachment.m; sourceTree = "<group>"; };
+		9CF1E6D62CDB9D8200451CBD /* AMTextBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTextBackground.h; sourceTree = "<group>"; };
+		9CF1E6D72CDB9D8200451CBD /* AMTextBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTextBackground.m; sourceTree = "<group>"; };
+		9CF1E6D82CDB9D8200451CBD /* AMTextStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTextStyles.h; sourceTree = "<group>"; };
+		9CF1E6D92CDB9D8200451CBD /* AMTextStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTextStyles.m; sourceTree = "<group>"; };
+		9CF1E6DA2CDB9D8200451CBD /* AMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUtils.h; sourceTree = "<group>"; };
+		9CF1E6DC2CDB9D8200451CBD /* AMViewAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMViewAttachment.h; sourceTree = "<group>"; };
+		9CF1E6DD2CDB9D8200451CBD /* AMViewAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMViewAttachment.m; sourceTree = "<group>"; };
+		9CF1E6DE2CDB9D8200451CBD /* AntMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AntMarkdown.h; sourceTree = "<group>"; };
+		9CF1E6DF2CDB9D8200451CBD /* UILabel+AntMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AntMarkdown.h"; sourceTree = "<group>"; };
+		9CF1E6E02CDB9D8200451CBD /* UILabel+AntMarkdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AntMarkdown.m"; sourceTree = "<group>"; };
+		9CF1E6E12CDB9D8200451CBD /* UITextView+AntMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AntMarkdown.h"; sourceTree = "<group>"; };
+		9CF1E6E22CDB9D8200451CBD /* UITextView+AntMarkdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AntMarkdown.m"; sourceTree = "<group>"; };
+		9CF1E6E42CDB9D8200451CBD /* autolink.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = autolink.c; sourceTree = "<group>"; };
+		9CF1E6E52CDB9D8200451CBD /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		9CF1E6E72CDB9D8200451CBD /* cmark-gfm-core-extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cmark-gfm-core-extensions.h"; sourceTree = "<group>"; };
+		9CF1E6E82CDB9D8200451CBD /* core-extensions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "core-extensions.c"; sourceTree = "<group>"; };
+		9CF1E6E92CDB9D8200451CBD /* ext_scanners.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ext_scanners.c; sourceTree = "<group>"; };
+		9CF1E6EA2CDB9D8200451CBD /* ext_scanners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ext_scanners.h; sourceTree = "<group>"; };
+		9CF1E6EC2CDB9D8200451CBD /* math_mark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = math_mark.c; sourceTree = "<group>"; };
+		9CF1E6ED2CDB9D8200451CBD /* math_mark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_mark.h; sourceTree = "<group>"; };
+		9CF1E6EE2CDB9D8200451CBD /* strikethrough.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strikethrough.c; sourceTree = "<group>"; };
+		9CF1E6EF2CDB9D8200451CBD /* strikethrough.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strikethrough.h; sourceTree = "<group>"; };
+		9CF1E6F02CDB9D8200451CBD /* table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = table.c; sourceTree = "<group>"; };
+		9CF1E6F12CDB9D8200451CBD /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
+		9CF1E6F22CDB9D8200451CBD /* tagfilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tagfilter.c; sourceTree = "<group>"; };
+		9CF1E6F32CDB9D8200451CBD /* tagfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagfilter.h; sourceTree = "<group>"; };
+		9CF1E6F42CDB9D8200451CBD /* tasklist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tasklist.c; sourceTree = "<group>"; };
+		9CF1E6F52CDB9D8200451CBD /* tasklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tasklist.h; sourceTree = "<group>"; };
+		9CF1E6F72CDB9D8200451CBD /* arena.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arena.c; sourceTree = "<group>"; };
+		9CF1E6F82CDB9D8200451CBD /* blocks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blocks.c; sourceTree = "<group>"; };
+		9CF1E6F92CDB9D8200451CBD /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
+		9CF1E6FA2CDB9D8200451CBD /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		9CF1E6FB2CDB9D8200451CBD /* case_fold_switch.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = case_fold_switch.inc; sourceTree = "<group>"; };
+		9CF1E6FC2CDB9D8200451CBD /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chunk.h; sourceTree = "<group>"; };
+		9CF1E6FE2CDB9D8200451CBD /* cmark_ctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmark_ctype.c; sourceTree = "<group>"; };
+		9CF1E6FF2CDB9D8200451CBD /* cmark_ctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmark_ctype.h; sourceTree = "<group>"; };
+		9CF1E7012CDB9D8200451CBD /* cmark-gfm-extension_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cmark-gfm-extension_api.h"; sourceTree = "<group>"; };
+		9CF1E7022CDB9D8200451CBD /* cmark-gfm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cmark-gfm.h"; sourceTree = "<group>"; };
+		9CF1E7032CDB9D8200451CBD /* cmark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmark.c; sourceTree = "<group>"; };
+		9CF1E7042CDB9D8200451CBD /* commonmark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = commonmark.c; sourceTree = "<group>"; };
+		9CF1E7072CDB9D8200451CBD /* footnotes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = footnotes.c; sourceTree = "<group>"; };
+		9CF1E7082CDB9D8200451CBD /* footnotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = footnotes.h; sourceTree = "<group>"; };
+		9CF1E7092CDB9D8200451CBD /* houdini_href_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_href_e.c; sourceTree = "<group>"; };
+		9CF1E70A2CDB9D8200451CBD /* houdini_html_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_e.c; sourceTree = "<group>"; };
+		9CF1E70B2CDB9D8200451CBD /* houdini_html_u.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_u.c; sourceTree = "<group>"; };
+		9CF1E70C2CDB9D8200451CBD /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
+		9CF1E70D2CDB9D8200451CBD /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
+		9CF1E70E2CDB9D8200451CBD /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
+		9CF1E70F2CDB9D8200451CBD /* inlines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inlines.c; sourceTree = "<group>"; };
+		9CF1E7102CDB9D8200451CBD /* inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inlines.h; sourceTree = "<group>"; };
+		9CF1E7112CDB9D8200451CBD /* iterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iterator.c; sourceTree = "<group>"; };
+		9CF1E7122CDB9D8200451CBD /* iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator.h; sourceTree = "<group>"; };
+		9CF1E7132CDB9D8200451CBD /* latex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = latex.c; sourceTree = "<group>"; };
+		9CF1E7152CDB9D8200451CBD /* linked_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = linked_list.c; sourceTree = "<group>"; };
+		9CF1E7162CDB9D8200451CBD /* man.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = man.c; sourceTree = "<group>"; };
+		9CF1E7172CDB9D8200451CBD /* map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = map.c; sourceTree = "<group>"; };
+		9CF1E7182CDB9D8200451CBD /* map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = map.h; sourceTree = "<group>"; };
+		9CF1E7192CDB9D8200451CBD /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node.c; sourceTree = "<group>"; };
+		9CF1E71A2CDB9D8200451CBD /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		9CF1E71B2CDB9D8200451CBD /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		9CF1E71C2CDB9D8200451CBD /* plaintext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = plaintext.c; sourceTree = "<group>"; };
+		9CF1E71D2CDB9D8200451CBD /* plugin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = plugin.c; sourceTree = "<group>"; };
+		9CF1E71E2CDB9D8200451CBD /* plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plugin.h; sourceTree = "<group>"; };
+		9CF1E71F2CDB9D8200451CBD /* references.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = references.c; sourceTree = "<group>"; };
+		9CF1E7202CDB9D8200451CBD /* references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = references.h; sourceTree = "<group>"; };
+		9CF1E7212CDB9D8200451CBD /* registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = registry.c; sourceTree = "<group>"; };
+		9CF1E7222CDB9D8200451CBD /* registry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registry.h; sourceTree = "<group>"; };
+		9CF1E7232CDB9D8200451CBD /* render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = render.c; sourceTree = "<group>"; };
+		9CF1E7242CDB9D8200451CBD /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
+		9CF1E7252CDB9D8200451CBD /* scanners.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scanners.c; sourceTree = "<group>"; };
+		9CF1E7262CDB9D8200451CBD /* scanners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanners.h; sourceTree = "<group>"; };
+		9CF1E7282CDB9D8200451CBD /* syntax_extension.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = syntax_extension.c; sourceTree = "<group>"; };
+		9CF1E7292CDB9D8200451CBD /* syntax_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syntax_extension.h; sourceTree = "<group>"; };
+		9CF1E72A2CDB9D8200451CBD /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf8.c; sourceTree = "<group>"; };
+		9CF1E72B2CDB9D8200451CBD /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
+		9CF1E72C2CDB9D8200451CBD /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml.c; sourceTree = "<group>"; };
+		9CF1E72E2CDB9D8200451CBD /* cmark-gfm_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cmark-gfm_export.h"; sourceTree = "<group>"; };
+		9CF1E72F2CDB9D8200451CBD /* cmark-gfm_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cmark-gfm_version.h"; sourceTree = "<group>"; };
+		9CF1E7302CDB9D8200451CBD /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		9CF1E7332CDB9D8200451CBD /* CMAttributedStringRenderer_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributedStringRenderer_Private.h; sourceTree = "<group>"; };
+		9CF1E7342CDB9D8200451CBD /* CMAttributedStringRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributedStringRenderer.h; sourceTree = "<group>"; };
+		9CF1E7352CDB9D8200451CBD /* CMAttributedStringRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributedStringRenderer.m; sourceTree = "<group>"; };
+		9CF1E7362CDB9D8200451CBD /* CMAttributeRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributeRun.h; sourceTree = "<group>"; };
+		9CF1E7372CDB9D8200451CBD /* CMAttributeRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributeRun.m; sourceTree = "<group>"; };
+		9CF1E7382CDB9D8200451CBD /* CMBlockTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBlockTextAttachment.h; sourceTree = "<group>"; };
+		9CF1E7392CDB9D8200451CBD /* CMBlockTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBlockTextAttachment.m; sourceTree = "<group>"; };
+		9CF1E73A2CDB9D8200451CBD /* CMCascadingAttributeStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCascadingAttributeStack.h; sourceTree = "<group>"; };
+		9CF1E73B2CDB9D8200451CBD /* CMCascadingAttributeStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCascadingAttributeStack.m; sourceTree = "<group>"; };
+		9CF1E73C2CDB9D8200451CBD /* CMDocument_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDocument_Private.h; sourceTree = "<group>"; };
+		9CF1E73D2CDB9D8200451CBD /* CMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDocument.h; sourceTree = "<group>"; };
+		9CF1E73E2CDB9D8200451CBD /* CMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDocument.m; sourceTree = "<group>"; };
+		9CF1E73F2CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+AttributedStringAdditions.h"; sourceTree = "<group>"; };
+		9CF1E7402CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+AttributedStringAdditions.m"; sourceTree = "<group>"; };
+		9CF1E7412CDB9D8200451CBD /* CMDocument+HTMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+HTMLAdditions.h"; sourceTree = "<group>"; };
+		9CF1E7422CDB9D8200451CBD /* CMDocument+HTMLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+HTMLAdditions.m"; sourceTree = "<group>"; };
+		9CF1E7432CDB9D8200451CBD /* CMHTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLElement.h; sourceTree = "<group>"; };
+		9CF1E7442CDB9D8200451CBD /* CMHTMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLElement.m; sourceTree = "<group>"; };
+		9CF1E7452CDB9D8200451CBD /* CMHTMLElementTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLElementTransformer.h; sourceTree = "<group>"; };
+		9CF1E7462CDB9D8200451CBD /* CMHTMLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLRenderer.h; sourceTree = "<group>"; };
+		9CF1E7472CDB9D8200451CBD /* CMHTMLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLRenderer.m; sourceTree = "<group>"; };
+		9CF1E7482CDB9D8200451CBD /* CMHTMLScriptTransformer_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLScriptTransformer_Private.h; sourceTree = "<group>"; };
+		9CF1E7492CDB9D8200451CBD /* CMHTMLScriptTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLScriptTransformer.h; sourceTree = "<group>"; };
+		9CF1E74A2CDB9D8200451CBD /* CMHTMLScriptTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLScriptTransformer.m; sourceTree = "<group>"; };
+		9CF1E74B2CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLStrikethroughTransformer.h; sourceTree = "<group>"; };
+		9CF1E74C2CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLStrikethroughTransformer.m; sourceTree = "<group>"; };
+		9CF1E74D2CDB9D8200451CBD /* CMHTMLSubscriptTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLSubscriptTransformer.h; sourceTree = "<group>"; };
+		9CF1E74E2CDB9D8200451CBD /* CMHTMLSubscriptTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLSubscriptTransformer.m; sourceTree = "<group>"; };
+		9CF1E74F2CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLSuperscriptTransformer.h; sourceTree = "<group>"; };
+		9CF1E7502CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLSuperscriptTransformer.m; sourceTree = "<group>"; };
+		9CF1E7512CDB9D8200451CBD /* CMHTMLUnderlineTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUnderlineTransformer.h; sourceTree = "<group>"; };
+		9CF1E7522CDB9D8200451CBD /* CMHTMLUnderlineTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUnderlineTransformer.m; sourceTree = "<group>"; };
+		9CF1E7532CDB9D8200451CBD /* CMHTMLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUtilities.h; sourceTree = "<group>"; };
+		9CF1E7542CDB9D8200451CBD /* CMHTMLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUtilities.m; sourceTree = "<group>"; };
+		9CF1E7552CDB9D8200451CBD /* CMImageTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMImageTextAttachment.h; sourceTree = "<group>"; };
+		9CF1E7562CDB9D8200451CBD /* CMImageTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMImageTextAttachment.m; sourceTree = "<group>"; };
+		9CF1E7572CDB9D8200451CBD /* CMInlineTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMInlineTextAttachment.h; sourceTree = "<group>"; };
+		9CF1E7582CDB9D8200451CBD /* CMInlineTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMInlineTextAttachment.m; sourceTree = "<group>"; };
+		9CF1E7592CDB9D8200451CBD /* CMIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMIterator.h; sourceTree = "<group>"; };
+		9CF1E75A2CDB9D8200451CBD /* CMIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMIterator.m; sourceTree = "<group>"; };
+		9CF1E75B2CDB9D8200451CBD /* CMNode_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode_Private.h; sourceTree = "<group>"; };
+		9CF1E75C2CDB9D8200451CBD /* CMNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode.h; sourceTree = "<group>"; };
+		9CF1E75D2CDB9D8200451CBD /* CMNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMNode.m; sourceTree = "<group>"; };
+		9CF1E75E2CDB9D8200451CBD /* CMNode+Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMNode+Table.h"; sourceTree = "<group>"; };
+		9CF1E75F2CDB9D8200451CBD /* CMNode+Table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMNode+Table.m"; sourceTree = "<group>"; };
+		9CF1E7602CDB9D8200451CBD /* CMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParser.h; sourceTree = "<group>"; };
+		9CF1E7612CDB9D8200451CBD /* CMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParser.m; sourceTree = "<group>"; };
+		9CF1E7622CDB9D8200451CBD /* CMPlatformDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlatformDefines.h; sourceTree = "<group>"; };
+		9CF1E7632CDB9D8200451CBD /* CMStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMStack.h; sourceTree = "<group>"; };
+		9CF1E7642CDB9D8200451CBD /* CMStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMStack.m; sourceTree = "<group>"; };
+		9CF1E7652CDB9D8200451CBD /* CMTextAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextAttributes.h; sourceTree = "<group>"; };
+		9CF1E7662CDB9D8200451CBD /* CMTextAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTextAttributes.m; sourceTree = "<group>"; };
+		9CF1E7672CDB9D8200451CBD /* CocoaMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaMarkdown.h; sourceTree = "<group>"; };
+		9CF1E76A2CDB9D8200451CBD /* MTMathAtomFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathAtomFactory.h; sourceTree = "<group>"; };
+		9CF1E76B2CDB9D8200451CBD /* MTMathAtomFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMathAtomFactory.m; sourceTree = "<group>"; };
+		9CF1E76C2CDB9D8200451CBD /* MTMathList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathList.h; sourceTree = "<group>"; };
+		9CF1E76D2CDB9D8200451CBD /* MTMathList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMathList.m; sourceTree = "<group>"; };
+		9CF1E76E2CDB9D8200451CBD /* MTMathListBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathListBuilder.h; sourceTree = "<group>"; };
+		9CF1E76F2CDB9D8200451CBD /* MTMathListBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMathListBuilder.m; sourceTree = "<group>"; };
+		9CF1E7702CDB9D8200451CBD /* MTMathListIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathListIndex.h; sourceTree = "<group>"; };
+		9CF1E7712CDB9D8200451CBD /* MTMathListIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMathListIndex.m; sourceTree = "<group>"; };
+		9CF1E7722CDB9D8200451CBD /* MTUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTUnicode.h; sourceTree = "<group>"; };
+		9CF1E7732CDB9D8200451CBD /* MTUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTUnicode.m; sourceTree = "<group>"; };
+		9CF1E7752CDB9D8200451CBD /* MTFont+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTFont+Internal.h"; sourceTree = "<group>"; };
+		9CF1E7762CDB9D8200451CBD /* MTFontMathTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFontMathTable.h; sourceTree = "<group>"; };
+		9CF1E7772CDB9D8200451CBD /* MTFontMathTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFontMathTable.m; sourceTree = "<group>"; };
+		9CF1E7782CDB9D8200451CBD /* MTMathListDisplayInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathListDisplayInternal.h; sourceTree = "<group>"; };
+		9CF1E7792CDB9D8200451CBD /* MTTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTypesetter.h; sourceTree = "<group>"; };
+		9CF1E77A2CDB9D8200451CBD /* MTTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTypesetter.m; sourceTree = "<group>"; };
+		9CF1E77C2CDB9D8200451CBD /* MTConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTConfig.h; sourceTree = "<group>"; };
+		9CF1E77D2CDB9D8200451CBD /* MTFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFont.h; sourceTree = "<group>"; };
+		9CF1E77E2CDB9D8200451CBD /* MTFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFont.m; sourceTree = "<group>"; };
+		9CF1E77F2CDB9D8200451CBD /* MTFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFontManager.h; sourceTree = "<group>"; };
+		9CF1E7802CDB9D8200451CBD /* MTFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFontManager.m; sourceTree = "<group>"; };
+		9CF1E7812CDB9D8200451CBD /* MTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLabel.h; sourceTree = "<group>"; };
+		9CF1E7822CDB9D8200451CBD /* MTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLabel.m; sourceTree = "<group>"; };
+		9CF1E7832CDB9D8200451CBD /* MTMathListDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathListDisplay.h; sourceTree = "<group>"; };
+		9CF1E7842CDB9D8200451CBD /* MTMathListDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMathListDisplay.m; sourceTree = "<group>"; };
+		9CF1E7852CDB9D8200451CBD /* MTMathUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMathUILabel.h; sourceTree = "<group>"; };
+		9CF1E7862CDB9D8200451CBD /* MTMathUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMathUILabel.m; sourceTree = "<group>"; };
+		9CF1E7872CDB9D8200451CBD /* NSBezierPath+addLineToPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+addLineToPoint.h"; sourceTree = "<group>"; };
+		9CF1E7882CDB9D8200451CBD /* NSBezierPath+addLineToPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+addLineToPoint.m"; sourceTree = "<group>"; };
+		9CF1E7892CDB9D8200451CBD /* NSColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+HexString.h"; sourceTree = "<group>"; };
+		9CF1E78A2CDB9D8200451CBD /* NSColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+HexString.m"; sourceTree = "<group>"; };
+		9CF1E78B2CDB9D8200451CBD /* NSView+backgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+backgroundColor.h"; sourceTree = "<group>"; };
+		9CF1E78C2CDB9D8200451CBD /* NSView+backgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+backgroundColor.m"; sourceTree = "<group>"; };
+		9CF1E78D2CDB9D8200451CBD /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		9CF1E78E2CDB9D8200451CBD /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
+		9CF1E7902CDB9D8200451CBD /* IosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IosMath.h; sourceTree = "<group>"; };
+		9CF1E7922CDB9D8200451CBD /* Ono.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ono.h; sourceTree = "<group>"; };
+		9CF1E7932CDB9D8200451CBD /* ONOXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONOXMLDocument.h; sourceTree = "<group>"; };
+		9CF1E7942CDB9D8200451CBD /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONOXMLDocument.m; sourceTree = "<group>"; };
+		9CF1E8662CDB9FE300451CBD /* mathFonts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mathFonts.bundle; sourceTree = "<group>"; };
+		9CF1E8672CDB9FE300451CBD /* highlightjs.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = highlightjs.bundle; sourceTree = "<group>"; };
+		9CF1E86B2CDBA3FB00451CBD /* AntMarkdown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AntMarkdown.framework; path = "../Debug-iphonesimulator/AntMarkdown.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2CA0499188A78A900D1E152 /* AntMarkdown-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AntMarkdown-Info.plist"; sourceTree = "<group>"; };
+		A2CA049A188A78A900D1E152 /* AntMarkdown-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AntMarkdown-Prefix.pch"; sourceTree = "<group>"; };
+		A2CA049C188A78A900D1E152 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A2E668DB2D310BA2005CC3B6 /* AMGradientLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMGradientLayer.h; sourceTree = "<group>"; };
+		A2E668DC2D310BA2005CC3B6 /* AMGradientLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMGradientLayer.m; sourceTree = "<group>"; };
+		A2E9D364170BD32000B11F5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A2E9D366170BD32000B11F5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A2E9D368170BD32000B11F5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A2E9D38A170BD37D00B11F5E /* AntMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AntMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2E9D38B170BD37D00B11F5E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		AAC068C1188D1F8E001B468D /* AntMarkdown.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AntMarkdown.bundle; sourceTree = "<group>"; };
+		EC2133242D9AB6F700C86B39 /* CMTaskCheckAttachment+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMTaskCheckAttachment+Private.h"; sourceTree = "<group>"; };
+		EC3578F32D816E8200F10E01 /* AMLayoutManager+Quote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMLayoutManager+Quote.h"; sourceTree = "<group>"; };
+		EC3578F42D816E8200F10E01 /* AMLayoutManager+Quote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AMLayoutManager+Quote.m"; sourceTree = "<group>"; };
+		EC5421942D928E5E00510C86 /* AMEmojiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMEmojiManager.h; sourceTree = "<group>"; };
+		EC5421952D928E5E00510C86 /* AMEmojiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMEmojiManager.m; sourceTree = "<group>"; };
+		ECE1C84B2D924D930034FEE2 /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
+		ECE1C84C2D924D930034FEE2 /* emoji.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = emoji.c; sourceTree = "<group>"; };
+		ECF404AA2D9A45C400B04B59 /* CMTaskCheckAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMTaskCheckAttachment.h; sourceTree = "<group>"; };
+		ECF404AB2D9A45C400B04B59 /* CMTaskCheckAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMTaskCheckAttachment.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A2E9D387170BD37D00B11F5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF1E86C2CDBA3FB00451CBD /* AntMarkdown.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9CF1E6E32CDB9D8200451CBD /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				771F1B9B2E1674570009C5B5 /* AMIconAttachment.h */,
+				771F1B9C2E1674570009C5B5 /* AMIconAttachment.m */,
+				77A5FD662D9CE399009B0C1D /* AMIconLinkAttachment.h */,
+				77A5FD672D9CE399009B0C1D /* AMIconLinkAttachment.m */,
+				9CF1E6BC2CDB9D8200451CBD /* AMAttributedStringRenderer.h */,
+				9CF1E6BD2CDB9D8200451CBD /* AMAttributedStringRenderer.m */,
+				9CF1E6BE2CDB9D8200451CBD /* AMBlockMathAttachment.h */,
+				9CF1E6BF2CDB9D8200451CBD /* AMBlockMathAttachment.m */,
+				9CF1E6C02CDB9D8200451CBD /* AMCodeHighlighter.h */,
+				9CF1E6C12CDB9D8200451CBD /* AMCodeHighlighter.m */,
+				9CF1E6C22CDB9D8200451CBD /* AMCodeViewAttachment.h */,
+				9CF1E6C32CDB9D8200451CBD /* AMCodeViewAttachment.m */,
+				9CF1E6C42CDB9D8200451CBD /* AMDrawable.h */,
+				9CF1E6C52CDB9D8200451CBD /* AMDrawable.m */,
+				9CF1E6C62CDB9D8200451CBD /* AMGradient.h */,
+				9CF1E6C72CDB9D8200451CBD /* AMGradient.m */,
+				9C48DDDE2CE5953400E10317 /* AMGradientView.h */,
+				9C48DDDF2CE5953400E10317 /* AMGradientView.m */,
+				9CF1E6C82CDB9D8200451CBD /* AMHTMLTransformer.h */,
+				9CF1E6C92CDB9D8200451CBD /* AMHTMLTransformer.m */,
+				9CB413B12CDDC31B0000585E /* AMImageTextAttachment.h */,
+				9CB413B22CDDC31B0000585E /* AMImageTextAttachment.m */,
+				9CF1E6CA2CDB9D8200451CBD /* AMInlineMathAttachment.h */,
+				9CF1E6CB2CDB9D8200451CBD /* AMInlineMathAttachment.m */,
+				9CF1E6CC2CDB9D8200451CBD /* AMLayoutManager.h */,
+				9CF1E6CD2CDB9D8200451CBD /* AMLayoutManager.m */,
+				EC3578F32D816E8200F10E01 /* AMLayoutManager+Quote.h */,
+				EC3578F42D816E8200F10E01 /* AMLayoutManager+Quote.m */,
+				9CF1E6CE2CDB9D8200451CBD /* AMMarkdownCodeView.h */,
+				9CF1E6CF2CDB9D8200451CBD /* AMMarkdownCodeView.m */,
+				9CF1E6D02CDB9D8200451CBD /* AMMarkdownTableLayout.h */,
+				9CF1E6D12CDB9D8200451CBD /* AMMarkdownTableLayout.m */,
+				9CF1E6D22CDB9D8200451CBD /* AMMarkdownTableView.h */,
+				9CF1E6D32CDB9D8200451CBD /* AMMarkdownTableView.m */,
+				0A8283752D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.h */,
+				0A8283762D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.m */,
+				9CF1E6D42CDB9D8200451CBD /* AMTableViewAttachment.h */,
+				9CF1E6D52CDB9D8200451CBD /* AMTableViewAttachment.m */,
+				9CF1E6D62CDB9D8200451CBD /* AMTextBackground.h */,
+				9CF1E6D72CDB9D8200451CBD /* AMTextBackground.m */,
+				9CF1E6D82CDB9D8200451CBD /* AMTextStyles.h */,
+				9CF1E6D92CDB9D8200451CBD /* AMTextStyles.m */,
+				9C48DDDA2CE4C5BE00E10317 /* AMUnderline.h */,
+				9C48DDD92CE4C5BE00E10317 /* AMUnderline.m */,
+				9CF1E6DA2CDB9D8200451CBD /* AMUtils.h */,
+				77EB5F0A2E69B3FA0042F5BD /* AMUtils.m */,
+				9CF1E6DC2CDB9D8200451CBD /* AMViewAttachment.h */,
+				9CF1E6DD2CDB9D8200451CBD /* AMViewAttachment.m */,
+				9CF1E6DE2CDB9D8200451CBD /* AntMarkdown.h */,
+				9C3EA8662CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.h */,
+				9C3EA8672CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.m */,
+				9CB413922CDC657D0000585E /* NSString+AntMarkdown.h */,
+				9CB413912CDC657D0000585E /* NSString+AntMarkdown.m */,
+				9CF1E6DF2CDB9D8200451CBD /* UILabel+AntMarkdown.h */,
+				9CF1E6E02CDB9D8200451CBD /* UILabel+AntMarkdown.m */,
+				9CF1E6E12CDB9D8200451CBD /* UITextView+AntMarkdown.h */,
+				9CF1E6E22CDB9D8200451CBD /* UITextView+AntMarkdown.m */,
+				A2E668DB2D310BA2005CC3B6 /* AMGradientLayer.h */,
+				A2E668DC2D310BA2005CC3B6 /* AMGradientLayer.m */,
+				EC5421942D928E5E00510C86 /* AMEmojiManager.h */,
+				EC5421952D928E5E00510C86 /* AMEmojiManager.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		9CF1E6F62CDB9D8200451CBD /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E6E42CDB9D8200451CBD /* autolink.c */,
+				9CF1E6E52CDB9D8200451CBD /* autolink.h */,
+				9CF1E6E72CDB9D8200451CBD /* cmark-gfm-core-extensions.h */,
+				9CF1E6E82CDB9D8200451CBD /* core-extensions.c */,
+				9CF1E6E92CDB9D8200451CBD /* ext_scanners.c */,
+				9CF1E6EA2CDB9D8200451CBD /* ext_scanners.h */,
+				9CF1E6EC2CDB9D8200451CBD /* math_mark.c */,
+				9CF1E6ED2CDB9D8200451CBD /* math_mark.h */,
+				9CF1E6EE2CDB9D8200451CBD /* strikethrough.c */,
+				9CF1E6EF2CDB9D8200451CBD /* strikethrough.h */,
+				9CF1E6F02CDB9D8200451CBD /* table.c */,
+				9CF1E6F12CDB9D8200451CBD /* table.h */,
+				9CF1E6F22CDB9D8200451CBD /* tagfilter.c */,
+				9CF1E6F32CDB9D8200451CBD /* tagfilter.h */,
+				9CF1E6F42CDB9D8200451CBD /* tasklist.c */,
+				9CF1E6F52CDB9D8200451CBD /* tasklist.h */,
+				ECE1C84B2D924D930034FEE2 /* emoji.h */,
+				ECE1C84C2D924D930034FEE2 /* emoji.c */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		9CF1E72D2CDB9D8200451CBD /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E6F72CDB9D8200451CBD /* arena.c */,
+				9CF1E6F82CDB9D8200451CBD /* blocks.c */,
+				9CF1E6F92CDB9D8200451CBD /* buffer.c */,
+				9CF1E6FA2CDB9D8200451CBD /* buffer.h */,
+				9CF1E6FB2CDB9D8200451CBD /* case_fold_switch.inc */,
+				9CF1E6FC2CDB9D8200451CBD /* chunk.h */,
+				9CF1E6FE2CDB9D8200451CBD /* cmark_ctype.c */,
+				9CF1E6FF2CDB9D8200451CBD /* cmark_ctype.h */,
+				9CF1E7012CDB9D8200451CBD /* cmark-gfm-extension_api.h */,
+				9CF1E7022CDB9D8200451CBD /* cmark-gfm.h */,
+				9CF1E7032CDB9D8200451CBD /* cmark.c */,
+				9CF1E7042CDB9D8200451CBD /* commonmark.c */,
+				9CF1E7072CDB9D8200451CBD /* footnotes.c */,
+				9CF1E7082CDB9D8200451CBD /* footnotes.h */,
+				9CF1E7092CDB9D8200451CBD /* houdini_href_e.c */,
+				9CF1E70A2CDB9D8200451CBD /* houdini_html_e.c */,
+				9CF1E70B2CDB9D8200451CBD /* houdini_html_u.c */,
+				9CF1E70C2CDB9D8200451CBD /* houdini.h */,
+				9CF1E70D2CDB9D8200451CBD /* html.c */,
+				9CF1E70E2CDB9D8200451CBD /* html.h */,
+				9CF1E70F2CDB9D8200451CBD /* inlines.c */,
+				9CF1E7102CDB9D8200451CBD /* inlines.h */,
+				9CF1E7112CDB9D8200451CBD /* iterator.c */,
+				9CF1E7122CDB9D8200451CBD /* iterator.h */,
+				9CF1E7132CDB9D8200451CBD /* latex.c */,
+				9CF1E7152CDB9D8200451CBD /* linked_list.c */,
+				9CF1E7162CDB9D8200451CBD /* man.c */,
+				9CF1E7172CDB9D8200451CBD /* map.c */,
+				9CF1E7182CDB9D8200451CBD /* map.h */,
+				9CF1E7192CDB9D8200451CBD /* node.c */,
+				9CF1E71A2CDB9D8200451CBD /* node.h */,
+				9CF1E71B2CDB9D8200451CBD /* parser.h */,
+				9CF1E71C2CDB9D8200451CBD /* plaintext.c */,
+				9CF1E71D2CDB9D8200451CBD /* plugin.c */,
+				9CF1E71E2CDB9D8200451CBD /* plugin.h */,
+				9CF1E71F2CDB9D8200451CBD /* references.c */,
+				9CF1E7202CDB9D8200451CBD /* references.h */,
+				9CF1E7212CDB9D8200451CBD /* registry.c */,
+				9CF1E7222CDB9D8200451CBD /* registry.h */,
+				9CF1E7232CDB9D8200451CBD /* render.c */,
+				9CF1E7242CDB9D8200451CBD /* render.h */,
+				9CF1E7252CDB9D8200451CBD /* scanners.c */,
+				9CF1E7262CDB9D8200451CBD /* scanners.h */,
+				9CF1E7282CDB9D8200451CBD /* syntax_extension.c */,
+				9CF1E7292CDB9D8200451CBD /* syntax_extension.h */,
+				9CF1E72A2CDB9D8200451CBD /* utf8.c */,
+				9CF1E72B2CDB9D8200451CBD /* utf8.h */,
+				9CF1E72C2CDB9D8200451CBD /* xml.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		9CF1E7312CDB9D8200451CBD /* cmark-gfm */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E72E2CDB9D8200451CBD /* cmark-gfm_export.h */,
+				9CF1E72F2CDB9D8200451CBD /* cmark-gfm_version.h */,
+				9CF1E7302CDB9D8200451CBD /* config.h */,
+				9CF1E6F62CDB9D8200451CBD /* extensions */,
+				9CF1E72D2CDB9D8200451CBD /* src */,
+			);
+			path = "cmark-gfm";
+			sourceTree = "<group>";
+		};
+		9CF1E7692CDB9D8200451CBD /* CocoaMarkdown */ = {
+			isa = PBXGroup;
+			children = (
+				0E449DC02D806CFC001E7430 /* CMHorizontalRuleAttachment.h */,
+				0E449DC12D806CFC001E7430 /* CMHorizontalRuleAttachment.m */,
+				ECF404AA2D9A45C400B04B59 /* CMTaskCheckAttachment.h */,
+				EC2133242D9AB6F700C86B39 /* CMTaskCheckAttachment+Private.h */,
+				ECF404AB2D9A45C400B04B59 /* CMTaskCheckAttachment.m */,
+				9CF1E7332CDB9D8200451CBD /* CMAttributedStringRenderer_Private.h */,
+				9CF1E7342CDB9D8200451CBD /* CMAttributedStringRenderer.h */,
+				9CF1E7352CDB9D8200451CBD /* CMAttributedStringRenderer.m */,
+				9CF1E7362CDB9D8200451CBD /* CMAttributeRun.h */,
+				9CF1E7372CDB9D8200451CBD /* CMAttributeRun.m */,
+				9CF1E7382CDB9D8200451CBD /* CMBlockTextAttachment.h */,
+				9CF1E7392CDB9D8200451CBD /* CMBlockTextAttachment.m */,
+				9CF1E73A2CDB9D8200451CBD /* CMCascadingAttributeStack.h */,
+				9CF1E73B2CDB9D8200451CBD /* CMCascadingAttributeStack.m */,
+				9CF1E73C2CDB9D8200451CBD /* CMDocument_Private.h */,
+				9CF1E73D2CDB9D8200451CBD /* CMDocument.h */,
+				9CF1E73E2CDB9D8200451CBD /* CMDocument.m */,
+				9CF1E73F2CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.h */,
+				9CF1E7402CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.m */,
+				9CF1E7412CDB9D8200451CBD /* CMDocument+HTMLAdditions.h */,
+				9CF1E7422CDB9D8200451CBD /* CMDocument+HTMLAdditions.m */,
+				9CF1E7432CDB9D8200451CBD /* CMHTMLElement.h */,
+				9CF1E7442CDB9D8200451CBD /* CMHTMLElement.m */,
+				9CF1E7452CDB9D8200451CBD /* CMHTMLElementTransformer.h */,
+				9CF1E7462CDB9D8200451CBD /* CMHTMLRenderer.h */,
+				9CF1E7472CDB9D8200451CBD /* CMHTMLRenderer.m */,
+				9CF1E7482CDB9D8200451CBD /* CMHTMLScriptTransformer_Private.h */,
+				9CF1E7492CDB9D8200451CBD /* CMHTMLScriptTransformer.h */,
+				9CF1E74A2CDB9D8200451CBD /* CMHTMLScriptTransformer.m */,
+				9CF1E74B2CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.h */,
+				9CF1E74C2CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.m */,
+				9CF1E74D2CDB9D8200451CBD /* CMHTMLSubscriptTransformer.h */,
+				9CF1E74E2CDB9D8200451CBD /* CMHTMLSubscriptTransformer.m */,
+				9CF1E74F2CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.h */,
+				9CF1E7502CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.m */,
+				9CF1E7512CDB9D8200451CBD /* CMHTMLUnderlineTransformer.h */,
+				9CF1E7522CDB9D8200451CBD /* CMHTMLUnderlineTransformer.m */,
+				9CF1E7532CDB9D8200451CBD /* CMHTMLUtilities.h */,
+				9CF1E7542CDB9D8200451CBD /* CMHTMLUtilities.m */,
+				9CF1E7552CDB9D8200451CBD /* CMImageTextAttachment.h */,
+				9CF1E7562CDB9D8200451CBD /* CMImageTextAttachment.m */,
+				9CF1E7572CDB9D8200451CBD /* CMInlineTextAttachment.h */,
+				9CF1E7582CDB9D8200451CBD /* CMInlineTextAttachment.m */,
+				9CF1E7592CDB9D8200451CBD /* CMIterator.h */,
+				9CF1E75A2CDB9D8200451CBD /* CMIterator.m */,
+				9CF1E75B2CDB9D8200451CBD /* CMNode_Private.h */,
+				9CF1E75C2CDB9D8200451CBD /* CMNode.h */,
+				9CF1E75D2CDB9D8200451CBD /* CMNode.m */,
+				9CF1E75E2CDB9D8200451CBD /* CMNode+Table.h */,
+				9CF1E75F2CDB9D8200451CBD /* CMNode+Table.m */,
+				9CF1E7602CDB9D8200451CBD /* CMParser.h */,
+				9CF1E7612CDB9D8200451CBD /* CMParser.m */,
+				9CF1E7622CDB9D8200451CBD /* CMPlatformDefines.h */,
+				9CF1E7632CDB9D8200451CBD /* CMStack.h */,
+				9CF1E7642CDB9D8200451CBD /* CMStack.m */,
+				9CF1E7652CDB9D8200451CBD /* CMTextAttributes.h */,
+				9CF1E7662CDB9D8200451CBD /* CMTextAttributes.m */,
+				9CF1E7672CDB9D8200451CBD /* CocoaMarkdown.h */,
+			);
+			path = CocoaMarkdown;
+			sourceTree = "<group>";
+		};
+		9CF1E7742CDB9D8200451CBD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E76A2CDB9D8200451CBD /* MTMathAtomFactory.h */,
+				9CF1E76B2CDB9D8200451CBD /* MTMathAtomFactory.m */,
+				9CF1E76C2CDB9D8200451CBD /* MTMathList.h */,
+				9CF1E76D2CDB9D8200451CBD /* MTMathList.m */,
+				9CF1E76E2CDB9D8200451CBD /* MTMathListBuilder.h */,
+				9CF1E76F2CDB9D8200451CBD /* MTMathListBuilder.m */,
+				9CF1E7702CDB9D8200451CBD /* MTMathListIndex.h */,
+				9CF1E7712CDB9D8200451CBD /* MTMathListIndex.m */,
+				9CF1E7722CDB9D8200451CBD /* MTUnicode.h */,
+				9CF1E7732CDB9D8200451CBD /* MTUnicode.m */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		9CF1E77B2CDB9D8200451CBD /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E7752CDB9D8200451CBD /* MTFont+Internal.h */,
+				9CF1E7762CDB9D8200451CBD /* MTFontMathTable.h */,
+				9CF1E7772CDB9D8200451CBD /* MTFontMathTable.m */,
+				9CF1E7782CDB9D8200451CBD /* MTMathListDisplayInternal.h */,
+				9CF1E7792CDB9D8200451CBD /* MTTypesetter.h */,
+				9CF1E77A2CDB9D8200451CBD /* MTTypesetter.m */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		9CF1E78F2CDB9D8200451CBD /* render */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E77B2CDB9D8200451CBD /* internal */,
+				9CF1E77C2CDB9D8200451CBD /* MTConfig.h */,
+				9CF1E77D2CDB9D8200451CBD /* MTFont.h */,
+				9CF1E77E2CDB9D8200451CBD /* MTFont.m */,
+				9CF1E77F2CDB9D8200451CBD /* MTFontManager.h */,
+				9CF1E7802CDB9D8200451CBD /* MTFontManager.m */,
+				9CF1E7812CDB9D8200451CBD /* MTLabel.h */,
+				9CF1E7822CDB9D8200451CBD /* MTLabel.m */,
+				9CF1E7832CDB9D8200451CBD /* MTMathListDisplay.h */,
+				9CF1E7842CDB9D8200451CBD /* MTMathListDisplay.m */,
+				9CF1E7852CDB9D8200451CBD /* MTMathUILabel.h */,
+				9CF1E7862CDB9D8200451CBD /* MTMathUILabel.m */,
+				9CF1E7872CDB9D8200451CBD /* NSBezierPath+addLineToPoint.h */,
+				9CF1E7882CDB9D8200451CBD /* NSBezierPath+addLineToPoint.m */,
+				9CF1E7892CDB9D8200451CBD /* NSColor+HexString.h */,
+				9CF1E78A2CDB9D8200451CBD /* NSColor+HexString.m */,
+				9CF1E78B2CDB9D8200451CBD /* NSView+backgroundColor.h */,
+				9CF1E78C2CDB9D8200451CBD /* NSView+backgroundColor.m */,
+				9CF1E78D2CDB9D8200451CBD /* UIColor+HexString.h */,
+				9CF1E78E2CDB9D8200451CBD /* UIColor+HexString.m */,
+			);
+			path = render;
+			sourceTree = "<group>";
+		};
+		9CF1E7912CDB9D8200451CBD /* iosMath */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E7742CDB9D8200451CBD /* lib */,
+				9CF1E78F2CDB9D8200451CBD /* render */,
+				9CF1E7902CDB9D8200451CBD /* IosMath.h */,
+			);
+			path = iosMath;
+			sourceTree = "<group>";
+		};
+		9CF1E7952CDB9D8200451CBD /* Ono */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E7922CDB9D8200451CBD /* Ono.h */,
+				9CF1E7932CDB9D8200451CBD /* ONOXMLDocument.h */,
+				9CF1E7942CDB9D8200451CBD /* ONOXMLDocument.m */,
+			);
+			path = Ono;
+			sourceTree = "<group>";
+		};
+		9CF1E7962CDB9D8200451CBD /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E7312CDB9D8200451CBD /* cmark-gfm */,
+				9CF1E7692CDB9D8200451CBD /* CocoaMarkdown */,
+				9CF1E7912CDB9D8200451CBD /* iosMath */,
+				9CF1E7952CDB9D8200451CBD /* Ono */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		9CF1E86A2CDBA39200451CBD /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E86B2CDBA3FB00451CBD /* AntMarkdown.framework */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
+		A2CA048C188A78A900D1E152 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E7962CDB9D8200451CBD /* External */,
+				9CF1E6E32CDB9D8200451CBD /* Public */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A2CA0498188A78A900D1E152 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A2CA0499188A78A900D1E152 /* AntMarkdown-Info.plist */,
+				A2CA049A188A78A900D1E152 /* AntMarkdown-Prefix.pch */,
+				A2CA049B188A78A900D1E152 /* InfoPlist.strings */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A2E9D358170BD32000B11F5E = {
+			isa = PBXGroup;
+			children = (
+				A2CA048C188A78A900D1E152 /* Sources */,
+				AAC068C0188D1F8E001B468D /* Resources */,
+				A2CA0498188A78A900D1E152 /* SupportingFiles */,
+				A2E9D363170BD32000B11F5E /* Frameworks */,
+				9CF1E86A2CDBA39200451CBD /* Product */,
+				A2E9D362170BD32000B11F5E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A2E9D362170BD32000B11F5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2E9D38A170BD37D00B11F5E /* AntMarkdown.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A2E9D363170BD32000B11F5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2E9D364170BD32000B11F5E /* UIKit.framework */,
+				A2E9D366170BD32000B11F5E /* Foundation.framework */,
+				A2E9D368170BD32000B11F5E /* CoreGraphics.framework */,
+				A2E9D38B170BD37D00B11F5E /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAC068C0188D1F8E001B468D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9CF1E8672CDB9FE300451CBD /* highlightjs.bundle */,
+				9CF1E8662CDB9FE300451CBD /* mathFonts.bundle */,
+				AAC068C1188D1F8E001B468D /* AntMarkdown.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AA43C4EC19650DB400944353 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77A5FD692D9CE399009B0C1D /* AMIconLinkAttachment.h in Headers */,
+				EC3578F62D816E8200F10E01 /* AMLayoutManager+Quote.h in Headers */,
+				9CF1E7972CDB9D8200451CBD /* AMAttributedStringRenderer.h in Headers */,
+				9CF1E7992CDB9D8200451CBD /* AMBlockMathAttachment.h in Headers */,
+				ECE1C84E2D924D930034FEE2 /* emoji.h in Headers */,
+				ECF404AC2D9A45C400B04B59 /* CMTaskCheckAttachment.h in Headers */,
+				9CF1E79B2CDB9D8200451CBD /* AMCodeHighlighter.h in Headers */,
+				9CF1E79D2CDB9D8200451CBD /* AMCodeViewAttachment.h in Headers */,
+				9CF1E79F2CDB9D8200451CBD /* AMDrawable.h in Headers */,
+				9CF1E7A12CDB9D8200451CBD /* AMGradient.h in Headers */,
+				9CF1E7A32CDB9D8200451CBD /* AMHTMLTransformer.h in Headers */,
+				9C7D1B172CEF21AD00EFB06A /* Ono.h in Headers */,
+				9CF1E7A52CDB9D8200451CBD /* AMInlineMathAttachment.h in Headers */,
+				9CF1E7A72CDB9D8200451CBD /* AMLayoutManager.h in Headers */,
+				9CF1E8772CDBA59800451CBD /* cmark_ctype.h in Headers */,
+				9CF1E7A92CDB9D8200451CBD /* AMMarkdownCodeView.h in Headers */,
+				9CF1E7AB2CDB9D8200451CBD /* AMMarkdownTableLayout.h in Headers */,
+				9CF1E8782CDBA59F00451CBD /* references.h in Headers */,
+				9CF1E8792CDBA59F00451CBD /* registry.h in Headers */,
+				9CB413AB2CDC90EB0000585E /* cmark-gfm_export.h in Headers */,
+				9CF1E87A2CDBA59F00451CBD /* render.h in Headers */,
+				9CF1E87B2CDBA59F00451CBD /* node.h in Headers */,
+				9CF1E87C2CDBA59F00451CBD /* footnotes.h in Headers */,
+				9CB413B32CDDC31B0000585E /* AMImageTextAttachment.h in Headers */,
+				9CF1E87D2CDBA59F00451CBD /* iterator.h in Headers */,
+				9CF1E87E2CDBA59F00451CBD /* scanners.h in Headers */,
+				EC5421962D928E5E00510C86 /* AMEmojiManager.h in Headers */,
+				9CF1E87F2CDBA59F00451CBD /* inlines.h in Headers */,
+				9CF1E8802CDBA59F00451CBD /* houdini.h in Headers */,
+				9CF1E8812CDBA59F00451CBD /* map.h in Headers */,
+				9CF1E8822CDBA59F00451CBD /* plugin.h in Headers */,
+				9CF1E8832CDBA59F00451CBD /* syntax_extension.h in Headers */,
+				9CF1E8892CDBA5F500451CBD /* CMNode_Private.h in Headers */,
+				9CF1E8842CDBA59F00451CBD /* parser.h in Headers */,
+				9CF1E8852CDBA59F00451CBD /* html.h in Headers */,
+				9CF1E8862CDBA59F00451CBD /* utf8.h in Headers */,
+				9CF1E8872CDBA5B100451CBD /* cmark-gfm-extension_api.h in Headers */,
+				A2E668DE2D310BA2005CC3B6 /* AMGradientLayer.h in Headers */,
+				9CF1E7AD2CDB9D8200451CBD /* AMMarkdownTableView.h in Headers */,
+				9CF1E7AF2CDB9D8200451CBD /* AMTableViewAttachment.h in Headers */,
+				9CF1E7B12CDB9D8200451CBD /* AMTextBackground.h in Headers */,
+				9CF1E7B32CDB9D8200451CBD /* AMTextStyles.h in Headers */,
+				9CF1E7B52CDB9D8200451CBD /* AMUtils.h in Headers */,
+				9CF1E7B72CDB9D8200451CBD /* AMViewAttachment.h in Headers */,
+				9CF1E8132CDB9D8200451CBD /* CMDocument.h in Headers */,
+				9CF1E80E2CDB9D8200451CBD /* CMBlockTextAttachment.h in Headers */,
+				9CF1E8192CDB9D8200451CBD /* CMHTMLElement.h in Headers */,
+				9CF1E8752CDBA59300451CBD /* chunk.h in Headers */,
+				9C48DDE02CE5953400E10317 /* AMGradientView.h in Headers */,
+				9CF1E8762CDBA59300451CBD /* buffer.h in Headers */,
+				9CF1E82B2CDB9D8200451CBD /* CMImageTextAttachment.h in Headers */,
+				9CF1E8152CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.h in Headers */,
+				9CF1E81B2CDB9D8200451CBD /* CMHTMLElementTransformer.h in Headers */,
+				9CF1E86D2CDBA56200451CBD /* strikethrough.h in Headers */,
+				771F1B9E2E1674570009C5B5 /* AMIconAttachment.h in Headers */,
+				0E449DC32D806CFC001E7430 /* CMHorizontalRuleAttachment.h in Headers */,
+				9CF1E86E2CDBA56200451CBD /* tagfilter.h in Headers */,
+				9CF1E86F2CDBA56200451CBD /* table.h in Headers */,
+				9CF1E8702CDBA56200451CBD /* math_mark.h in Headers */,
+				9CF1E8712CDBA56200451CBD /* tasklist.h in Headers */,
+				9CF1E8722CDBA56200451CBD /* autolink.h in Headers */,
+				9CF1E8732CDBA56200451CBD /* cmark-gfm-core-extensions.h in Headers */,
+				9CF1E8742CDBA56200451CBD /* ext_scanners.h in Headers */,
+				9CF1E8212CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.h in Headers */,
+				9CF1E82D2CDB9D8200451CBD /* CMInlineTextAttachment.h in Headers */,
+				9CF1E80C2CDB9D8200451CBD /* CMAttributeRun.h in Headers */,
+				9CF1E8342CDB9D8200451CBD /* CMNode+Table.h in Headers */,
+				9CF1E8172CDB9D8200451CBD /* CMDocument+HTMLAdditions.h in Headers */,
+				9CF1E8392CDB9D8200451CBD /* CMStack.h in Headers */,
+				0A8283782D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.h in Headers */,
+				9C48DDDC2CE4C5BE00E10317 /* AMUnderline.h in Headers */,
+				9CF1E8232CDB9D8200451CBD /* CMHTMLSubscriptTransformer.h in Headers */,
+				9CF1E8102CDB9D8200451CBD /* CMCascadingAttributeStack.h in Headers */,
+				9CF1E8092CDB9D8200451CBD /* CMAttributedStringRenderer_Private.h in Headers */,
+				9CF1E82F2CDB9D8200451CBD /* CMIterator.h in Headers */,
+				9CF1E80A2CDB9D8200451CBD /* CMAttributedStringRenderer.h in Headers */,
+				9CF1E8382CDB9D8200451CBD /* CMPlatformDefines.h in Headers */,
+				9CF1E8362CDB9D8200451CBD /* CMParser.h in Headers */,
+				9CF1E81F2CDB9D8200451CBD /* CMHTMLScriptTransformer.h in Headers */,
+				9C7D1B182CEF21B200EFB06A /* ONOXMLDocument.h in Headers */,
+				9CF1E8122CDB9D8200451CBD /* CMDocument_Private.h in Headers */,
+				9CF1E8882CDBA5B500451CBD /* cmark-gfm.h in Headers */,
+				EC2133272D9AB6F700C86B39 /* CMTaskCheckAttachment+Private.h in Headers */,
+				9CB413AC2CDC90F50000585E /* cmark-gfm_version.h in Headers */,
+				9CF1E81C2CDB9D8200451CBD /* CMHTMLRenderer.h in Headers */,
+				9CF1E83B2CDB9D8200451CBD /* CMTextAttributes.h in Headers */,
+				9CF1E83D2CDB9D8200451CBD /* CocoaMarkdown.h in Headers */,
+				9CF1E8272CDB9D8200451CBD /* CMHTMLUnderlineTransformer.h in Headers */,
+				9CF1E8252CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.h in Headers */,
+				9CF1E8292CDB9D8200451CBD /* CMHTMLUtilities.h in Headers */,
+				9CF1E81E2CDB9D8200451CBD /* CMHTMLScriptTransformer_Private.h in Headers */,
+				9C3EA8682CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.h in Headers */,
+				9CF1E8322CDB9D8200451CBD /* CMNode.h in Headers */,
+				9CF1E7B92CDB9D8200451CBD /* AntMarkdown.h in Headers */,
+				9CF1E7BA2CDB9D8200451CBD /* UILabel+AntMarkdown.h in Headers */,
+				9CF1E7BC2CDB9D8200451CBD /* UITextView+AntMarkdown.h in Headers */,
+				9CB413942CDC657D0000585E /* NSString+AntMarkdown.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A2E9D389170BD37D00B11F5E /* AntMarkdown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2E9D394170BD37D00B11F5E /* Build configuration list for PBXNativeTarget "AntMarkdown" */;
+			buildPhases = (
+				A2E9D386170BD37D00B11F5E /* Sources */,
+				A2E9D387170BD37D00B11F5E /* Frameworks */,
+				A2E9D388170BD37D00B11F5E /* Resources */,
+				AA43C4EC19650DB400944353 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AntMarkdown;
+			productName = AntMarkdown;
+			productReference = A2E9D38A170BD37D00B11F5E /* AntMarkdown.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A2E9D359170BD32000B11F5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Alipay;
+			};
+			buildConfigurationList = A2E9D35C170BD32000B11F5E /* Build configuration list for PBXProject "AntMarkdown" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = A2E9D358170BD32000B11F5E;
+			productRefGroup = A2E9D362170BD32000B11F5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A2E9D389170BD37D00B11F5E /* AntMarkdown */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A2E9D388170BD37D00B11F5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF1E8682CDB9FE300451CBD /* mathFonts.bundle in Resources */,
+				9CF1E8692CDB9FE300451CBD /* highlightjs.bundle in Resources */,
+				A2CA04A0188A78A900D1E152 /* AntMarkdown-Info.plist in Resources */,
+				A2CA04A1188A78A900D1E152 /* InfoPlist.strings in Resources */,
+				AAC068C2188D1F8E001B468D /* AntMarkdown.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A2E9D386170BD37D00B11F5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF1E8442CDB9D8200451CBD /* MTMathListBuilder.m in Sources */,
+				9CF1E7EC2CDB9D8200451CBD /* latex.c in Sources */,
+				0A8283772D37AC3100EAB366 /* AMMarkDownTableViewBlowUpControllerViewController.m in Sources */,
+				9CF1E7B42CDB9D8200451CBD /* AMTextStyles.m in Sources */,
+				9CF1E7EA2CDB9D8200451CBD /* iterator.c in Sources */,
+				9CF1E8202CDB9D8200451CBD /* CMHTMLScriptTransformer.m in Sources */,
+				9CF1E8512CDB9D8200451CBD /* MTFont.m in Sources */,
+				9CF1E8332CDB9D8200451CBD /* CMNode.m in Sources */,
+				9CF1E8652CDB9D8200451CBD /* ONOXMLDocument.m in Sources */,
+				9CF1E7AE2CDB9D8200451CBD /* AMMarkdownTableView.m in Sources */,
+				9CF1E84B2CDB9D8200451CBD /* MTFontMathTable.m in Sources */,
+				9CF1E7F52CDB9D8200451CBD /* plaintext.c in Sources */,
+				9CF1E7CC2CDB9D8200451CBD /* tagfilter.c in Sources */,
+				9CF1E8372CDB9D8200451CBD /* CMParser.m in Sources */,
+				9CF1E7AA2CDB9D8200451CBD /* AMMarkdownCodeView.m in Sources */,
+				9CF1E7E02CDB9D8200451CBD /* footnotes.c in Sources */,
+				9CF1E8222CDB9D8200451CBD /* CMHTMLStrikethroughTransformer.m in Sources */,
+				77EB5F0B2E69B3FA0042F5BD /* AMUtils.m in Sources */,
+				9CF1E85B2CDB9D8200451CBD /* NSBezierPath+addLineToPoint.m in Sources */,
+				9CF1E85F2CDB9D8200451CBD /* NSView+backgroundColor.m in Sources */,
+				9CF1E82A2CDB9D8200451CBD /* CMHTMLUtilities.m in Sources */,
+				9CF1E7CE2CDB9D8200451CBD /* tasklist.c in Sources */,
+				9CF1E7B82CDB9D8200451CBD /* AMViewAttachment.m in Sources */,
+				9CF1E7C32CDB9D8200451CBD /* ext_scanners.c in Sources */,
+				ECE1C84D2D924D930034FEE2 /* emoji.c in Sources */,
+				9CF1E8402CDB9D8200451CBD /* MTMathAtomFactory.m in Sources */,
+				9CF1E7E42CDB9D8200451CBD /* houdini_html_u.c in Sources */,
+				77A5FD682D9CE399009B0C1D /* AMIconLinkAttachment.m in Sources */,
+				9CF1E81D2CDB9D8200451CBD /* CMHTMLRenderer.m in Sources */,
+				9CF1E7C22CDB9D8200451CBD /* core-extensions.c in Sources */,
+				9CF1E7AC2CDB9D8200451CBD /* AMMarkdownTableLayout.m in Sources */,
+				9CF1E7BE2CDB9D8200451CBD /* autolink.c in Sources */,
+				9CF1E8352CDB9D8200451CBD /* CMNode+Table.m in Sources */,
+				9CF1E7B02CDB9D8200451CBD /* AMTableViewAttachment.m in Sources */,
+				9CF1E7B22CDB9D8200451CBD /* AMTextBackground.m in Sources */,
+				9C48DDDB2CE4C5BE00E10317 /* AMUnderline.m in Sources */,
+				9CF1E83A2CDB9D8200451CBD /* CMStack.m in Sources */,
+				9CF1E8242CDB9D8200451CBD /* CMHTMLSubscriptTransformer.m in Sources */,
+				9CF1E7D22CDB9D8200451CBD /* buffer.c in Sources */,
+				9CF1E8612CDB9D8200451CBD /* UIColor+HexString.m in Sources */,
+				9CF1E8422CDB9D8200451CBD /* MTMathList.m in Sources */,
+				9CF1E8032CDB9D8200451CBD /* utf8.c in Sources */,
+				9CF1E79A2CDB9D8200451CBD /* AMBlockMathAttachment.m in Sources */,
+				9CF1E85D2CDB9D8200451CBD /* NSColor+HexString.m in Sources */,
+				0E449DC22D806CFC001E7430 /* CMHorizontalRuleAttachment.m in Sources */,
+				9CF1E82C2CDB9D8200451CBD /* CMImageTextAttachment.m in Sources */,
+				9CF1E8532CDB9D8200451CBD /* MTFontManager.m in Sources */,
+				9CF1E8592CDB9D8200451CBD /* MTMathUILabel.m in Sources */,
+				9CF1E7DD2CDB9D8200451CBD /* commonmark.c in Sources */,
+				ECF404AD2D9A45C400B04B59 /* CMTaskCheckAttachment.m in Sources */,
+				9CF1E8012CDB9D8200451CBD /* syntax_extension.c in Sources */,
+				9CF1E7E22CDB9D8200451CBD /* houdini_href_e.c in Sources */,
+				9CF1E7E62CDB9D8200451CBD /* html.c in Sources */,
+				9C3EA8692CFA8C7800C8F03B /* NSMutableAttributedString+AntMarkdown.m in Sources */,
+				9CF1E7C62CDB9D8200451CBD /* math_mark.c in Sources */,
+				EC3578F52D816E8200F10E01 /* AMLayoutManager+Quote.m in Sources */,
+				9CF1E7FC2CDB9D8200451CBD /* render.c in Sources */,
+				9CF1E7F62CDB9D8200451CBD /* plugin.c in Sources */,
+				9CF1E7D72CDB9D8200451CBD /* cmark_ctype.c in Sources */,
+				9CF1E7F22CDB9D8200451CBD /* node.c in Sources */,
+				9CF1E8052CDB9D8200451CBD /* xml.c in Sources */,
+				9CF1E83C2CDB9D8200451CBD /* CMTextAttributes.m in Sources */,
+				9CF1E7A22CDB9D8200451CBD /* AMGradient.m in Sources */,
+				9CF1E7BD2CDB9D8200451CBD /* UITextView+AntMarkdown.m in Sources */,
+				9CF1E7A42CDB9D8200451CBD /* AMHTMLTransformer.m in Sources */,
+				9CF1E8162CDB9D8200451CBD /* CMDocument+AttributedStringAdditions.m in Sources */,
+				9CF1E7F02CDB9D8200451CBD /* map.c in Sources */,
+				9CF1E7A62CDB9D8200451CBD /* AMInlineMathAttachment.m in Sources */,
+				771F1B9D2E1674570009C5B5 /* AMIconAttachment.m in Sources */,
+				9CF1E7E32CDB9D8200451CBD /* houdini_html_e.c in Sources */,
+				9CF1E8302CDB9D8200451CBD /* CMIterator.m in Sources */,
+				9CF1E7A82CDB9D8200451CBD /* AMLayoutManager.m in Sources */,
+				A2E668DD2D310BA2005CC3B6 /* AMGradientLayer.m in Sources */,
+				9CF1E8262CDB9D8200451CBD /* CMHTMLSuperscriptTransformer.m in Sources */,
+				9CF1E84E2CDB9D8200451CBD /* MTTypesetter.m in Sources */,
+				9CF1E80B2CDB9D8200451CBD /* CMAttributedStringRenderer.m in Sources */,
+				9CF1E7FA2CDB9D8200451CBD /* registry.c in Sources */,
+				9CF1E7A02CDB9D8200451CBD /* AMDrawable.m in Sources */,
+				9CF1E7EF2CDB9D8200451CBD /* man.c in Sources */,
+				9CB413932CDC657D0000585E /* NSString+AntMarkdown.m in Sources */,
+				9CF1E7DC2CDB9D8200451CBD /* cmark.c in Sources */,
+				9CF1E7C82CDB9D8200451CBD /* strikethrough.c in Sources */,
+				9CF1E7CA2CDB9D8200451CBD /* table.c in Sources */,
+				9CF1E8142CDB9D8200451CBD /* CMDocument.m in Sources */,
+				9CF1E7982CDB9D8200451CBD /* AMAttributedStringRenderer.m in Sources */,
+				9CF1E79E2CDB9D8200451CBD /* AMCodeViewAttachment.m in Sources */,
+				9CF1E8462CDB9D8200451CBD /* MTMathListIndex.m in Sources */,
+				9CF1E8112CDB9D8200451CBD /* CMCascadingAttributeStack.m in Sources */,
+				9CF1E8282CDB9D8200451CBD /* CMHTMLUnderlineTransformer.m in Sources */,
+				9CF1E8482CDB9D8200451CBD /* MTUnicode.m in Sources */,
+				9CF1E8572CDB9D8200451CBD /* MTMathListDisplay.m in Sources */,
+				9CF1E80F2CDB9D8200451CBD /* CMBlockTextAttachment.m in Sources */,
+				EC5421972D928E5E00510C86 /* AMEmojiManager.m in Sources */,
+				9CF1E79C2CDB9D8200451CBD /* AMCodeHighlighter.m in Sources */,
+				9C48DDE12CE5953400E10317 /* AMGradientView.m in Sources */,
+				9CF1E7BB2CDB9D8200451CBD /* UILabel+AntMarkdown.m in Sources */,
+				9CF1E7EE2CDB9D8200451CBD /* linked_list.c in Sources */,
+				9CF1E80D2CDB9D8200451CBD /* CMAttributeRun.m in Sources */,
+				9CF1E81A2CDB9D8200451CBD /* CMHTMLElement.m in Sources */,
+				9CF1E82E2CDB9D8200451CBD /* CMInlineTextAttachment.m in Sources */,
+				9CF1E7D02CDB9D8200451CBD /* arena.c in Sources */,
+				9CB413B42CDDC31B0000585E /* AMImageTextAttachment.m in Sources */,
+				9CF1E7F82CDB9D8200451CBD /* references.c in Sources */,
+				9CF1E8552CDB9D8200451CBD /* MTLabel.m in Sources */,
+				9CF1E7FE2CDB9D8200451CBD /* scanners.c in Sources */,
+				9CF1E7D12CDB9D8200451CBD /* blocks.c in Sources */,
+				9CF1E7E82CDB9D8200451CBD /* inlines.c in Sources */,
+				9CF1E8182CDB9D8200451CBD /* CMDocument+HTMLAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A2CA049B188A78A900D1E152 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2CA049C188A78A900D1E152 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A2E9D37C170BD32100B11F5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Headers/Public/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A2E9D37D170BD32100B11F5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Headers/Public/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A2E9D395170BD37D00B11F5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "SupportingFiles/AntMarkdown-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"./Sources/**",
+				);
+				INFOPLIST_FILE = "SupportingFiles/AntMarkdown-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_WORKSPACE = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		A2E9D396170BD37D00B11F5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "SupportingFiles/AntMarkdown-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"./Sources/**",
+				);
+				INFOPLIST_FILE = "SupportingFiles/AntMarkdown-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_WORKSPACE = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A2E9D35C170BD32000B11F5E /* Build configuration list for PBXProject "AntMarkdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2E9D37C170BD32100B11F5E /* Debug */,
+				A2E9D37D170BD32100B11F5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2E9D394170BD37D00B11F5E /* Build configuration list for PBXNativeTarget "AntMarkdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2E9D395170BD37D00B11F5E /* Debug */,
+				A2E9D396170BD37D00B11F5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A2E9D359170BD32000B11F5E /* Project object */;
+}
