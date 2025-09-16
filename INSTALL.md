@@ -18,7 +18,7 @@ open FluidMarkdown.xcworkspace
 ## Android
 1.  Clone code to local
 
-```groovy
+```
 git clone git@github.com:antgroup/FluidMarkdown.git
 ```
 
