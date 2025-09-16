@@ -126,7 +126,7 @@ markdownTextView.setMarkdownText(markdown);
 The FluidMarkdown team welcomes individual or team contributions. For more informations, please refer to the file [CONTRIBUTING](https://github.com/antgroup/FluidMarkdown/blob/main/CONTRIBUTING.md).
 
 # Licensing
-All source code is licensed under the Apache 2.0 license. For details, please refer to [LICENSE](https://github.com/antgroup/FluidMarkdown/blob/main/LICENSE.md).
+All source code is licensed under the Apache 2.0 license. For details, please refer to [LICENSE](https://github.com/antgroup/FluidMarkdown/blob/main/LICENSE).
 
 We acknowledge the following open-source projects:
 
