@@ -97,7 +97,7 @@ public class TableRowSpan extends ReplacementSpan {
     private final int rowsNumber;
     private int currentMaxRows;
     private final int radius;
-    private TextView mTextView;
+    private float leading;
 
     public TableRowSpan(
             @NonNull TableStyle tableStyle,
@@ -134,10 +134,7 @@ public class TableRowSpan extends ReplacementSpan {
         this.radius = tableStyle.tableBlockRadius();
     }
 
-    public void setTextView(TextView textView) {
-        mTextView = textView;
-    }
-    
+
     /**
      * 更新当前最大行号
      * @param currentMaxRows
@@ -223,7 +220,7 @@ public class TableRowSpan extends ReplacementSpan {
         } else if (spanWidth > 0) {
             ret = Math.min(width, spanWidth);
         }
-        return ret;
+        return  Math.min(1, (int) (ret - leading));
     }
 
     @Override
@@ -241,7 +238,7 @@ public class TableRowSpan extends ReplacementSpan {
         final boolean isCurrentLastLine = (rowsNumber == currentMaxRows);
         final int spanWidth = SpanUtils.width(canvas, text);
         boolean invalidate = false;
-        if (recreateLayouts(spanWidth)) {
+        if (recreateLayouts(spanWidth, x)) {
             width = spanWidth;
             // @since 4.3.1 it's important to cast to TextPaint in order to display links, etc
             if (p instanceof TextPaint) {
@@ -250,10 +247,12 @@ public class TableRowSpan extends ReplacementSpan {
             } else {
                 textPaint.set(p);
             }
+            leading = x;
             mStyle.applyTableTextStyle(textPaint, header);
             makeNewLayouts();
             invalidate = true;
         }
+        x = 0;
 
         int maxHeight = 0;
 
@@ -502,8 +501,8 @@ public class TableRowSpan extends ReplacementSpan {
         canvas.restoreToCount(save);
     }
 
-    private boolean recreateLayouts(int newWidth) {
-        return width != newWidth;
+    private boolean recreateLayouts(int newWidth, float x) {
+        return width != newWidth || x != leading;
     }
 
     private void makeNewLayouts() {

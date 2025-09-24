@@ -345,7 +345,6 @@ public class TablePlugin extends AbstractMarkwonPlugin implements StreamOutState
                             mTableIsHeader.put(tableIndex, false);
                         }
                         final TableRowSpan span = new TableRowSpan(style, pendingTableRow, tableRowIsHeader, isHideTitle, tableRows % 2 == 1, tableRows);
-                        span.setTextView(visitor.configuration().theme().getTextView());
                         MDLogger.d(TAG, "new span");
 
                         cacheAndUpdateTableCurrentMaxNumber(tableIndex, span);
@@ -792,13 +791,13 @@ public class TablePlugin extends AbstractMarkwonPlugin implements StreamOutState
                             }
                         }
                     } else if (paragraph != null) {
-                        if (line.toString().startsWith("|")) {
+                        if (line.toString().stripLeading().startsWith("|")) {
                             List<String> headerCells = MyTableBlockParser.split(line);
                             if (!headerCells.isEmpty()) {
                                 return BlockStart.of(new MyTableBlockParser(null, null, true)).atIndex(state.getIndex());
                             }
                         }
-                    } else if (line != null && line.toString().startsWith("|") && line.toString().endsWith("|")) {
+                    } else if (line != null && line.toString().stripLeading().startsWith("|") && line.toString().endsWith("|")) {
                         List<String> headerCells = MyTableBlockParser.split(line);
                         if (headerCells.size() > 1) {
                             return BlockStart.of(new MyTableBlockParser(null, null, true)).atIndex(state.getIndex());

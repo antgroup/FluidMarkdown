@@ -459,8 +459,8 @@ public class PrinterMarkDownTextView extends AppCompatTextView implements IMarkd
 
 
     public void setMarkdownStyles(MarkdownStyles markdownStyles) {
-        mMarkdownStyles = markdownStyles;
         if (mMarkdownParser != null) {
+            mMarkdownStyles = markdownStyles;
             mMarkdownParser.updateMarkdownStyles(markdownStyles);
         }
     }

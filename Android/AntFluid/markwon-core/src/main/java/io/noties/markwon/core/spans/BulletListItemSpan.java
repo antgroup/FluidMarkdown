@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 import com.fluid.afm.span.BaseIconTextSpan;
 import com.fluid.afm.styles.BulletStyle;
 import com.fluid.afm.styles.Shape;
+import com.fluid.afm.utils.Utils;
 
 import io.noties.markwon.core.MarkwonTheme;
 import io.noties.markwon.utils.LeadingMarginUtils;
-import com.fluid.afm.utils.Utils;
 
 /**
  * 无序列表项
@@ -191,10 +191,8 @@ public class BulletListItemSpan extends BaseIconTextSpan {
 
             final int t = baseline + (int) (((paint.descent() + paint.ascent()) / 2.F + .5F) * (1 + Utils.FONT_SPACING_IN_LINE)) - (side / 2);
             final int b = t + side;
-
-            if (validShape || level == 0
-                    || level == 1) {
-
+            boolean drawn = false;
+            if (validShape) {
                 if (style.shape().type() == Shape.SHAPE_CIRCLE || style.shape().type() == Shape.SHAPE_RING) {
                     circle.set(l, t, r, b);
                     Paint.Style paintStyle =  Paint.Style.FILL;
@@ -203,6 +201,7 @@ public class BulletListItemSpan extends BaseIconTextSpan {
                     }
                     paint.setStyle(paintStyle);
                     c.drawOval(circle, paint);
+                    drawn = true;
                 } else if (style.shape().type() == Shape.SHAPE_RECT || style.shape().type() == Shape.SHAPE_RECT_OUTLINE) {
                     rectangle.set(l, t, r, b);
                     if (style.shape().type() == Shape.SHAPE_RECT) {
@@ -212,15 +211,24 @@ public class BulletListItemSpan extends BaseIconTextSpan {
                         paint.setStrokeWidth(style.shape().lineWidth());
                     }
                     c.drawRect(rectangle, paint);
+                    drawn = true;
                 }
+            }
+            if (!drawn) {
+                if (level == 0 || level == 1) {
+                    circle.set(l, t, r, b);
 
-            } else {
+                    final Paint.Style style = level == 0
+                            ? Paint.Style.FILL
+                            : Paint.Style.STROKE;
+                    paint.setStyle(style);
 
-                rectangle.set(l, t, r, b);
-
-                paint.setStyle(Paint.Style.FILL);
-
-                c.drawRect(rectangle, paint);
+                    c.drawOval(circle, paint);
+                } else {
+                    rectangle.set(l, t, r, b);
+                    paint.setStyle(Paint.Style.FILL);
+                    c.drawRect(rectangle, paint);
+                }
             }
 
         } finally {

@@ -46,7 +46,7 @@ public class MarkdownParser {
     }
 
     public void updateMarkdownStyles(MarkdownStyles styles) {
-        if (styles == null || styles == mProductStyles) {
+        if (styles == null) {
             return;
         }
         mProductStyles = styles;
