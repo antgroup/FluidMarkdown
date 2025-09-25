@@ -311,7 +311,7 @@ CGFloat buttonHeight = 40;
     
     
     NSString *pattern2 = @"\\\\\\((.*?)\\\\\\)";
-    // 创建 NSRegularExpression 对象
+
     NSRegularExpression *regex2 = [NSRegularExpression regularExpressionWithPattern:pattern2 options:0 error:&error];
     
     if (error) {

@@ -54,7 +54,6 @@
     
 }
 - (void)setupUI {
-    // 设置导航栏
     self.navigationItem.title = @"chat";
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -104,10 +103,6 @@
 
 - (void)totalContent {
     self.total = self.sendMessages.count + self.reciveMessages.count;
-//    if (self.total > 0) {
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.total - 1 inSection:0];
-//        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-//    }
 }
 
 #pragma mark - TableView DataSource
