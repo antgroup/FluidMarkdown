@@ -76,6 +76,26 @@
     [self.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
     [self.inputView addSubview:self.sendButton];
 }
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self forceOrientationPortrait];
+}
+
+
+
+- (void)forceOrientationPortrait {
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    [UIViewController attemptRotationToDeviceOrientation];
+}
 
 - (void)sendMessage {
     if (self.messageField.text.length > 0) {
@@ -138,7 +158,7 @@
         // recive
         AMXMarkdownTextView* markdownView = [self.markdownViewArray objectAtIndex:(indexPath.row/ 2)];
         if (![markdownView superview]) {
-            [cell addSubview:markdownView];
+            [cell.contentView addSubview:markdownView];
         }
         [cell setFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, markdownView.frame.size.width, markdownView.frame.size.height)];
     }
