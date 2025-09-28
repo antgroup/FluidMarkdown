@@ -138,7 +138,7 @@
         // recive
         AMXMarkdownTextView* markdownView = [self.markdownViewArray objectAtIndex:(indexPath.row/ 2)];
         if (![markdownView superview]) {
-            [cell addSubview:markdownView];
+            [cell.contentView addSubview:markdownView];
         }
         [cell setFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, markdownView.frame.size.width, markdownView.frame.size.height)];
     }
