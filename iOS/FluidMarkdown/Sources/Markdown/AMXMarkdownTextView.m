@@ -27,6 +27,7 @@ static AMXMarkdownTextView* _caculateContentView;
 @property (atomic, strong) NSMutableArray    *clickableObjs;
 @property (atomic, strong) NSMutableArray    *clickableLocationObjs;
 @property (atomic, strong) NSMutableDictionary    *cacheImgDic;
+@property (atomic, strong) NSString    *contentStr;
 @end
 
 @implementation AMXMarkdownTextView
@@ -94,6 +95,7 @@ static AMXMarkdownTextView* _caculateContentView;
     }
     self.state = AMXMarkdownPrintStateRunning;
     self.preloadMarkdownAttrStr = [self markdowmMutableAttributedStringFromValue:content];
+    self.contentStr = content;
     [self startTimer];
 }
 - (void)startStreamingWithContent:(NSString*)content printIndex:(NSInteger)printIndex
@@ -119,6 +121,7 @@ static AMXMarkdownTextView* _caculateContentView;
     }
     self.state = AMXMarkdownPrintStateRunning;
     self.preloadMarkdownAttrStr = [self markdowmMutableAttributedStringFromValue:content];
+    self.contentStr = content;
     [self renderCompleteContent:[content substringToIndex:printIndex]];
     self.timerCountIndex = printIndex;
     [self startTimer];
@@ -128,7 +131,8 @@ static AMXMarkdownTextView* _caculateContentView;
     if (self.state != AMXMarkdownPrintStateRunning && self.state != AMXMarkdownPrintStatePaused) {
         return;
     }
-    [self.preloadMarkdownAttrStr appendAttributedString:[self markdowmMutableAttributedStringFromValue:text]];
+    self.contentStr = [self.contentStr stringByAppendingString:text];
+    self.preloadMarkdownAttrStr = [self markdowmMutableAttributedStringFromValue:self.contentStr];
     if (self.state == AMXMarkdownPrintStatePaused) {
         [self resume];
     }
