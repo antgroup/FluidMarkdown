@@ -329,7 +329,12 @@ public class PrinterMarkDownTextView extends AppCompatTextView implements IMarkd
         if (isDestroyed) {
             return;
         }
-        int end = start + chunkSize;
+        int end = start;
+        while (chunkSize > 0) {
+            int codePoint = Character.codePointAt(mParsedContentText, start);
+            end += Character.charCount(codePoint);
+            chunkSize--;
+        }
         if (end >= mParsedContentText.length()) {
             MDLogger.i(TAG, "end >= spannablePrintText.length()");
             isPrinting = false;
@@ -374,6 +379,9 @@ public class PrinterMarkDownTextView extends AppCompatTextView implements IMarkd
         if (endIndex == mParsedContentText.length()) {
             return;
         }
+        if (spannableStringBuilder.length() == 0) {
+            return;
+        }
         if (mGradiantSpans == null) {
             mGradiantSpans = new OpacitySpan[GRADIANT_COUNT];
             for (int i = 0; i < GRADIANT_COUNT; i++) {
@@ -381,13 +389,31 @@ public class PrinterMarkDownTextView extends AppCompatTextView implements IMarkd
                 mGradiantSpans[GRADIANT_COUNT - i - 1] = new OpacitySpan(alpha);
             }
         }
-
-        for (int i = 0; i < GRADIANT_COUNT; i++) {
-            int textIndex = endIndex - i - 1;
-            if (textIndex < 0) {
-                break;
+        int textIndex = endIndex - 1;
+        int i = GRADIANT_COUNT - 1;
+        while (textIndex > 0 && i > 0) {
+            int codePoint = Character.codePointAt(spannableStringBuilder, textIndex);
+            int len = Character.charCount(codePoint);
+            if (len > 1) {
+                i += len - 1;
             }
-            spannableStringBuilder.setSpan(mGradiantSpans[GRADIANT_COUNT - i - 1], textIndex, textIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textIndex--;
+            i--;
+            if (i == 0 && len == 1 && textIndex > 0) {
+                codePoint = Character.codePointAt(spannableStringBuilder, textIndex - 1);
+                len = Character.charCount(codePoint);
+                if (len > 1) {
+                    textIndex -= len - 1;
+                    textIndex = Math.max(0, textIndex);
+                }
+            }
+        }
+        while (textIndex < endIndex && i < GRADIANT_COUNT) {
+            int codePoint = Character.codePointAt(spannableStringBuilder, textIndex);
+            int len = Character.charCount(codePoint);
+            spannableStringBuilder.setSpan(mGradiantSpans[i], textIndex, textIndex + len, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textIndex += len;
+            i++;
         }
     }
 
