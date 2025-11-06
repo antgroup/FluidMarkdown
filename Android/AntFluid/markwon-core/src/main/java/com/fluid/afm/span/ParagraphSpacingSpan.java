@@ -33,10 +33,10 @@ public class ParagraphSpacingSpan implements LineHeightSpan {
             if (originHeight <= 0) {
                 return;
             }
-            int realSpacing = (int) (0.5f + spacing - originHeight * Utils.FONT_SPACING_IN_LINE);
+            int realSpacing = (int) (0.5f + spacing - originHeight * Utils.FONT_SPACING_IN_LINE) - fm.descent;
             final float ratio = realSpacing * 1.0f / originHeight;
             fm.descent = Math.round(fm.descent * ratio);
-            fm.ascent = fm.descent - spacing;
+            fm.ascent = (fm.descent - realSpacing);
         }
     }
 
@@ -48,6 +48,4 @@ public class ParagraphSpacingSpan implements LineHeightSpan {
         final int spanEnd = ((Spanned) text).getSpanEnd(span);
         return spanEnd == end || spanEnd == end - 1;
     }
-
-
 }

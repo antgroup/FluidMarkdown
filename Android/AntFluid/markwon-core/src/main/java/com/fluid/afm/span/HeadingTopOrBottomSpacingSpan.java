@@ -33,9 +33,10 @@ public class HeadingTopOrBottomSpacingSpan implements LineHeightSpan {
             if (originHeight <= 0) {
                 return;
             }
-            final float ratio = spacing * 1.0f / originHeight;
+            int realSpacing = spacing -  fm.descent;
+            final float ratio = realSpacing * 1.0f / originHeight;
             fm.descent = Math.round(fm.descent * ratio);
-            fm.ascent = fm.descent - spacing;
+            fm.ascent = fm.descent - realSpacing;
         }
     }
 
