@@ -1,10 +1,10 @@
 ## v1.0.0 (2025-12-01)
 ### Added
-+ Support for HarmonyOS
-    - Full Markdown syntax parsing capability based on the markdown-it open-source library.
-    - Pure native layout and rendering capabilities based on the HarmonyOS StyledString mechanism.
-    - Rich and diverse customization capabilities for Theme, Plugin, and Event.
-    - Streaming output mode tailored for AI conversation scenarios.
+- Support for HarmonyOS
+- Full Markdown syntax parsing using the markdown-it open-source library
+- Native layout and rendering based on HarmonyOS StyledString
+- Customizable themes, plugins, and events
+- Streaming output mode optimized for AI conversation scenarios
 
 
 ## v0.1.1 (2025-10-28)
