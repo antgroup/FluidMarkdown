@@ -139,7 +139,7 @@ markdownTextView.setMarkdownText(markdown);
 + Handle various callback events inside the Markdown component to enhance the business interaction flow, such as `@Event onMarkdownAreaChange`, `@Event onMarkdownNodeClick`, etc.
 
 ``` ts
-import { Markdown, EMarkdownMode } from 'FluidMarkdown';
+import { Markdown, EMarkdownMode } from 'fluid-markdown';
 
 @ComponentV2
 export struct MyComponent {
@@ -173,7 +173,7 @@ export struct MyComponent {
 ``` ts
 import { 
   Markdown, EMarkdownMode, MarkdownController, ETypingMode,
-} from 'FluidMarkdown';
+} from 'fluid-markdown';
 
 @ComponentV2
 export struct MyComponent {
@@ -204,7 +204,7 @@ export struct MyComponent {
 + Set `ITheme` properties for theme styling through the `theme service` within the Engine.
 
 ``` ts
-import { Markdown, EMarkdownMode, BaseEngine } from 'FluidMarkdown';
+import { Markdown, EMarkdownMode, BaseEngine } from 'fluid-markdown';
 
 @ComponentV2
 export struct MyComponent {
