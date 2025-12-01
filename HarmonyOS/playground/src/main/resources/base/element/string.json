@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "PlaygroundAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PlaygroundAbility_label",
+      "value": "Playground"
+    }
+  ]
+}

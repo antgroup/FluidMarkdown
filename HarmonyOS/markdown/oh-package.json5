@@ -1,0 +1,10 @@
+{
+  "name": "fluid-markdown",
+  "version": "0.1.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+  }
+}
