@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name": "markdown",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ],
+    "requestPermissions": [
+      { "name": "ohos.permission.INTERNET" }
+    ]
+  }
+}

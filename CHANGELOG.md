@@ -1,3 +1,12 @@
+## v1.0.0 (2025-12-01)
+### Added
+- Support for HarmonyOS
+- Full Markdown syntax parsing using the markdown-it open-source library
+- Native layout and rendering based on HarmonyOS StyledString
+- Customizable themes, plugins, and events
+- Streaming output mode optimized for AI conversation scenarios
+
+
 ## v0.1.1 (2025-10-28)
 ### Fixed
 + Fix Android platform bug: unordered list rendering crashes under certain custom styles.

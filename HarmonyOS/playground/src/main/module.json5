@@ -1,0 +1,50 @@
+{
+  "module": {
+    "name": "playground",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "PlaygroundAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "PlaygroundAbility",
+        "srcEntry": "./ets/playgroundability/PlaygroundAbility.ets",
+        "description": "$string:PlaygroundAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:PlaygroundAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "PlaygroundBackupAbility",
+        "srcEntry": "./ets/playgroundbackupability/PlaygroundBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ]
+  }
+}

@@ -28,4 +28,15 @@ git clone git@github.com:antgroup/FluidMarkdown.git
   api project(':fluid-markdown')
 ```
 
-# 
+ 
+
+## HarmonyOS
+``` shell
+// clone code to local
+git clone git@github.com:antgroup/FluidMarkdown.git
+
+// switch to the project directory
+cd your/project/FluidMarkdown/HarmonyOS
+
+// open the project via DevEco-Studio
+```

@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "playground_test",
+    "type": "feature",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false
+  }
+}
