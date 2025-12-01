@@ -237,7 +237,7 @@ export struct MyComponent {
 
 ### Playground
 Build and run the Playground app to try out FluidMarkdown—have fun!
-![fluid-markdown-ohos-playground](https://mdn.alipayobjects.com/huamei_iobbj9/afts/img/A*Y_eQRqsbKzwAAAAAgJAAAAgAetF-AQ/original)
+![fluid-markdown-ohos-playground](https://mdn.alipayobjects.com/huamei_iobbj9/afts/img/A*uca1RLdcS90AAAAAgEAAAAgAetF-AQ/original)
 
 # Known Issues
 + Clickable elements within tables appear as plain text and are not interactive.
