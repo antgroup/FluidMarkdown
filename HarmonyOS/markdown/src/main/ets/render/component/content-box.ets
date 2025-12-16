@@ -43,6 +43,13 @@ export struct ContentBoxComponent {
       .width('100%')
       .justifyContent(FlexAlign.SpaceBetween)
       .backgroundColor(this.theme.contentBox?.barBackgroundColor)
+      .border({
+        radius: {
+          topLeft: this.theme.contentBox?.border?.radius?.value ? this.theme.contentBox?.border?.radius?.value - 1 : undefined,
+          topRight: this.theme.contentBox?.border?.radius?.value ? this.theme.contentBox?.border?.radius?.value - 1 : undefined,
+        },
+      })
+      .clip(true)
 
       //  content
       Scroll(this.scroller) {

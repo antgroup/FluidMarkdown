@@ -16,7 +16,21 @@ interface ILog {
   tag: (tag: string, freeze?: boolean) => ILog,
   domain: (domain: number, freeze?: boolean) => ILog,
 }
-class Log implements ILog {
+
+interface ILogInfo {
+  domain: number,
+  tag: string,
+  format: string,
+  args: Any[],
+  isHilog: boolean,
+}
+export enum ELog {
+  Debug = 'debug',
+  Info = 'info',
+  Warn = 'warn',
+  Error = 'error',
+}
+export class Log implements ILog {
   private _tag_default: string = TAG;
   private _domain_default: number = DOMAIN;
   private _tag: string = TAG;
@@ -25,6 +39,30 @@ class Log implements ILog {
     this._tag = this._tag_default;
     this._domain = this._domain_default;
   }
+  private static __on?: (level: ELog, message: string, info: ILogInfo) => boolean | void;
+  private static _on(isHilog: boolean, level: ELog, domain: number, tag: string, format: string, ...args: Any[]): boolean {
+    if (Log.__on) {
+      let message = `[fluid-markdown|${tag}] ${format}`;
+      args.forEach(ele => {
+        message += ` ${ele}`;
+      });
+      const should = Log.__on(level, message, { domain, tag, format, args, isHilog });
+      if (typeof should === 'boolean') {
+        return should;
+      }
+    }
+    return true;
+  }
+  /**
+   * handle log
+   * @param handler return true to enable fluid-markdown output message, false to disable. default is true.
+   */
+  static set on(handler: (level: ELog, message: string, info: ILogInfo) => boolean | void) {
+    if (!Log.__on) {
+      Log.__on = handler;
+    }
+  }
+
   _d(...args: Any[]) {
     console.debug(this._tag, ...args);
     this.reset();
@@ -42,19 +80,27 @@ class Log implements ILog {
     this.reset();
   }
   d(format: string, ...args: Any[]) {
-    hilog.debug(this._domain, this._tag, format, ...args);
+    if (Log._on(true, ELog.Debug, this._domain, this._tag, format, ...args)) {
+      hilog.debug(this._domain, this._tag, format, ...args);
+    }
     this.reset();
   }
   i(format: string, ...args: Any[]) {
-    hilog.info(this._domain, this._tag, format, ...args);
+    if (Log._on(true, ELog.Info, this._domain, this._tag, format, ...args)) {
+      hilog.info(this._domain, this._tag, format, ...args);
+    }
     this.reset();
   }
   w(format: string, ...args: Any[]) {
-    hilog.warn(this._domain, this._tag, format, ...args);
+    if (Log._on(true, ELog.Warn, this._domain, this._tag, format, ...args)) {
+      hilog.warn(this._domain, this._tag, format, ...args);
+    }
     this.reset();
   }
   e(format: string, ...args: Any[]) {
-    hilog.error(this._domain, this._tag, format, ...args);
+    if (Log._on(true, ELog.Error, this._domain, this._tag, format, ...args)) {
+      hilog.error(this._domain, this._tag, format, ...args);
+    }
     this.reset();
   }
   tag(tag: string, freeze: boolean = false) {

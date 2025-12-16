@@ -1,3 +1,23 @@
+## v1.0.1 (2025-12-16)
+### Fixed
+- `ohos` Fixed issue where the `pause` interface could not stop streaming output in typing mode.
+- `ohos` Fixed issue where table nodes could not be rendered correctly in typing mode.
+- `ohos` Fixed layout issue where table cells containing asynchronously rendered elements (e.g., images) failed to expand properly.
+- `ohos` Improved scrolling performance of tables within list views to eliminate stuttering and frame drops.
+- `ohos` Fixed paragraph indentation issue when a code block is nested inside a list.
+
+### Changed
+- `ohos` Default streaming output interval adjusted to `25 ms`.
+- `ohos` Console logs now output in `plain text` by default to simplify debugging.
+- `ohos` Ordered-list label now sourced from the node’s `info` field instead of the `index` field.
+
+### Added
+- `ohos` ImageService now supports `hook-level plugin`.
+- `ohos` Code blocks now expose a `copy code` action.
+- `ohos` Log now provides a `global interception configuration` API.
+- `ohos` New `landscape-detail component` for table views in horizontal screen scenarios.
+
+
 ## v1.0.0 (2025-12-01)
 ### Added
 - Support for HarmonyOS

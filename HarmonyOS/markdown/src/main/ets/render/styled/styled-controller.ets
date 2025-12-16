@@ -3,15 +3,22 @@
 // found in the LICENSE file.
 
 import { StyledUserBridgeValue } from './styled-value';
+import { newLog } from '../../util';
+
+const log = newLog('StyledController');
 
 export class StyledController extends TextController {
   setStyledString(value: StyledString): void {
-    if (value.length > 0) {
-      const styled = value.getStyles(0, value.length, StyledStringKey.USER_DATA)
-        .filter(ele => (ele.styledValue instanceof StyledUserBridgeValue))
-        .map(ele => (ele.styledValue as StyledUserBridgeValue).object?.deref())
-        .pop();
-      styled?.currentRoot?.bindTextController(this);
+    try {
+      if (value.length > 0) {
+        const styled = value.getStyles(0, value.length, StyledStringKey.USER_DATA)
+          .filter(ele => (ele.styledValue instanceof StyledUserBridgeValue))
+          .map(ele => (ele.styledValue as StyledUserBridgeValue).object?.deref())
+          .pop();
+        styled?.currentRoot?.bindTextController(this);
+      }
+    } catch (e) {
+      log.e(`setStyledString exception: ${e?.message}`);
     }
     super.setStyledString(value);
   }

@@ -331,6 +331,7 @@ class CodeStyled extends Styled {
           initMetrics: { width: group.blockArea?.width?.value ?? 0 },
           builderType: EStyledEmbedBuilder.Code,
           embedController: new StyledEmbedController(),
+          theme: option.theme,
         },
       ));
     }
@@ -396,6 +397,7 @@ class TableStyled extends Styled {
         initMetrics: { width: group.blockArea?.width?.value ?? 0 },
         builderType: EStyledEmbedBuilder.Table,
         embedController: new StyledEmbedController(),
+        theme: option.theme,
       },
     ));
     // group.attach(StyledObject.break({ styled: this }));
@@ -552,6 +554,7 @@ class ListItemStyled extends Styled {
             left: x, right: x + topBoxWidth, top: topBoxTop, bottom: topBoxTop + topBoxWidth,
           };
           if (this.node?.itemType === EListItem.Ordered) {
+            const label = this.node?.info || '';
             if (isTop) {
               do {
                 const boxRadius = MDLength.vp2px(option.theme.listItem?.contentTopBoxRadius?.value ?? 0).value;
@@ -563,7 +566,7 @@ class ListItemStyled extends Styled {
               } while (0);
               do {
                 const textSize = option.engine.ctx?.measureTextSize({
-                  textContent: `${this.node?.index}`,
+                  textContent: label,
                   textStyle: new StyledTextValue(option.theme.listItem?.contentTopBoxFont).value,
                 });
                 const textX = topBoxRect.left + (topBoxRect.right - topBoxRect.left - (textSize?.width as number ?? 0)) / 2;
@@ -577,7 +580,7 @@ class ListItemStyled extends Styled {
                 const brush = new drawing.Brush();
                 brush.setColor(MDColor.makeColorFromResourceColor(option.theme.listItem?.contentTopBoxFont?.fontColor ?? Color.Black));
                 context.canvas.attachBrush(brush);
-                const blob = drawing.TextBlob.makeFromString(`${this.node?.index + 1}`, font);
+                const blob = drawing.TextBlob.makeFromString(label, font);
                 context.canvas.drawTextBlob(blob, textX, textY);
                 context.canvas.detachBrush();
                 context.canvas.detachPen();
@@ -592,7 +595,7 @@ class ListItemStyled extends Styled {
               const brush = new drawing.Brush();
               brush.setColor(MDColor.makeColorFromResourceColor(textStyle?.fontColor ?? Color.Black));
               context.canvas.attachBrush(brush);
-              const blob = drawing.TextBlob.makeFromString(`${this.node?.index + 1}.`, font);
+              const blob = drawing.TextBlob.makeFromString(`${label}.`, font);
               context.canvas.drawTextBlob(blob, x, drawInfo.baseline);
               context.canvas.detachBrush();
               context.canvas.detachPen();
@@ -992,7 +995,7 @@ class ImageStyled extends Styled {
   }
   building(option: IStyledBuild) {
     if (!this.node?.src) {
-      log.w('image build failed. src is empty. nodeId: %d', this.node?.id);
+      log.w(`image build failed. src is empty. nodeId: ${this.node?.id}`);
       return;
     }
     ImageStyled.building(this, option, this.node?.src, this.node?.alt);

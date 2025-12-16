@@ -3,10 +3,18 @@
 // found in the LICENSE file.
 
 import { LengthMetrics, display, LengthUnit } from "@kit.ArkUI";
+import { newLog } from './log';
+
+const log = newLog('LayoutUtil');
 
 export abstract class MDLength {
   private static get density() {
-    return display.getDefaultDisplaySync().densityDPI / 160;
+    try {
+      return display.getDefaultDisplaySync().densityDPI / 160;
+    } catch (e) {
+      log.w(`get density error: ${e?.message}`);
+      return 1;
+    }
   }
   static px2vp(px: number): LengthMetrics {
     return LengthMetrics.vp(px / MDLength.density);
@@ -64,6 +72,15 @@ export abstract class MDLength {
   static baselineOffsetVP(sizeVP: number, ratio: number = 1/4): LengthMetrics {
     return MDLength.vp(sizeVP * ratio);
   }
+  static metricsEqual(value?: LengthMetrics, other?: LengthMetrics) {
+    if (value && other) {
+      return MDLength.metrics2length(value) === MDLength.metrics2length(other);
+    }
+    if (!value && !other) {
+      return true;
+    }
+    return false;
+  }
 }
 
 export interface IMDArea {
@@ -107,6 +124,15 @@ export abstract class MDArea {
           }
         }
       }
+    }
+    return false;
+  }
+  static mdAreaEqual(value?: IMDArea, other?: IMDArea) {
+    if (value && other) {
+      return MDLength.metricsEqual(value.width, other.width) && MDLength.metricsEqual(value.height, other.height);
+    }
+    if (!value && !other) {
+      return true;
     }
     return false;
   }
