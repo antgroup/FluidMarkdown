@@ -54,7 +54,6 @@ export struct TextComponent {
   }
 
   aboutToAppear(): void {
-    log.d('aboutToAppear content: %s', this.content);
     this.componentController.select = (start, end) => {
       this.selectionStart = start;
       this.selectionEnd = end;

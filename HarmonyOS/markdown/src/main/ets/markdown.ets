@@ -47,7 +47,7 @@ export struct Markdown {
   @Event onMarkdownTypingCompleted: Callback<IMarkdownEvent>;
 
   @Local program?: Program;
-  @Provider(K_COMPONENT.THEME) theme: ITheme = this.engine.theme?.theme ?? ThemeService.default();
+  @Provider(K_COMPONENT.THEME) theme: ITheme = this.engine.theme!.theme;
   @Provider(K_COMPONENT.SHARED_ENGINE) sharedEngine: Engine = this.engine;
 
   private embedController: EmbedComponentController = new EmbedComponentController();
@@ -64,7 +64,7 @@ export struct Markdown {
   }
   @Monitor('content') onContentChange(monitor: IMonitor) {
     const value = monitor.value<string>();
-    log.i('onContentChange now: %s before: %s', value?.now, value?.before);
+    log.i(`onContentChange now: ${value?.now} before: ${value?.before}`);
     if (this.mode === EMarkdownMode.Normal) {
       this.parse(value?.now, program => {
         this.program = program;
@@ -73,10 +73,10 @@ export struct Markdown {
   }
   private parse(content: string = '', callback: Callback<Program>) {
     this.sharedEngine.ast?.parse(content).then(v => {
-      log.d('parse content success: %s', JSON.stringify(v.program.document.summary));
+      log.d(`parse content success: ${JSON.stringify(v.program.document.summary)}`);
       callback(v.program);
     }).catch((e: Error) => {
-      log.e('parse content failed: %s %s', e.message, e.name);
+      log.e(`parse content failed: ${e.message} ${e.name}`)
     });
   }
   private bindController() {
@@ -100,14 +100,14 @@ export struct Markdown {
     };
     this.controller.typing.update = (content, mode) => {
       if (this.mode !== EMarkdownMode.Typing) {
-        log.w('current mode(%s) is not typing, can not update typing content', this.mode);
+        log.w(`current mode(${this.mode}) is not typing, can not update typing content`);
         return;
       }
       if (typeof content === 'string') {
         this.parse(content, program => {
-          log.i('will update typing content. node: %s, mode: %s, content: %s', program.document.hash, mode, content);
+          log.i(`will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
           if (this.embedController.typing.processing()) {
-            log.i('catch typing content. node: %s, mode: %s, content: %s', program.document.hash, mode, content);
+            log.i(`catch typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
             this.dirtyContent = { mode, program, content };
           } else {
             this.embedController.typing.update(program.document, mode);
@@ -121,7 +121,7 @@ export struct Markdown {
       const program = this.dirtyContent.program;
       const mode = this.dirtyContent.mode;
       const content = this.dirtyContent.content;
-      log.i('retry update typing content. node: %s, mode: %s, content: %s', program.document.hash, mode, content);
+      log.i(`retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
       this.embedController.typing.update(program.document, mode);
       this.dirtyContent = undefined;
     } else {
@@ -185,7 +185,7 @@ export struct Markdown {
       Row()
         .width('100%')
         .onAreaChange((oldValue, newValue) => {
-          log.i('onAreaChange %s %s', JSON.stringify(oldValue), JSON.stringify(newValue));
+          log.i(`onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
           this.uiArea = newValue;
           this.area = MDArea.area(newValue);
           this.onMarkdownAreaChange({ oldValue, newValue });
@@ -202,7 +202,7 @@ export struct Markdown {
           .zIndex(0)
           .width('100%')
           .onAreaChange((oldValue, newValue) => {
-            log.i('onAreaChange %s %s', JSON.stringify(oldValue), JSON.stringify(newValue));
+            log.i(`onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
             this.uiArea = newValue;
             this.area = MDArea.area(newValue);
             this.onMarkdownAreaChange({ oldValue, newValue });
@@ -215,7 +215,7 @@ export struct Markdown {
 interface IMarkdownController {
   /**
    * @note units: ms
-   * @default 100
+   * @default 25
    */
   typingSpeed?: number;
   /**
@@ -234,6 +234,9 @@ export class MarkdownController {
   readonly textContentController: TextContentController = new TextContentController();
   constructor(option: IMarkdownController) {
     this.option = option;
+  }
+  set typingSpeed(value: number | undefined) {
+    this.option.typingSpeed = value;
   }
   get typingSpeed(): number | undefined {
     return this.option.typingSpeed;

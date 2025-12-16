@@ -3,3 +3,4 @@
 // found in the LICENSE file.
 
 export * from './service';
+export * from './node';

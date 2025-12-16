@@ -5,8 +5,11 @@
 import { Plugin } from '../../engine/plugin';
 import { EService, Service } from '../../engine/service';
 import { FileService } from '../file';
+import { newLog } from '../../util';
 import Http from '@ohos.net.http';
 import Image from '@ohos.multimedia.image';
+
+const log = newLog('ImageService');
 
 export class ImageServiceError extends Error {
   code?: number;
@@ -26,14 +29,26 @@ export interface IImageServiceResponse {
 export class ImageService extends Service {
   readonly type: EService = EService.Image;
   private store: Map<string, IImageServiceResponse> = new Map();
-  add<T extends Plugin>(_plugin: T): void {}
+  private plugins: ImageServicePlugin[] = [];
+  add(plugin: ImageServicePlugin): void {
+    this.plugins.push(plugin);
+  }
+  private get hook() {
+    return this.plugins.slice(0, 1).pop();
+  }
   private storeKey(request: IImageServiceRequest): string {
     return request.url;
   }
   cache(request: IImageServiceRequest): IImageServiceResponse | undefined {
+    if (this.hook?.cash) {
+      return this.hook?.cash(request);
+    }
     return this.store.get(this.storeKey(request));
   }
   async post(request: IImageServiceRequest): Promise<IImageServiceResponse> {
+    if (this.hook?.post) {
+      return await this.hook?.post(request);
+    }
     const client = Http.createHttp();
     try {
       const resp = await client.request(request.url, { method: Http.RequestMethod.GET });
@@ -59,14 +74,28 @@ export class ImageService extends Service {
     }
   }
   load(fileName: string): Image.ImageSource | undefined {
-    const content = this.engine?.deref()?.ctx?.resourceManager?.
-                    getRawFileContentSync(`markdown/${fileName}`);
-    if (content) {
-      return Image.createImageSource(content.buffer);
+    if (this.hook?.load) {
+      return this.hook?.load(fileName);
     }
-    return undefined;
+    try {
+      const content = this.engine?.deref()?.ctx?.resourceManager?.
+      getRawFileContentSync(`markdown/${fileName}`);
+      if (content) {
+        return Image.createImageSource(content.buffer);
+      }
+      log.w(`load none image ${fileName}`);
+      return undefined;
+    } catch (e) {
+      log.e(`load image ${fileName} failed. ${e.message}`);
+      return undefined;
+    }
   }
   private get fileService() {
     return this.engine?.deref()?.service<FileService>(EService.File);
   }
+}
+export abstract class ImageServicePlugin extends Plugin {
+  load?: (fileName: string) => Image.ImageSource | undefined;
+  cash?: (request: IImageServiceRequest) => IImageServiceResponse | undefined;
+  post?: (request: IImageServiceRequest) => Promise<IImageServiceResponse>;
 }

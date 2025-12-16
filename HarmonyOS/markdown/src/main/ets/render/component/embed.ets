@@ -35,6 +35,7 @@ export struct EmbedComponent {
   @Require @Param @Once area: IMDArea = {};
   @Param @Once styles?: StyledValue[] = undefined;
   @Param @Once controller?: EmbedComponentController = undefined;
+  @Param @Once needStack: boolean = true;
 
   private textComponentController = new TextComponentController({});
   @Local content: StyledObject = StyledObject.empty();
@@ -62,7 +63,9 @@ export struct EmbedComponent {
   @Monitor('node') onNodeChange(monitor: IMonitor) {
     const node = monitor.value<Node>();
     if (node) {
-      this.attach4normal(node.now);
+      if (node.now?.hash !== node.before?.hash) {
+        this.attach4normal(node.now);
+      }
     } else {
       this.layers = [];
       this.content = StyledObject.empty();
@@ -203,7 +206,7 @@ export struct EmbedComponent {
     this.controller?.typing.resume();
   }
   aboutToAppear(): void {
-    log.d('aboutToAppear node: %s', JSON.stringify(this.node?.summary));
+    log.d(`aboutToAppear node: ${JSON.stringify(this.node?.summary)}`);
     this.onEmbedComponentBeforeAboutToAppear({ controller: this.controller });
     this.sharedEngine.ctx!.typing().rootController?.deref()?.on<ITypingPauseEvent>(ETypingEvent.Pause, this.onRootTypingPause);
     this.sharedEngine.ctx!.typing().rootController?.deref()?.on<ITypingResumeEvent>(ETypingEvent.Resume, this.onRootTypingResume);
@@ -217,22 +220,28 @@ export struct EmbedComponent {
   }
 
   build() {
-    Stack({ alignContent: Alignment.TopStart }) {
-      //  text content
+    if (!this.needStack) {
       TextComponent({
         content: this.content, componentController: this.textComponentController,
       })
-      //  overlay span
-      ForEach(this.layers, (layer: StyledEmbed) => {
-        buildComponent(layer);
-      }, (layer: StyledEmbed) => layer.likelyKey)
+    } else {
+      Stack({ alignContent: Alignment.TopStart }) {
+        //  text content
+        TextComponent({
+          content: this.content, componentController: this.textComponentController,
+        })
+        //  overlay span
+        ForEach(this.layers, (layer: StyledEmbed) => {
+          buildComponent(layer);
+        }, (layer: StyledEmbed) => layer.likelyKey)
+      }
+      .onAreaChange((_oldValue, newValue) => {
+        this.area = {
+          width: this.area.width,
+          height: MDArea.area(newValue).height,
+        };
+      })
     }
-    .onAreaChange((_oldValue, newValue) => {
-      this.area = {
-        width: this.area.width,
-        height: MDArea.area(newValue).height,
-      };
-    })
   }
 }
 

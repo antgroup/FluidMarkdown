@@ -29,7 +29,7 @@ export class Typing {
   readonly typingTimer: TypingTimer = new TypingTimer();
 
   get speed(): number {
-    return this.ctx()?.typing()?.speed ?? 50;
+    return this.ctx()?.typing()?.speed ?? 25;
   }
   get step(): number {
     return this.ctx()?.typing()?.step ?? 1;

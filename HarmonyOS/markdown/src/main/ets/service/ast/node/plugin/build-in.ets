@@ -186,6 +186,7 @@ class ListItemPlugin extends NodePlugin {
   on(payload?: INodePayload, _?: INodeContext): INodeResult | undefined {
     if (payload?.event === ENodeEvent.Create) {
       const node = new ListItem();
+      node.info = payload?.token?.token.info;
       const checkbox = payload?.token?.token.attrs?.filter(ele => {
         if (ele.length > 1) {
           if (ele[0] === 'class' && /task-list-item([\s\S]*)enabled/.test(ele[1])) {

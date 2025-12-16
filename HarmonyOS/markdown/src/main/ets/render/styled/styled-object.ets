@@ -29,6 +29,7 @@ export enum EStyledObjectMark {
   Anchor = 'anchor',
   More = 'more',
   Text = 'text',
+  Invalid = 'invalid',
 }
 type EStyledObjectBeginMark = EStyledObjectMark.BlockBegin | EStyledObjectMark.BuildBegin;
 type EStyledObjectEndMark = EStyledObjectMark.BlockEnd | EStyledObjectMark.BuildEnd;
@@ -171,7 +172,7 @@ export class StyledObject extends MutableStyledString {
       });
     } while (0);
   }
-  cascadedStyle<T = StyledStringValue>(key: StyledStringKey) {
+  cascadedStyle<T = StyledStringValue>(key: StyledStringKey): T | undefined {
     return this.root?.deref()?.getStyles(this._offset, this.length, key).slice().shift()?.styledValue as T | undefined;
   }
   get blockArea(): IMDArea | undefined {
@@ -182,7 +183,7 @@ export class StyledObject extends MutableStyledString {
         const paragraphValue = ele as StyledParagraphValue;
         const paragraph = paragraphValue.value;
         if (paragraph.leadingMargin) {
-          if (paragraph.leadingMargin instanceof Number) {
+          if (typeof paragraph.leadingMargin === 'number') {
             leadingMargin = paragraph.leadingMargin as number;
           } else {
             //  FIXME: need LeadingMarginPlaceholder ?
@@ -191,7 +192,10 @@ export class StyledObject extends MutableStyledString {
       });
       if (leadingMargin > 0) {
         //  NOTE: Length as number
-        area.width = MDLength.vp((area.width?.value as number ?? 0) - leadingMargin);
+        return {
+          width: MDLength.vp((area.width?.value as number ?? 0) - leadingMargin),
+          height: area.height,
+        };
       }
       return area;
     }
@@ -255,29 +259,53 @@ export class StyledObject extends MutableStyledString {
     return undefined;
   }
   subStyledObjects(start: number, length: number): IStyledSubObject[] {
-    const bridgeStyles = this.getStyles(start, length, StyledStringKey.USER_DATA).filter(ele => {
-      return ele.styledValue instanceof StyledUserBridgeValue;
-    });
-    return bridgeStyles.map<IStyledSubObject>(ele => {
-      const object = (ele.styledValue as StyledUserBridgeValue).object.deref();
-      if (object && object.type === EStyledObject.Embed) {
+    try {
+      const bridgeStyles = this.getStyles(start, length, StyledStringKey.USER_DATA).filter(ele => {
+        return ele.styledValue instanceof StyledUserBridgeValue;
+      });
+      return bridgeStyles.map<IStyledSubObject>(ele => {
+        const object = (ele.styledValue as StyledUserBridgeValue).object.deref();
+        if (object && object.type === EStyledObject.Embed) {
+          return {
+            object: object.fork(),
+            real: object,
+          };
+        }
         return {
-          object: object.fork(),
+          object: this.subStyledString(ele.start, ele.length),
           real: object,
         };
-      }
-      return {
-        object: this.subStyledString(ele.start, ele.length),
-        real: object,
-      };
-    });
+      });
+    } catch (e) {
+      log.w(`subStyledObjects exception. ${e?.message}`);
+      return [];
+    }
   }
   replaceStyle(spanStyle: SpanStyle): void {
-    super.replaceStyle(spanStyle);
-    this.emit<IStyledObjectReplaceStyleEvent>(
-      EStyledObjectEvent.DidReplaceStyle,
-      { current: this, spanStyle },
-    );
+    try {
+      super.replaceStyle(spanStyle);
+      this.emit<IStyledObjectReplaceStyleEvent>(
+        EStyledObjectEvent.DidReplaceStyle,
+        { current: this, spanStyle },
+      );
+    } catch (e) {
+      log.w(`replaceStyle exception. ${e?.message}`);
+    }
+  }
+  setStyle(spanStyle: SpanStyle): void {
+    try {
+      super.setStyle(spanStyle);
+    } catch (e) {
+      log.e(`set style exception: ${e?.message}`);
+    }
+  }
+  getStyles(start: number, length: number, styledKey?: StyledStringKey | undefined): SpanStyle[] {
+    try {
+      return super.getStyles(start, length, styledKey);
+    } catch (e) {
+      log.w(`get styles exception. ${e?.message}`);
+      return [];
+    }
   }
 
   static begin(option: IStyledObject, styles?: StyledValue[], mark: EStyledObjectBeginMark = EStyledObjectMark.BlockBegin): StyledObject {
@@ -333,6 +361,12 @@ export class StyledObject extends MutableStyledString {
       styled: { option: {} },
       mark: EStyledObjectMark.Text,
     }, content, styles);
+  }
+  static invalid(styles?: StyledValue[]) {
+    return new StyledObject({
+      styled: { option: {} },
+      mark: EStyledObjectMark.Invalid,
+    }, '\u200B', styles);
   }
 }
 export enum EStyledObjectEvent {

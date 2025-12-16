@@ -6,6 +6,7 @@ import { StyledObject, IStyledObject, EStyledObject } from './styled-object';
 import { StyledValue } from './styled-value';
 import { StyledSpan } from './styled';
 import { MDLength, IMDArea, newLog, MDArea } from '../../util';
+import { ITheme } from '../../theme';
 
 const log = newLog('StyledEmbed');
 
@@ -13,6 +14,7 @@ export interface IStyledEmbed {
   initMetrics: CustomSpanMetrics;
   builderType: EStyledEmbedBuilder;
   embedController: StyledEmbedController;
+  theme: ITheme;
 }
 @ObservedV2
 export class StyledEmbed extends StyledObject {
@@ -32,7 +34,7 @@ export class StyledEmbed extends StyledObject {
         onDraw: (_span, _context, drawInfo) => {
           this.position = {
             x: MDLength.metrics2length(MDLength.px2vp(drawInfo.x)),
-            y: MDLength.metrics2length(MDLength.px2vp(drawInfo.lineTop)),
+            y: MDLength.metrics2length(MDLength.px2vp(drawInfo.lineTop - MDLength.vp2px(embedOption.theme.document?.blockSpace?.value ?? 0).value)),
           };
           this._area = {
             width: MDLength.vp(metrics.width),
@@ -62,7 +64,7 @@ export class StyledEmbed extends StyledObject {
           onDraw: (_span, _context, drawInfo) => {
             this.position = {
               x: MDLength.metrics2length(MDLength.px2vp(drawInfo.x)),
-              y: MDLength.metrics2length(MDLength.px2vp(drawInfo.lineTop)),
+              y: MDLength.metrics2length(MDLength.px2vp(drawInfo.lineTop - (MDLength.vp2px(this.embedOption.theme.document?.blockSpace?.value ?? 0).value))),
             };
           },
         }),
@@ -77,6 +79,7 @@ export class StyledEmbed extends StyledObject {
       initMetrics: MDArea.isEmpty(this.area) ? this.initMetrics : MDArea.area2metrics(this.area!),
       builderType: this.embedOption.builderType,
       embedController: this.embedController,
+      theme: this.embedOption.theme,
     }, this.styleValues);
     return embed;
   }

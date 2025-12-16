@@ -344,6 +344,27 @@ export class Node extends Event {
   static resetID() {
     Node.gid = 0;
   }
+  static traverseSelf(node?: Node, visitor?: IVisitor) {
+    if (!node || !visitor) {
+      return;
+    }
+    let canNext = true;
+    if (visitor.filter) {
+      if (visitor.filter(node)) {
+        canNext = visitor.on(node);
+      }
+    } else {
+      canNext = visitor.on(node);
+    }
+    if (!canNext) {
+      return;
+    }
+    //  children
+    const first = node.first?.deref();
+    if (first) {
+      Node.traverse(first, visitor);
+    }
+  }
   static traverse(node?: Node, visitor?: IVisitor) {
     if (!node || !visitor) {
       return;
@@ -473,6 +494,7 @@ interface IListItemSummary extends INodeSummary {
   itemType?: EListItem,
   index?: number,
   checked?: boolean,
+  info?: string,
 }
 export class ListItem extends Node {
   readonly type: ENode = ENode.ListItem;
@@ -480,6 +502,7 @@ export class ListItem extends Node {
   itemType: EListItem = EListItem.Unknown;
   index: number = -1;
   checked: boolean = false;
+  info?: string;
   get parentList() {
     if (this.parent?.deref()?.is(ENode.List)) {
       return this.parent?.deref() as List;
@@ -491,6 +514,7 @@ export class ListItem extends Node {
     summary.itemType = this.itemType;
     summary.index = this.index;
     summary.checked = this.checked;
+    summary.info = this.info;
     return summary;
   }
   protected async createThisHash(): Promise<string | undefined> {

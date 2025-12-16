@@ -77,10 +77,10 @@ export class StyledImageSpan extends StyledSpan {
           this.imageSource = resp.imageSource;
           option.onImageSourceRequested(this);
         } else {
-          log.w('image span response invalid. url: %s', request.url);
+          log.w(`image span response invalid. url: ${request.url}`);
         }
       }).catch((e: Error) => {
-        log.w('image span request error: %s url: %s', e.message, request.url);
+        log.w(`image span request error: ${e.message} url: ${request.url}`);
       });
     }
   }
@@ -101,10 +101,10 @@ export class StyledMathSpan extends StyledSpan {
           this.imageSource = v.image;
           option.onResourceLoaded(this);
         } else {
-          log.w('math span generate invalid image source. content: %s, errorMessage: %s', option.request.content, v.errorMessage);
+          log.w(`math span generate invalid image source. content: ${option.request.content}, errorMessage: ${v.errorMessage}`);
         }
       }).catch((e: Error) => {
-        log.w('math span generate error: %s content: %s', e.message, option.request.content);
+        log.w(`math span generate error: ${e.message} content: ${option.request.content}`);
       });
     }
   }

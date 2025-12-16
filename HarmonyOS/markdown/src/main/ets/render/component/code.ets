@@ -30,6 +30,7 @@ export struct CodeComponent {
 
   private bridge: CodeComponentBridge = new CodeComponentBridge({
     styledEmbed: () => this.styledEmbed,
+    codeContent: () => this.node?.content,
   });
 
   private barOption?: IContentBoxBar;
@@ -38,7 +39,7 @@ export struct CodeComponent {
   private get node() {
     const node = this.styledEmbed.node;
     if (!node || !node.is(ENode.Code)) {
-      log.e('current embed node is not table: %s', node?.type);
+      log.e(`current embed node is not table: ${node?.type}`);
       return undefined;
     }
     return node as Code;
@@ -66,12 +67,19 @@ export struct CodeComponent {
           // ContentBoxBar.openAction(undefined, this.sharedEngine),
         ],
       },
+      onActionClick: (action, event) => {
+        this.sharedEngine.event!.invokeCodeActionClick({ bridge: this.bridge, action, event });
+      },
     })
       .position(this.styledEmbed?.position)
       .onAreaChange((oldValue, newValue) => {
         this.currentArea = MDArea.area(newValue);
-        this.styledEmbed?.componentAreaChange(oldValue, newValue);
+        if (!MDArea.mdAreaEqual(MDArea.area(oldValue), MDArea.area(newValue))) {
+          this.styledEmbed?.componentAreaChange(oldValue, newValue);
+        }
       })
+      .visibility(this.styledEmbed?.position !== undefined ? Visibility.Visible : Visibility.Hidden)
+      .width(this.styledEmbed?.initMetrics.width)
   }
   @Builder
   CodeContent() {
@@ -79,6 +87,7 @@ export struct CodeComponent {
       EmbedComponent({
         node: this.node?.styledContent,
         area: {},
+        needStack: false,
       })
         .constraintSize({ minWidth: '100%' })
     }
@@ -88,6 +97,7 @@ export struct CodeComponent {
 
 interface ICodeComponentBridge {
   styledEmbed: () => StyledEmbed,
+  codeContent: () => string | undefined;
 }
 export class CodeComponentBridge {
   private option: ICodeComponentBridge;
@@ -96,6 +106,9 @@ export class CodeComponentBridge {
   }
   get styledEmbed() {
     return this.option.styledEmbed();
+  }
+  get codeContent() {
+    return this.option.codeContent();
   }
 }
 export interface ICodeComponentEvent {
