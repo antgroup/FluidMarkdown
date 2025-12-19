@@ -21,6 +21,7 @@ export class StyledEmbed extends StyledObject {
   readonly type: EStyledObject = EStyledObject.Embed;
   readonly embedOption: IStyledEmbed;
   readonly initMetrics: CustomSpanMetrics;
+  likelyKey: string;
   @Trace position?: Position;
 
   constructor(option: IStyledObject, embedOption: IStyledEmbed, styles?: StyledValue[]) {
@@ -31,21 +32,25 @@ export class StyledEmbed extends StyledObject {
         onMeasure: (_span, _measureInfo) => {
           return metrics;
         },
-        onDraw: (_span, _context, drawInfo) => {
-          this.position = {
+        onDraw: (span, _context, drawInfo) => {
+          const position: Position = {
             x: MDLength.metrics2length(MDLength.px2vp(drawInfo.x)),
             y: MDLength.metrics2length(MDLength.px2vp(drawInfo.lineTop - MDLength.vp2px(embedOption.theme.document?.blockSpace?.value ?? 0).value)),
           };
-          this._area = {
+          const _area: IMDArea = {
             width: MDLength.vp(metrics.width),
             height: metrics.height !== undefined ? MDLength.vp(metrics.height) : undefined,
           };
+          log.i(`${this.id} init position(${this.position?.x}, ${this.position?.y}) area(${span.metrics.width}, ${span.metrics.height})`);
+          this.position = position;
+          this.area = _area;
         },
       }),
       styles,
     );
     this.embedOption = embedOption;
     this.initMetrics = metrics;
+    this.likelyKey = `${this.embedOption.builderType}_${this.option.styled.node?.id}`;
   }
   set area(area: IMDArea | undefined) {
     this._area = area;
@@ -61,11 +66,13 @@ export class StyledEmbed extends StyledObject {
               return MDArea.area2metrics(this._area ?? {});
             }
           },
-          onDraw: (_span, _context, drawInfo) => {
-            this.position = {
+          onDraw: (span, _context, drawInfo) => {
+            const position: Position = {
               x: MDLength.metrics2length(MDLength.px2vp(drawInfo.x)),
               y: MDLength.metrics2length(MDLength.px2vp(drawInfo.lineTop - (MDLength.vp2px(this.embedOption.theme.document?.blockSpace?.value ?? 0).value))),
             };
+            log.i(`${this.id} update position(${this.position?.x}, ${this.position?.y}) area(${span.metrics.width}, ${span.metrics.height})`);
+            this.position = position;
           },
         }),
       });
@@ -84,9 +91,12 @@ export class StyledEmbed extends StyledObject {
     return embed;
   }
   reuse(embed: StyledEmbed) {
-    this.position = embed.position;
+    const position = embed.position;
+    const area = embed.embedOption.embedController.currentArea();
+    log.i(`${this.id} reuse position(${this.position?.x}, ${this.position?.y}) area(${this.area?.width?.value}, ${this.area?.height?.value}`);
+    this.position = position;
     this.embedOption.embedController = embed.embedOption.embedController;
-    this.area = embed.embedOption.embedController.currentArea();
+    this.area = area;
   }
   componentAreaChange(_oldValue: Area, newValue: Area) {
     if (!this.attached) {
@@ -94,9 +104,6 @@ export class StyledEmbed extends StyledObject {
       return;
     }
     this.area = MDArea.area(newValue);
-  }
-  get likelyKey(): string {
-    return `${this.embedOption.builderType}_${this.option.styled.node?.id}`;
   }
 }
 export enum EStyledEmbedBuilder {

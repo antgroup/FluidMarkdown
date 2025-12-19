@@ -46,7 +46,12 @@ export abstract class Styled implements IStyled {
     if (this.node?.layout === ELayout.Block) {
       option.didCreateStyled(StyledObject.begin({ styled: this }));
     }
-    this.building(option);
+    const hook = option.engine.render?.styledBuildingPlugin(this, option);
+    if (hook) {
+      hook.handler.building(this, option);
+    } else {
+      this.building(option);
+    }
     if (this.node?.layout === ELayout.Block) {
       this.break(option);
       option.didCreateStyled(StyledObject.end({ styled: this }));

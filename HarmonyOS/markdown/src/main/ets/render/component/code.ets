@@ -87,7 +87,6 @@ export struct CodeComponent {
       EmbedComponent({
         node: this.node?.styledContent,
         area: {},
-        needStack: false,
       })
         .constraintSize({ minWidth: '100%' })
     }

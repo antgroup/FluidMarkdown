@@ -21,6 +21,12 @@ const log = newLog('Markdown');
 
 @ComponentV2
 export struct Markdown {
+  private static gid: number = 0;
+  private static createGid(): number {
+    return Markdown.gid++;
+  }
+  readonly ID: number = Markdown.createGid();
+
   @Param content: string = '';
   @Param @Once controller: MarkdownController = new MarkdownController({});
   @Param @Once engine: Engine = new BaseEngine();
@@ -53,6 +59,8 @@ export struct Markdown {
   private embedController: EmbedComponentController = new EmbedComponentController();
   private dirtyContent?: IMarkdownDirtyContent;
   private uiArea?: Area;
+  private lastParseContent?: string;
+  private embedComponentTypingReady: boolean = false;
 
   @Monitor('area') _onMarkdownAreaChange(monitor: IMonitor) {
     const value = monitor.value<IMDArea>();
@@ -64,7 +72,7 @@ export struct Markdown {
   }
   @Monitor('content') onContentChange(monitor: IMonitor) {
     const value = monitor.value<string>();
-    log.i(`onContentChange now: ${value?.now} before: ${value?.before}`);
+    log.i(`${this.ID} onContentChange now: ${value?.now} before: ${value?.before}`);
     if (this.mode === EMarkdownMode.Normal) {
       this.parse(value?.now, program => {
         this.program = program;
@@ -72,11 +80,17 @@ export struct Markdown {
     }
   }
   private parse(content: string = '', callback: Callback<Program>) {
+    log.i(`${this.ID} parse content: ${content}`);
+    if (this.lastParseContent === content) {
+      log.w(`${this.ID} parse content is same as last, skip`);
+      return;
+    }
+    this.lastParseContent = content;
     this.sharedEngine.ast?.parse(content).then(v => {
-      log.d(`parse content success: ${JSON.stringify(v.program.document.summary)}`);
+      log.i(`${this.ID} parse content success: ${JSON.stringify(v.program.document.summary)}`);
       callback(v.program);
     }).catch((e: Error) => {
-      log.e(`parse content failed: ${e.message} ${e.name}`)
+      log.e(`${this.ID} parse content failed: ${e.message} ${e.name}`)
     });
   }
   private bindController() {
@@ -100,14 +114,17 @@ export struct Markdown {
     };
     this.controller.typing.update = (content, mode) => {
       if (this.mode !== EMarkdownMode.Typing) {
-        log.w(`current mode(${this.mode}) is not typing, can not update typing content`);
+        log.w(`${this.ID} current mode(${this.mode}) is not typing, can not update typing content`);
         return;
+      }
+      if (!this.embedComponentTypingReady) {
+        log.w(`${this.ID} embed component typing not ready, skip update typing content: ${content}`);
       }
       if (typeof content === 'string') {
         this.parse(content, program => {
-          log.i(`will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
+          log.i(`${this.ID} will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
           if (this.embedController.typing.processing()) {
-            log.i(`catch typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
+            log.i(`${this.ID} catch typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
             this.dirtyContent = { mode, program, content };
           } else {
             this.embedController.typing.update(program.document, mode);
@@ -121,17 +138,18 @@ export struct Markdown {
       const program = this.dirtyContent.program;
       const mode = this.dirtyContent.mode;
       const content = this.dirtyContent.content;
-      log.i(`retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
+      log.i(`${this.ID} retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
       this.embedController.typing.update(program.document, mode);
       this.dirtyContent = undefined;
     } else {
-      log.i('emit typing finish event');
+      log.i(`${this.ID} emit typing finish event`);
       // this.controller.typing.emit<ITypingFinishEvent>(ETypingEvent.Finish, {});
       this.onMarkdownTypingCompleted({});
     }
   }
 
   aboutToAppear(): void {
+    log.i(`${this.ID} before aboutToAppear`);
     this.onMarkdownBeforeAboutToAppear({});
     this.engine.ctx!.ctx = this.getUIContext();
     this.engine.ctx!.markdownMode = () => this.mode;
@@ -165,19 +183,27 @@ export struct Markdown {
       });
     }
     this.onMarkdownAfterAboutToAppear({});
+
+    log.i(`${this.ID} after aboutToAppear`);
   }
   aboutToDisappear(): void {
+    log.i(`${this.ID} before aboutToDisappear`);
     this.onMarkdownBeforeAboutToDisappear({});
     this.embedController.typing.off(ETypingEvent.Finish, this.onEmbedControllerTypingFinish);
     this.onMarkdownAfterAboutToDisappear({});
+    log.i(`${this.ID} after aboutToDisappear`);
   }
   aboutToReuse(): void {
+    log.i(`${this.ID} before aboutToReuse`);
     this.onMarkdownBeforeAboutToReuse({});
     this.onMarkdownAfterAboutToReuse({});
+    log.i(`${this.ID} after aboutToReuse`);
   }
   aboutToRecycle(): void {
+    log.i(`${this.ID} before aboutToRecycle`);
     this.onMarkdownBeforeAboutToRecycle({});
     this.onMarkdownAfterAboutToRecycle({});
+    log.i(`${this.ID} after aboutToRecycle`);
   }
 
   build() {
@@ -185,7 +211,7 @@ export struct Markdown {
       Row()
         .width('100%')
         .onAreaChange((oldValue, newValue) => {
-          log.i(`onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
+          log.i(`${this.ID} onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
           this.uiArea = newValue;
           this.area = MDArea.area(newValue);
           this.onMarkdownAreaChange({ oldValue, newValue });
@@ -195,14 +221,20 @@ export struct Markdown {
         EmbedComponent({
           node: this.program?.document, area: this.area, controller: this.embedController,
           onEmbedComponentAfterAboutToAppear: () => {
+            this.embedComponentTypingReady = true;
+            log.i(`${this.ID} on typing will ready`);
             this.onMarkdownTypingReady({});
+            log.i(`${this.ID} on typing did ready`);
+          },
+          onEmbedComponentBeforeAboutToDisappear: () => {
+            this.embedComponentTypingReady = false;
           },
         })
           .position({ x: 0, y: 0 })
           .zIndex(0)
           .width('100%')
           .onAreaChange((oldValue, newValue) => {
-            log.i(`onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
+            // log.i(`onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
             this.uiArea = newValue;
             this.area = MDArea.area(newValue);
             this.onMarkdownAreaChange({ oldValue, newValue });

@@ -15,6 +15,7 @@ export struct TextComponent {
     return TextComponent.gid++;
   }
   private ID: number = TextComponent.getGID();
+  private textID: string = `fluid-markdown-text-component-${this.ID}`;
 
   private styledController: TextController = new StyledController();
   @Local selectionStart: number = -1;
@@ -22,7 +23,6 @@ export struct TextComponent {
 
   private selectionOption: ITextComponentSelectionOption = {};
   private selectionGesture: Map<ETextSelectionGesture, GestureEvent> = new Map();
-  private uiArea?: Area;
 
   @Event onTextComponentBeforeAboutToAppear: Callback<ITextComponentEvent>;
   @Event onTextComponentAfterAboutToAppear: Callback<ITextComponentEvent>;
@@ -43,11 +43,22 @@ export struct TextComponent {
   private onCtxContentControllerShouldSelectGesture = (e: ITextComponentControllerShouldSelectGestureEvent)
     : ITextComponentControllerShouldSelectGestureResult | undefined => {
     if (this.selectionGesture.get(e.type)) {
-      if (MDArea.isAreaContainFinger(this.uiArea, e.event.fingerList.slice().pop())) {
-        return {
-          componentController: this.componentController,
-          ID: this.ID,
+      try {
+        const info = this.getUIContext().getComponentUtils().getRectangleById(this.textID);
+        const area: Area = {
+          width: info.size.width,
+          height: info.size.height,
+          position: { x: info.localOffset.x, y: info.localOffset.y },
+          globalPosition: { x: info.windowOffset.x, y: info.windowOffset.y },
         };
+        if (MDArea.isAreaContainFinger(area, e.event.fingerList.slice().pop())) {
+          return {
+            componentController: this.componentController,
+            ID: this.ID,
+          };
+        }
+      } catch (e) {
+        log.e(`getRectangleById error: ${e?.message}`);
       }
     }
     return undefined;
@@ -93,6 +104,7 @@ export struct TextComponent {
   }
   @Builder TextContent() {
     Text(undefined, { controller: this.styledController })
+      .id(this.textID)
       .wordBreak(WordBreak.BREAK_ALL)
       .draggable(false)
       .selection(this.selectionStart, this.selectionEnd)
@@ -117,9 +129,6 @@ export struct TextComponent {
             }
           })(),
         });
-      })
-      .onAreaChange((_oldValue, newValue) => {
-        this.uiArea = newValue;
       })
   }
   build() {

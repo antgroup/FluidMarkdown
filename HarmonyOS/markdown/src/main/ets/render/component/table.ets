@@ -13,19 +13,15 @@ import { EmbedComponent } from './embed';
 import { ContentBoxComponent, ContentBoxBar, type IContentBoxAction, IContentBoxBar } from './content-box';
 
 const log = newLog('TableComponent');
+const log2 = newLog('FSTableComponent');
 
 @ComponentV2
 export struct FSTableComponent {
-  private _gid: number = FSTableComponent.getGID();
   private static gid: number = 0;
-
-  private static getGID() {
+  private static createGid() {
     return FSTableComponent.gid++;
   }
-
-  get ID() {
-    return this._gid;
-  }
+  readonly ID: number = FSTableComponent.createGid();
 
   @Require @Param @Once styledEmbed: StyledEmbed;
   @Require @Param @Once engine: Engine = new BaseEngine();
@@ -38,12 +34,12 @@ export struct FSTableComponent {
   @Local box_height: Length = 0
   @Local table_h: Length = 99999
   @Local table_w: Length = 99999
-  @Local ready: boolean = false
+  @Local ready: boolean = true
 
   private get node() {
     const node = this.styledEmbed.node;
     if (!node || !node.is(ENode.Table)) {
-      log.e(`current embed node is not table: ${node?.type}`);
+      log2.e(`current embed node is not table: ${node?.type}`);
       return undefined;
     }
     return node;
@@ -52,7 +48,7 @@ export struct FSTableComponent {
   private reload() {
     const tableNode = this.node;
     if (tableNode) {
-      log.d(`component ${this.ID} table ${this.table.ID} reload start: ${JSON.stringify(this.table.summary)}`);
+      log2.d(`component ${this.ID} table ${this.table.ID} reload start: ${JSON.stringify(this.table.summary)}`);
       const dequeueRow = (rowIndex: number, rowItem: TableItem) => {
         let row = this.table.rows.slice(rowIndex, rowIndex + 1).pop();
         if (!row) {
@@ -90,7 +86,7 @@ export struct FSTableComponent {
         });
       });
 
-      log.d(`component ${this.ID} table ${this.table.ID} reload end: ${JSON.stringify(this.table.summary)}`);
+      log2.d(`component ${this.ID} table ${this.table.ID} reload end: ${JSON.stringify(this.table.summary)}`);
     }
   }
 
@@ -179,14 +175,11 @@ export struct FSTableComponent {
 
 @ComponentV2
 export struct TableComponent {
-  private _gid: number = TableComponent.getGID();
   private static gid: number = 0;
-  private static getGID() {
+  private static createGid() {
     return TableComponent.gid++;
   }
-  get ID() {
-    return this._gid;
-  }
+  readonly ID: number = TableComponent.createGid();
 
   @Consumer(K_COMPONENT.THEME) theme: ITheme = {};
   @Consumer(K_COMPONENT.SHARED_ENGINE) sharedEngine: Engine = new BaseEngine();
@@ -213,7 +206,7 @@ export struct TableComponent {
   private get node() {
     const node = this.styledEmbed.node;
     if (!node || !node.is(ENode.Table)) {
-      log.e(`current embed node is not table: ${node?.type}`);
+      log.e(`component ${this.ID} current embed node is not table: ${node?.type}`);
       return undefined;
     }
     return node;
@@ -221,7 +214,7 @@ export struct TableComponent {
   private reload() {
     const tableNode = this.node;
     if (tableNode) {
-      log.d(`component ${this.ID} table ${this.table.ID} reload start: ${JSON.stringify(this.table.summary)}`);
+      log.i(`component ${this.ID} table ${this.table.ID} reload start: ${JSON.stringify(this.table.summary)}`);
       const dequeueRow = (rowIndex: number, rowItem: TableItem) => {
         let row = this.table.rows.slice(rowIndex, rowIndex + 1).pop();
         if (!row) {
@@ -259,7 +252,7 @@ export struct TableComponent {
         });
       });
 
-      log.d(`component ${this.ID} table ${this.table.ID} reload end: ${JSON.stringify(this.table.summary)}`);
+      log.i(`component ${this.ID} table ${this.table.ID} reload end: ${JSON.stringify(this.table.summary)}`);
     }
   }
   aboutToAppear(): void {
@@ -297,7 +290,7 @@ export struct TableComponent {
           this.styledEmbed?.componentAreaChange(oldValue, newValue);
         }
         this.table.onAreaChange(oldValue, newValue);
-        // log.d(`component ${this.ID} table ${this.table.ID} AreaChange (${newValue.width},${newValue.height}) ${JSON.stringify(this.table.summary)}`);
+        // log.i(`component ${this.ID} table ${this.table.ID} AreaChange (${newValue.width},${newValue.height}) ${JSON.stringify(this.table.summary)}`);
       })
       .visibility(this.table.ready ? Visibility.Visible : Visibility.Hidden)
       .width(this.styledEmbed?.initMetrics.width)
@@ -332,7 +325,6 @@ export struct TableComponent {
               node: cell.node?.deref(),
               area: { width: this.theme.table?.cellMaxWidth },
               styles: data.styles,
-              needStack: false,
             })
               .constraintSize(cell.constraintSize(this.styledEmbed.blockArea, this.theme))
               .onAreaChange((oldValue, newValue) => {
@@ -340,7 +332,7 @@ export struct TableComponent {
                   return;
                 }
                 cell.table?.deref()?.cellAreaChange(cell, oldValue, newValue);
-                // log.d(`component ${this.ID} table ${this.table.ID} Cell ${cell.likelyKey} ${cell.ID} t ${cell.table?.deref()?.ID} AreaChange (${newValue.width},${newValue.height}) ${JSON.stringify(cell.summary)}`);
+                // log.i(`component ${this.ID} table ${this.table.ID} Cell ${cell.likelyKey} ${cell.ID} t ${cell.table?.deref()?.ID} AreaChange (${newValue.width},${newValue.height}) ${JSON.stringify(cell.summary)}`);
               })
           }
           .align(Alignment.TopStart)
@@ -391,7 +383,7 @@ class DSTable {
       if (cell.height === undefined) {
         cell.height = maxHeight;
       }
-      log.d(`table ${this.ID} relayout row maxHeight ${maxHeight} cell ${cell.ID} ${cell.likelyKey}`);
+      log.i(`ds table ${this.ID} relayout row maxHeight ${maxHeight} cell ${cell.ID} ${cell.likelyKey}`);
     } while (0);
     //  re-layout column
     do {
@@ -417,7 +409,7 @@ class DSTable {
         if (cell.width === undefined) {
           cell.width = maxWidth;
         }
-        log.d(`table ${this.ID} relayout column maxWidth ${maxWidth} cell ${cell.ID} ${cell.likelyKey}`);
+        log.i(`ds table ${this.ID} relayout column maxWidth ${maxWidth} cell ${cell.ID} ${cell.likelyKey}`);
       }
     } while (0);
   }

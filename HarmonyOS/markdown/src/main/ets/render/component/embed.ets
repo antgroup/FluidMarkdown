@@ -7,7 +7,7 @@ import { newLog, K_COMPONENT, IMDArea, MDArea } from '../../util';
 import {
   Styled, StyledObject, StyledEmbed, EStyledObject, type StyledValue,
   EStyledObjectEvent, IStyledObjectAppendEvent, type IStyledObjectReplaceStyleEvent,
-  StyledTextValue,
+  StyledTextValue, EStyledEmbedBuilder,
 } from '../styled';
 import type { ITheme } from '../../theme';
 import { Engine, BaseEngine } from '../../engine';
@@ -35,7 +35,6 @@ export struct EmbedComponent {
   @Require @Param @Once area: IMDArea = {};
   @Param @Once styles?: StyledValue[] = undefined;
   @Param @Once controller?: EmbedComponentController = undefined;
-  @Param @Once needStack: boolean = true;
 
   private textComponentController = new TextComponentController({});
   @Local content: StyledObject = StyledObject.empty();
@@ -43,6 +42,8 @@ export struct EmbedComponent {
 
   @Event onEmbedComponentBeforeAboutToAppear: Callback<IEmbedComponentEvent>;
   @Event onEmbedComponentAfterAboutToAppear: Callback<IEmbedComponentEvent>;
+  @Event onEmbedComponentBeforeAboutToDisappear: Callback<IEmbedComponentEvent>;
+  @Event onEmbedComponentAfterAboutToDisappear: Callback<IEmbedComponentEvent>;
 
   @Consumer(K_COMPONENT.THEME) theme: ITheme = {};
   @Consumer(K_COMPONENT.SHARED_ENGINE) sharedEngine: Engine = new BaseEngine();
@@ -174,14 +175,19 @@ export struct EmbedComponent {
         });
 
       if (offset > 0) {
+        const likelyUtil = new EmbedComponentLikelyUtil();
         targetContent.subStyledObjects(0, offset).forEach(ele => {
+          if (ele.object instanceof StyledObject) {
+            if (ele.object.type === EStyledObject.Embed) {
+              const embed = ele.object as StyledEmbed;
+              embed.likelyKey = `${embed.embedOption.builderType}_${likelyUtil.index(embed.embedOption.builderType)}`;
+            }
+          }
           currentContent.attach(ele.object);
         });
         this.content = currentContent;
       }
-
-      if (offset >= targetContent.length) {
-        this.controller?.typing.typingTimer.stop();
+      do {
         //  clear unused layers
         let index = 0;
         while (index < this.layers.length) {
@@ -194,6 +200,10 @@ export struct EmbedComponent {
           }
           index++;
         }
+      } while (0);
+
+      if (offset >= targetContent.length) {
+        this.controller?.typing.typingTimer.stop();
         //  notify finish
         this.controller?.typing.emit<ITypingFinishEvent>(ETypingEvent.Finish, {});
       }
@@ -206,7 +216,7 @@ export struct EmbedComponent {
     this.controller?.typing.resume();
   }
   aboutToAppear(): void {
-    log.d(`aboutToAppear node: ${JSON.stringify(this.node?.summary)}`);
+    log.i(`aboutToAppear node: ${JSON.stringify(this.node?.summary)}`);
     this.onEmbedComponentBeforeAboutToAppear({ controller: this.controller });
     this.sharedEngine.ctx!.typing().rootController?.deref()?.on<ITypingPauseEvent>(ETypingEvent.Pause, this.onRootTypingPause);
     this.sharedEngine.ctx!.typing().rootController?.deref()?.on<ITypingResumeEvent>(ETypingEvent.Resume, this.onRootTypingResume);
@@ -215,32 +225,23 @@ export struct EmbedComponent {
     this.onEmbedComponentAfterAboutToAppear({ controller: this.controller });
   }
   aboutToDisappear(): void {
+    log.i(`aboutToDisappear node: ${JSON.stringify(this.node?.summary)}`);
+    this.onEmbedComponentBeforeAboutToDisappear({ controller: this.controller });
     this.sharedEngine.ctx!.typing().rootController?.deref()?.off(ETypingEvent.Pause, this.onRootTypingPause);
     this.sharedEngine.ctx!.typing().rootController?.deref()?.off(ETypingEvent.Resume, this.onRootTypingResume);
+    this.onEmbedComponentAfterAboutToDisappear({ controller: this.controller });
   }
 
   build() {
-    if (!this.needStack) {
+    Stack({ alignContent: Alignment.TopStart }) {
+      //  text content
       TextComponent({
         content: this.content, componentController: this.textComponentController,
       })
-    } else {
-      Stack({ alignContent: Alignment.TopStart }) {
-        //  text content
-        TextComponent({
-          content: this.content, componentController: this.textComponentController,
-        })
-        //  overlay span
-        ForEach(this.layers, (layer: StyledEmbed) => {
-          buildComponent(layer);
-        }, (layer: StyledEmbed) => layer.likelyKey)
-      }
-      .onAreaChange((_oldValue, newValue) => {
-        this.area = {
-          width: this.area.width,
-          height: MDArea.area(newValue).height,
-        };
-      })
+      //  overlay span
+      ForEach(this.layers, (layer: StyledEmbed) => {
+        buildComponent(layer);
+      }, (layer: StyledEmbed) => layer.likelyKey)
     }
   }
 }
@@ -250,4 +251,19 @@ export class EmbedComponentController {
 }
 export interface IEmbedComponentEvent {
   controller?: EmbedComponentController;
+}
+
+class EmbedComponentLikelyUtil {
+  private indexStore: Map<EStyledEmbedBuilder, number> = new Map();
+  index(builderType: EStyledEmbedBuilder): number {
+    let index = this.indexStore.get(builderType);
+    if (index === undefined) {
+      index = 0;
+      this.indexStore.set(builderType, index);
+    } else {
+      index++;
+      this.indexStore.set(builderType, index);
+    }
+    return index;
+  }
 }
