@@ -37,6 +37,7 @@ export enum ENode {
   Inline = 'inline',
 
   StyledContent = 'styled-content',
+  Fragment = 'fragment',
 }
 
 export enum ELayout {
@@ -776,4 +777,7 @@ export class Document extends Node {
     }`;
     return await MDCrypto.md5(content);
   }
+}
+export class Fragment extends Node {
+  readonly type: ENode = ENode.Fragment;
 }

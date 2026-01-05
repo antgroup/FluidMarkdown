@@ -516,7 +516,7 @@ class HtmlTagPlugin extends NodePlugin {
   static isVoidElement(content: string) {
     const names: string[] = [
       'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
-      'link', 'meta', 'param', 'source', 'track', 'wbr',
+      'link', 'meta', 'param', 'source', 'track', 'wbr', 'icon',
     ];
     return RegExp(`<(${names.join('|')})([\\s\\S]*)/?>$`).test(content);
   }

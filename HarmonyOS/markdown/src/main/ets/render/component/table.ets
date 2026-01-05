@@ -30,11 +30,15 @@ export struct FSTableComponent {
   @Provider(K_COMPONENT.SHARED_ENGINE) sharedEngine: Engine = this.engine;
 
   @Local table: DSTable = new DSTable();
-  @Local box_width: Length = 0
-  @Local box_height: Length = 0
-  @Local table_h: Length = 99999
-  @Local table_w: Length = 99999
-  @Local ready: boolean = true
+  @Local ready: boolean = false
+  @Local uiArea?: Area;
+
+  @Monitor('uiArea') onUIAreaChange(monitor: IMonitor) {
+    const value = monitor.value<Area>();
+    if (value?.before === undefined && value?.now !== undefined) {
+      this.reload();
+    }
+  }
 
   private get node() {
     const node = this.styledEmbed.node;
@@ -89,87 +93,66 @@ export struct FSTableComponent {
       log2.d(`component ${this.ID} table ${this.table.ID} reload end: ${JSON.stringify(this.table.summary)}`);
     }
   }
-
-  aboutToAppear(): void {
-    this.reload()
-  }
-
   build() {
     Row() {
-      List() {
-        if (this.ready) {
-          ListItem() {
-            List() {
-              ListItem() {
-                Column() {
-                  ForEach(this.table?.rows, (row: DSTableRow) => {
-                    Row() {
-                      ForEach(row.cells, (cell: DSTableCell) => {
-                        Row() {
-                          EmbedComponent({
-                            node: cell.node?.deref(),
-                            area: { width: this.theme.table?.cellMaxWidth },
-                            styles: [new StyledTextValue(row.parent?.itemType === ETableItem.Head ?
-                              this.theme.table?.headerFont :
-                              this.theme.table?.contentFont)]
-                          })
-                          // .constraintSize(cell.constraintSize(this.styledEmbed.blockArea, this.theme))
-                            .width(cell.width)
-                            .height(cell.height)
-                            .onAreaChange((oldValue, newValue) => {
-                              cell.width = newValue.width;
-                              cell.height = newValue.height;
-                              cell.table?.deref()?.cellAreaChange(cell, oldValue, newValue);
-                            })
-                        }
-                        .padding(this.theme.contentBox?.barMargin ?
-                          MDMargin.lengthMargin(this.theme.contentBox?.barMargin) :
-                          undefined)
-                        .borderWidth(cell.borderWidth(this.theme))
-                        .borderColor(this.theme.contentBox?.border?.color)
-                        .layoutWeight((this.table_w <= this.box_width) ? (cell.width as number) : undefined)
-
-                        // .height((this.table_h <= this.box_height) ? "100%" : undefined)
-                      }, (cell: DSTableCell) => cell.likelyKey)
-                    }
-                    .backgroundColor(row.parent?.itemType === ETableItem.Head ?
-                      this.theme.table?.headerBackgroundColor :
-                      null)
-
-                    // .layoutWeight((this.table_h <= this.box_height) ? 1 : null)
-                  }, (row: DSTableRow) => row.likelyKey)
-                }
-                .border({
-                  width: MDLength.metrics2length(this.theme.contentBox?.border?.width ?? MDLength.vp(0)),
-                  color: this.theme.contentBox?.border?.color,
-                  radius: MDLength.metrics2length(this.theme.contentBox?.border?.radius ?? MDLength.vp(0)),
-                  style: BorderStyle.Solid,
-                })
-                .clip(true)
-                .onAreaChange((oldValue, newValue) => {
-                  this.table_h = newValue.height
-                  this.table_w = newValue.width
-                })
-              }
-            }
-            .listDirection(Axis.Horizontal)
-            .scrollBar(BarState.Off)
-          }
-
-          // .height((this.table_h <= this.box_height) ? "100%" : null)
-        }
-      }
-      .scrollBar(BarState.Off)
+      this.FSTableContent()
     }
     .height("100%")
     .width("100%")
-    .onAreaChange((oldValue, newValue) => {
+    .onAreaChange((_oldValue, newValue) => {
+      this.uiArea = newValue;
       if (newValue.height < newValue.width) {
-        this.box_width = newValue.width
-        this.box_height = newValue.height
         this.ready = true
       }
     })
+  }
+  @Builder
+  FSTableContent() {
+    List() {
+      ForEach(this.table.rows, (row: DSTableRow) => {
+        if (row.parent?.itemType === ETableItem.Head) {
+          //  Table TH
+          ListItem() {
+            this.FSTableRow({ row, styles: [new StyledTextValue(this.theme.table?.headerFont)] })
+          }
+          .backgroundColor(this.theme.table?.headerBackgroundColor)
+        } else {
+          //  Table TD
+          ListItem() {
+            this.FSTableRow({ row, styles: [new StyledTextValue(this.theme.table?.contentFont)] })
+          }
+        }
+      }, (row: DSTableRow) => row.likelyKey)
+    }
+  }
+  @Builder
+  FSTableRow(data: ITableRowData) {
+    Row() {
+      ForEach(data.row.cells, (cell: DSTableCell) => {
+        Row() {
+          Scroll() {
+            EmbedComponent({
+              node: cell.node?.deref(),
+              area: { width: this.theme.table?.cellMaxWidth },
+              styles: data.styles,
+            })
+              .constraintSize(cell.constraintSize(this.uiArea ? MDArea.area(this.uiArea) : undefined, this.theme))
+              .onAreaChange((oldValue, newValue) => {
+                if (MDArea.mdAreaEqual(MDArea.area(oldValue), MDArea.area(newValue))) {
+                  return;
+                }
+                cell.table?.deref()?.cellAreaChange(cell, oldValue, newValue);
+              })
+          }
+          .align(Alignment.TopStart)
+          .scrollable(ScrollDirection.None)
+          .constraintSize({ minWidth: cell.width, minHeight: cell.height })
+        }
+        .padding(this.theme.contentBox?.barMargin ? MDMargin.lengthMargin(this.theme.contentBox?.barMargin) : undefined)
+        .borderWidth(cell.borderWidth(this.theme))
+        .borderColor(this.theme.contentBox?.border?.color)
+      }, (cell: DSTableCell) => cell.likelyKey)
+    }
   }
 }
 

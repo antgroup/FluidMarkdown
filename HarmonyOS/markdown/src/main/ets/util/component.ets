@@ -14,3 +14,8 @@ export enum EMarkdownMode {
   Normal = 'normal',
   Typing = 'typing',
 }
+export enum EMarkdownMainBotEvent {
+  ScrollBegin = 'mainBotScrollBegin',
+  ScrollEnd = 'mainBotScrollEnd',
+  StopTyping = 'mainBotStopTyping',
+}

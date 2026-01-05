@@ -9,3 +9,4 @@ export * from './text';
 export * from './code';
 export * from './image-gallery';
 export * from './content-box';
+export * from './fragment';

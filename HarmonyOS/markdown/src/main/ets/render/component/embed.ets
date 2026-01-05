@@ -56,7 +56,11 @@ export struct EmbedComponent {
           return;
         }
         this.controller!.typing.mode = () => mode;
-        this.attach4typing(mode, content);
+        if (mode === ETypingMode.Update) {
+          this.attach4update(mode, content);
+        } else {
+          this.attach4typing(mode, content);
+        }
       };
     }
   }
@@ -99,6 +103,67 @@ export struct EmbedComponent {
     });
     this.content = content;
   }
+  private attach4update(mode: ETypingMode, node?: Node) {
+    if (!node) {
+      this.layers = [];
+      this.content = StyledObject.empty();
+      return;
+    }
+    const currentLayers: Record<string, StyledEmbed> = {};
+    const content = StyledObject.root(this.area, this.styles)
+      .on<IStyledObjectAppendEvent>(EStyledObjectEvent.DidAppend, event => {
+        if (event.target.type === EStyledObject.Embed) {
+          const embed = event.target as StyledEmbed;
+          let existedIndex: number | undefined = undefined;
+          let existed: StyledEmbed | undefined = undefined;
+          this.layers.forEach((ele, index) => {
+            if (ele.likelyKey === embed.likelyKey) {
+              existedIndex = index;
+              existed = ele;
+            }
+          });
+          if (existed !== undefined && existedIndex !== undefined) {
+            embed.reuse(existed);
+            (existed as StyledEmbed).embedController.updateEmbed(embed);
+          } else {
+            this.layers.push(embed);
+          }
+          currentLayers[embed.likelyKey] = embed;
+        }
+      })
+      .on<IStyledObjectReplaceStyleEvent>(EStyledObjectEvent.DidReplaceStyle, () => {
+        this.textComponentController.refresh();
+      });
+    const likelyUtil = new EmbedComponentLikelyUtil();
+    Styled.create({
+      node,
+    })?.build({
+      theme: this.theme,
+      engine: this.sharedEngine,
+      didCreateStyled: (styled) => {
+        if (styled.type === EStyledObject.Embed) {
+          const embed = styled as StyledEmbed;
+          embed.likelyKey = `${embed.embedOption.builderType}_${likelyUtil.index(embed.embedOption.builderType)}`;
+        }
+        content.attach(styled);
+      },
+    });
+    this.content = content;
+    do {
+      //  clear unused layers
+      let index = 0;
+      while (index < this.layers.length) {
+        const embed = this.layers[index];
+        const current = currentLayers[embed.likelyKey];
+        if (current) {
+          this.layers.splice(index, 1, current);
+        } else {
+          this.layers.splice(index, 1);
+        }
+        index++;
+      }
+    } while (0);
+  }
   private attach4typing(mode: ETypingMode, node?: Node) {
     if (!this.controller) {
       return;
@@ -132,7 +197,7 @@ export struct EmbedComponent {
     const hasMore = (): boolean => {
       return !!(this.controller?.typing.more) && !(offset >= targetContent.length);
     };
-    this.controller!.typing.typingTimer.onDidPause = () => {
+    this.controller!.typing.typingTimer.onDidStop = () => {
       if (hasMore()) {
         this.content.attach(StyledObject.more(
           this.controller?.typing.more || '',
@@ -145,9 +210,13 @@ export struct EmbedComponent {
     this.controller!.typing.typingTimer.onDidStop = () => {};
     this.controller!.typing.completed = () => offset >= targetContent.length;
 
+    log.i(`${this.ID} attach for typing, mode: ${mode} offset: ${offset} targetLength: ${targetContent.length}`);
+
     this.controller?.typing.typingTimer.start(() => {
       
       offset = Math.min(offset + step, targetContent.length);
+
+      log.i(`${this.ID} typing onStep, offset: ${offset}`);
 
       const currentContent = StyledObject.root(this.area, this.styles)
         .on<IStyledObjectAppendEvent>(EStyledObjectEvent.DidAppend, event => {
@@ -203,7 +272,8 @@ export struct EmbedComponent {
       } while (0);
 
       if (offset >= targetContent.length) {
-        this.controller?.typing.typingTimer.stop();
+        log.i(`${this.ID} typing onFinish, offset: ${offset}`);
+        this.controller?.typing.typingTimer.reset();
         //  notify finish
         this.controller?.typing.emit<ITypingFinishEvent>(ETypingEvent.Finish, {});
       }

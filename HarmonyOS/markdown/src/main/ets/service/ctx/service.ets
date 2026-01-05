@@ -7,6 +7,7 @@ import { EService, Service } from '../../engine/service';
 import { Plugin } from '../../engine/plugin';
 import { EMarkdownMode } from '../../util';
 import { type ITyping, type TextContentController } from '../../render';
+import type { IFragment } from '../ast';
 
 export class ContextService extends Service {
   readonly type: EService = EService.CTX;
@@ -15,6 +16,14 @@ export class ContextService extends Service {
   markdownMode: () => EMarkdownMode = () => EMarkdownMode.Normal;
   typing: () => ITyping = () => ({});
   textContentController: () => TextContentController | undefined = () => undefined;
+
+  fragment: () => IFragment | undefined = () => undefined;
+  get fragmentEnable(): boolean {
+    return this.fragment()?.enable ?? true;
+  }
+  get fragmentBlockMax(): number {
+    return Number(this.fragment()?.blockMax) || 10;
+  }
 
   add<T extends Plugin>(_plugin: T): void {
   }

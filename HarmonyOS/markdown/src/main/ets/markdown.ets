@@ -3,19 +3,19 @@
 // found in the LICENSE file.
 
 import { Engine, BaseEngine } from './engine';
-import { newLog, K_COMPONENT, IMDArea, MDArea, EMarkdownMode } from './util';
+import { newLog, K_COMPONENT, IMDArea, MDArea, EMarkdownMode, EMarkdownMainBotEvent } from './util';
 import { Program, type Node } from './service/ast/node';
 import {
-  EmbedComponent, EmbedComponentController,
   type ITextComponentSelectionChangeEvent,
   type ITextComponentEvent, type ITextComponentSelectionOption,
   type ITableComponentActionClickEvent, type IContentBoxBar,
   type ITableComponentEvent,
   type ICodeComponentEvent, type ICodeComponentActionClickEvent,
-  Typing, ETypingEvent, ITypingFinishEvent, ETypingMode,
+  Typing, ITypingUpdateData,
   TextContentController,
+  FragmentComponent, FragmentComponentController,
 } from './render';
-import { type ITheme, ThemeService } from './theme';
+import { type ITheme } from './theme';
 
 const log = newLog('Markdown');
 
@@ -56,11 +56,14 @@ export struct Markdown {
   @Provider(K_COMPONENT.THEME) theme: ITheme = this.engine.theme!.theme;
   @Provider(K_COMPONENT.SHARED_ENGINE) sharedEngine: Engine = this.engine;
 
-  private embedController: EmbedComponentController = new EmbedComponentController();
-  private dirtyContent?: IMarkdownDirtyContent;
+  private fragmentController: FragmentComponentController = new FragmentComponentController({});
+  private fragmentComponentTypingReady: boolean = false;
+  private lastTypingUpdateData?: ITypingUpdateData<string>;
+  private dirtyTypingUpdateData?: ITypingUpdateData<string>;
   private uiArea?: Area;
   private lastParseContent?: string;
-  private embedComponentTypingReady: boolean = false;
+  private mainBotScrolling: boolean = false;
+  private parseQueue: Promise<void> = Promise.resolve();
 
   @Monitor('area') _onMarkdownAreaChange(monitor: IMonitor) {
     const value = monitor.value<IMDArea>();
@@ -80,17 +83,25 @@ export struct Markdown {
     }
   }
   private parse(content: string = '', callback: Callback<Program>) {
-    log.i(`${this.ID} parse content: ${content}`);
-    if (this.lastParseContent === content) {
-      log.w(`${this.ID} parse content is same as last, skip`);
-      return;
-    }
-    this.lastParseContent = content;
-    this.sharedEngine.ast?.parse(content).then(v => {
-      log.i(`${this.ID} parse content success: ${JSON.stringify(v.program.document.summary)}`);
-      callback(v.program);
-    }).catch((e: Error) => {
-      log.e(`${this.ID} parse content failed: ${e.message} ${e.name}`)
+    log.i(`${this.ID} parse content: ${JSON.stringify(content)}`);
+    this.parseQueue = this.parseQueue.then(async () => {
+      if (content === this.lastParseContent) {
+        const typingCompleted = this.fragmentController.typing.completed();
+        log.w(`${this.ID} content is same as last parse content, skip parse. typing completed: ${typingCompleted}`);
+        if (typingCompleted) {
+          log.i(`${this.ID} emit typing finish event while typing completed and content is same as last parse content. content: ${JSON.stringify(content)}`);
+          this.onMarkdownTypingCompleted({});
+        }
+        return;
+      }
+      this.lastParseContent = content;
+      try {
+        const program = (await this.sharedEngine.ast!.parse(content)).program;
+        log.i(`${this.ID} parse content success: ${JSON.stringify(program.document.summary)}`);
+        callback(program);
+      } catch (e) {
+        log.e(`${this.ID} parse content failed: ${e.message} ${e.name}`);
+      }
     });
   }
   private bindController() {
@@ -110,42 +121,59 @@ export struct Markdown {
       return this.mode === EMarkdownMode.Typing;
     };
     this.controller.typing.processing = () => {
-      return this.embedController.typing.processing();
+      return this.fragmentController.typing.processing();
     };
-    this.controller.typing.update = (content, mode) => {
+    this.controller.typing.completed = () => {
+      return this.fragmentController.typing.completed();
+    };
+    this.controller.typing.pause = () => {
+      return this.fragmentController.typing.pause();
+    };
+    this.controller.typing.resume = () => {
+      return this.fragmentController.typing.resume();
+    }
+    this.controller.typing.stop = () => {
+      return this.fragmentController.typing.stop();
+    };
+
+    this.controller.typing.update = (content, mode, hasMore) => {
+      log.i(`${this.ID} update typing content: ${JSON.stringify(content)}, mode: ${mode}, hasMore: ${hasMore}`);
       if (this.mode !== EMarkdownMode.Typing) {
         log.w(`${this.ID} current mode(${this.mode}) is not typing, can not update typing content`);
         return;
       }
-      if (!this.embedComponentTypingReady) {
-        log.w(`${this.ID} embed component typing not ready, skip update typing content: ${content}`);
+      if (!this.fragmentComponentTypingReady) {
+        log.w(`${this.ID} fragment component typing not ready, skip update typing content: ${content}`);
       }
       if (typeof content === 'string') {
-        this.parse(content, program => {
-          log.i(`${this.ID} will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
-          if (this.embedController.typing.processing()) {
-            log.i(`${this.ID} catch typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
-            this.dirtyContent = { mode, program, content };
-          } else {
-            this.embedController.typing.update(program.document, mode);
-          }
-        });
+        this.lastTypingUpdateData = { content, mode, hasMore };
+        const processing = this.fragmentController.typing.processing();
+        const scrolling = this.mainBotScrolling;
+        if (processing || scrolling) {
+          this.dirtyTypingUpdateData = { content, mode, hasMore };
+          log.i(`${this.ID} catch typing update data: processing ${processing}, scrolling ${scrolling}, ${mode}, ${content}`);
+        } else {
+          this.parse(content, program => {
+            log.i(`${this.ID} will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
+            this.fragmentController.typing.update(program.document, mode);
+          });
+        }
       }
     };
   }
-  private onEmbedControllerTypingFinish = (_e: ITypingFinishEvent) => {
-    if (this.dirtyContent) {
-      const program = this.dirtyContent.program;
-      const mode = this.dirtyContent.mode;
-      const content = this.dirtyContent.content;
-      log.i(`${this.ID} retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
-      this.embedController.typing.update(program.document, mode);
-      this.dirtyContent = undefined;
-    } else {
-      log.i(`${this.ID} emit typing finish event`);
-      // this.controller.typing.emit<ITypingFinishEvent>(ETypingEvent.Finish, {});
-      this.onMarkdownTypingCompleted({});
-    }
+  private onMainBotScrollBegin = () => {
+    log.i(`${this.ID} onMainBotScrollBegin, try to pause typing`);
+    this.mainBotScrolling = true;
+    this.controller.typing.pause();
+  }
+  private onMainBotScrollEnd = () => {
+    log.i(`${this.ID} onMainBotScrollEnd, try to resume typing`);
+    this.mainBotScrolling = false;
+    this.controller.typing.resume();
+  }
+  private onMainBotStopTyping = () => {
+    log.i(`${this.ID} onMainBotStopTyping, try to stop typing`);
+    this.controller.typing.stop();
   }
 
   aboutToAppear(): void {
@@ -153,7 +181,6 @@ export struct Markdown {
     this.onMarkdownBeforeAboutToAppear({});
     this.engine.ctx!.ctx = this.getUIContext();
     this.engine.ctx!.markdownMode = () => this.mode;
-    this.embedController.typing.on<ITypingFinishEvent>(ETypingEvent.Finish, this.onEmbedControllerTypingFinish);
     this.bindController();
 
     this.engine.event!.onClick = data => {
@@ -182,6 +209,11 @@ export struct Markdown {
         this.program = program;
       });
     }
+
+    getContext(this)?.eventHub?.on(EMarkdownMainBotEvent.ScrollBegin, this.onMainBotScrollBegin);
+    getContext(this)?.eventHub?.on(EMarkdownMainBotEvent.ScrollEnd, this.onMainBotScrollEnd);
+    getContext(this)?.eventHub?.on(EMarkdownMainBotEvent.StopTyping, this.onMainBotStopTyping);
+
     this.onMarkdownAfterAboutToAppear({});
 
     log.i(`${this.ID} after aboutToAppear`);
@@ -189,7 +221,9 @@ export struct Markdown {
   aboutToDisappear(): void {
     log.i(`${this.ID} before aboutToDisappear`);
     this.onMarkdownBeforeAboutToDisappear({});
-    this.embedController.typing.off(ETypingEvent.Finish, this.onEmbedControllerTypingFinish);
+    getContext(this)?.eventHub?.off(EMarkdownMainBotEvent.ScrollBegin, this.onMainBotScrollBegin);
+    getContext(this)?.eventHub?.off(EMarkdownMainBotEvent.ScrollEnd, this.onMainBotScrollEnd);
+    getContext(this)?.eventHub?.off(EMarkdownMainBotEvent.StopTyping, this.onMainBotStopTyping);
     this.onMarkdownAfterAboutToDisappear({});
     log.i(`${this.ID} after aboutToDisappear`);
   }
@@ -211,35 +245,55 @@ export struct Markdown {
       Row()
         .width('100%')
         .onAreaChange((oldValue, newValue) => {
-          log.i(`${this.ID} onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
           this.uiArea = newValue;
           this.area = MDArea.area(newValue);
           this.onMarkdownAreaChange({ oldValue, newValue });
         })
     } else {
       Stack({ alignContent: Alignment.TopStart }) {
-        EmbedComponent({
-          node: this.program?.document, area: this.area, controller: this.embedController,
-          onEmbedComponentAfterAboutToAppear: () => {
-            this.embedComponentTypingReady = true;
+        FragmentComponent({
+          node: this.program?.document, area: this.area, controller: this.fragmentController,
+          onFragmentComponentAfterAboutToAppear: () => {
+            this.fragmentComponentTypingReady = true;
             log.i(`${this.ID} on typing will ready`);
             this.onMarkdownTypingReady({});
             log.i(`${this.ID} on typing did ready`);
           },
-          onEmbedComponentBeforeAboutToDisappear: () => {
-            this.embedComponentTypingReady = false;
+          onFragmentComponentBeforeAboutToDisappear: () => {
+            this.fragmentComponentTypingReady = false;
+          },
+          onFragmentComponentTypingFinish: () => {
+            if (this.dirtyTypingUpdateData) {
+              const content = this.dirtyTypingUpdateData.content;
+              const mode = this.dirtyTypingUpdateData.mode;
+              this.parse(content, program => {
+                log.i(`${this.ID} retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${JSON.stringify(content)}`);
+                this.fragmentController.typing.update(program.document, mode);
+              });
+              this.dirtyTypingUpdateData = undefined;
+            } else {
+              if (this.lastParseContent === this.lastTypingUpdateData?.content) {
+                log.i(`${this.ID} emit typing finish event. lastMode: ${this.lastTypingUpdateData?.mode}, lastContent: ${JSON.stringify(this.lastTypingUpdateData?.content)}`);
+                this.onMarkdownTypingCompleted({});
+              } else {
+                log.i(`${this.ID} last content is not same as last typing update content, skip emit typing finish event`);
+              }
+            }
           },
         })
-          .position({ x: 0, y: 0 })
-          .zIndex(0)
-          .width('100%')
-          .onAreaChange((oldValue, newValue) => {
-            // log.i(`onAreaChange ${JSON.stringify(oldValue)} ${JSON.stringify(newValue)}`);
-            this.uiArea = newValue;
-            this.area = MDArea.area(newValue);
-            this.onMarkdownAreaChange({ oldValue, newValue });
-          })
       }
+      .position({ x: 0, y: 0 })
+      .zIndex(0)
+      .width('100%')
+      .onAreaChange((oldValue, newValue) => {
+        if (oldValue?.width !== newValue?.width || oldValue?.height !== newValue?.height) {
+          const desc = (area: Area) => `{ w: ${area.width}, h: ${area.height}, p: (${area.position.x}, ${area.position.y}), gp: (${area.globalPosition.x}, ${area.globalPosition.y}) }`;
+          log.i(`${this.ID} onAreaChange new ${desc(newValue)} old ${desc(oldValue)}`);
+        }
+        this.uiArea = newValue;
+        this.area = MDArea.area(newValue);
+        this.onMarkdownAreaChange({ oldValue, newValue });
+      })
     }
   }
 }
@@ -268,6 +322,7 @@ export class MarkdownController {
     this.option = option;
   }
   set typingSpeed(value: number | undefined) {
+    log.i(`set typingSpeed ${value}`);
     this.option.typingSpeed = value;
   }
   get typingSpeed(): number | undefined {
@@ -319,12 +374,6 @@ enum EMarkdownEventCallback {
 interface IMarkdownEventCallback {
   type: EMarkdownEventCallback;
   callback: Function;
-}
-
-interface IMarkdownDirtyContent {
-  mode: ETypingMode;
-  program: Program;
-  content: string;
 }
 
 export interface IMarkdownEvent {

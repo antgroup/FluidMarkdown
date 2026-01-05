@@ -20,7 +20,7 @@ import {
   Document, Heading, LineBreak, Link,
   FootnoteRef, Code, ListItem, Emoji,
   HtmlTag, Image, Math as MathNode,
-  StyledContent, List,
+  StyledContent, List, Fragment,
 } from '../../service/ast/node';
 import { drawing } from '@kit.ArkGraphics2D';
 import { HeadingLevelStyling } from '../../theme';
@@ -76,7 +76,9 @@ export abstract class Styled implements IStyled {
     }
   }
   static create(option: IStyledOption): Styled | undefined {
-    if (option.node?.is(ENode.Document)) {
+    if (option.node?.is(ENode.Fragment)) {
+      return new FragmentStyled(option);
+    } else if (option.node?.is(ENode.Document)) {
       return new DocumentStyled(option);
     } else if (option.node?.is(ENode.Paragraph)) {
       return new ParagraphStyled(option);
@@ -130,12 +132,35 @@ export abstract class Styled implements IStyled {
     return undefined;
   }
 }
+class FragmentStyled extends Styled {
+  get node() {
+    return this.option.node as (Fragment | undefined);
+  }
+  protected building(option: IStyledBuild): void {
+    if (!!option.engine.ctx?.fragmentEnable) {
+      DocumentStyled.building(this, option);
+    } else {
+      this.node?.children?.forEach(node => {
+        Styled.create({ node })?.build(option);
+      });
+    }
+  }
+}
 class DocumentStyled extends Styled {
   get node() {
     return this.option.node as (Document | undefined);
   }
   building(option: IStyledBuild) {
-    const group = StyledObject.group({ styled: this }, [
+    if (!!option.engine.ctx?.fragmentEnable) {
+      this.node?.children?.forEach(node => {
+        Styled.create({ node })?.build(option);
+      });
+    } else {
+      DocumentStyled.building(this, option);
+    }
+  }
+  static building(that: Styled, option: IStyledBuild) {
+    const group = StyledObject.group({ styled: that }, [
       new StyledLetterSpacingValue(option.theme.document?.letterSpacing),
       new StyledBaselineOffsetValue(option.theme.document?.baselineOffset),
       new StyledLineHeightValue(option.theme.document?.lineHeight),
@@ -143,7 +168,7 @@ class DocumentStyled extends Styled {
     ]);
     option.didCreateStyled(group);
 
-    for (const node of (this.node?.children ?? [])) {
+    for (const node of (that.node?.children ?? [])) {
       Styled.create({ node })?.build({
         theme: option.theme,
         engine: option.engine,

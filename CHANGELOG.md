@@ -1,3 +1,33 @@
+## v1.0.3 (2026-01-05)
+### Fixed
+
+- `ohos` Resolved an issue where `embed` components were not cleaned up promptly during streaming output, causing overlapping display.
+- `ohos` Fixed a problem where the `stop` interface for streaming output was not correctly bound.
+
+### Changed
+
+- `ohos` Refined the assembly and update strategy for the `likelyKey` of embed nodes to reduce rendering flicker during streaming output.
+- `ohos` Adjusted the parsing strategy for custom `icon` tags to comply with HTML void-element specifications.
+- `ohos` Updated the validation rules for the `Stopped` state in the streaming output control flow to prevent content that has already been stopped from being re-activated by the `resume` interface.
+
+### Added
+
+- `ohos` Introduced `hook-level` plugin customization capabilities in the rendering pipeline.
+- `ohos` Added built-in content deduplication during streaming output.
+- `ohos` Added a global scroll-state listener for main list scenarios; combined with safe `pause/resume` APIs for streaming output, it improves scrolling smoothness while streaming is active.
+- `ohos` Implemented a syntax-parsing queue control mechanism that guarantees asynchronous parse results are delivered in the order they were submitted.
+- `ohos` Introduced `Fragment-based` segmented rendering to mitigate slowdowns when streaming long-form content.
+
+
+## v1.0.2 (2025-12-19)
+### Changed
+- `ohos` Improved scrolling performance for multiple Markdown components on the list page.
+- `ohos` Adjusted the reuse-matching mechanism for embed nodes in streaming mode, allowing prior node types to change dynamically.
+
+### Added
+- `ohos` Added hook-level plugin support to the Styled model rendering module.
+
+
 ## v1.0.1 (2025-12-16)
 ### Fixed
 - `ohos` Fixed issue where the `pause` interface could not stop streaming output in typing mode.

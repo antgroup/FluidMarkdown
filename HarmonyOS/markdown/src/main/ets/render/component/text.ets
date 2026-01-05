@@ -33,6 +33,7 @@ export struct TextComponent {
   @Monitor('content') onContentChange(monitor: IMonitor) {
     const value = monitor.value<StyledString>();
     if (value) {
+      log.i(`${this.ID} update content: ${value.now.length}`);
       this.styledController.setStyledString(value.now);
     }
   }
@@ -89,6 +90,7 @@ export struct TextComponent {
       }
     };
     this.componentController.refresh = () => {
+      log.i(`${this.ID} refresh content: ${this.content.length}`);
       this.styledController.setStyledString(this.content);
     };
     this.sharedEngine.ctx!.textContentController()?.on<undefined>(ETextComponentControllerEvent.ClearSelection, this.onCtxContentControllerClearSelection);

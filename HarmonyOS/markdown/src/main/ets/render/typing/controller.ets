@@ -2,7 +2,7 @@
 // Use of this source code is governed by a Apache 2.0 license that can be
 // found in the LICENSE file.
 
-import { TypingTimer } from './timer';
+import { TypingTimer, ETypingTimerState } from './timer';
 import type { ContextService } from '../../service';
 import type { Node } from '../../service/ast';
 
@@ -10,6 +10,7 @@ export enum ETypingMode {
   Begin = 'begin',
   Append = 'append',
   End = 'end',
+  Update = 'update',
 }
 export interface ITyping {
   /**
@@ -41,23 +42,30 @@ export class Typing {
   ctx: () => ContextService | undefined = () => (undefined);
   should: () => boolean = () => (true);
   mode: () => ETypingMode = () => (ETypingMode.Begin);
-  update: <T = string | Node>(content: T, mode: ETypingMode) => void = () => {};
+  update: <T = string | Node>(content: T, mode: ETypingMode, hasMore?: boolean) => void = () => {};
   completed: () => boolean = () => false;
   processing: () => boolean = () => {
     return this.typingTimer.processing;
   };
-  pause() {
+  timerState: () => ETypingTimerState = () => (this.typingTimer.state);
+  pause: () => void = () => {
     if (this.should()) {
       this.typingTimer.pause();
       this.emit<ITypingPauseEvent>(ETypingEvent.Pause, {});
     }
   };
-  resume() {
+  resume: () => void = () => {
     if (this.should()) {
       this.typingTimer.resume();
       this.emit<ITypingResumeEvent>(ETypingEvent.Resume, {});
     }
   };
+  stop: () => void = () => {
+    if (this.should()) {
+      this.typingTimer.stop();
+      this.emit<ITypingStopEvent>(ETypingEvent.Stop, {});
+    }
+  }
 
   on<T, V = void>(name: string, callback: Callback<T, V>) {
     if (!this.listener[name]) {
@@ -103,8 +111,15 @@ interface ITypingEventCallback {
 export enum ETypingEvent {
   Pause = 'pause',
   Resume = 'resume',
+  Stop = 'stop',
   Finish = 'finish',
+}
+export interface ITypingUpdateData<T = string | Node> {
+  content: T;
+  mode: ETypingMode;
+  hasMore?: boolean;
 }
 export interface ITypingPauseEvent {}
 export interface ITypingResumeEvent {}
+export interface ITypingStopEvent {}
 export interface ITypingFinishEvent {}

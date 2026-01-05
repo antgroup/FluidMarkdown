@@ -7,11 +7,14 @@ import {
   plugin_footnote, plugin_emoji, plugin_sub, plugin_sup, plugin_taskList, plugin_katex,
   type IPluginKatexOption, type IPluginTaskListOption,
 } from './markdown-it';
-import { Program, Node, ENode, ELayout, Code, StyledContent } from './node';
+import { Program, Node, ENode, ELayout, Code, StyledContent, Fragment } from './node';
 import { EService, Service } from '../../engine/service';
 import { Plugin } from '../../engine/plugin';
 import { CssService } from '../css';
 import type { Declaration, Rule } from '../css/csstree';
+import { newLog } from '../../util';
+
+const log = newLog('AstService');
 
 interface IResult {
   program: Program;
@@ -42,9 +45,51 @@ export class AstService extends Service {
     const program = new Program(tokens, {
       engine: () => this.engine,
     });
+    this.prepareFragment(program);
     await program.document.createHash();
     await this.prepareCodeBlock(program);
     return { program }
+  }
+  private prepareFragment(program: Program) {
+    if (!this.engine?.deref()?.ctx?.fragmentEnable) {
+      log.i('ast fragment is disabled');
+      return;
+    }
+    const blockMax = Number(this.engine?.deref()?.ctx?.fragmentBlockMax) || 10;
+    const ignoreNodes: ENode[] = [ ENode.FootnoteDef ];
+    log.i(`will prepare ast fragment. blockMax: ${this.engine?.deref()?.ctx?.fragmentBlockMax}`);
+    const fragments: Fragment[] = [];
+    const dequeue = () => {
+      let fragment = fragments.slice(-1).pop();
+      if (!fragment) {
+        fragment = new Fragment();
+        fragments.push(fragment);
+      } else {
+        let blockCount: number = 0;
+        let child = fragment.first?.deref();
+        while (child) {
+          if (child.layout === ELayout.Block && !ignoreNodes.includes(child.type)) {
+            blockCount++;
+          }
+          child = child.next?.deref();
+        }
+        if (blockCount >= blockMax) {
+          fragment = new Fragment();
+          fragments.push(fragment);
+        }
+      }
+      return fragment;
+    };
+    let node = program.document.first?.deref();
+    while (node) {
+      const fragment = dequeue();
+      fragment.append(node);
+      node = program.document.first?.deref();
+    }
+    fragments.forEach(ele => {
+      program.document.append(ele);
+    });
+    log.i(`did prepare ast fragment. fragments: ${fragments.length}`);
   }
   private async prepareCodeBlock(program: Program) {
     await Node.traverseAsync(program.document, {
@@ -106,6 +151,11 @@ export class AstService extends Service {
       }
     })
   }
+}
+
+export interface IFragment {
+  enable?: boolean;
+  blockMax?: number;
 }
 
 // export { Program, Node };
