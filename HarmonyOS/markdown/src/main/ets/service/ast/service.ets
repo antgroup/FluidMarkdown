@@ -18,15 +18,26 @@ const log = newLog('AstService');
 
 interface IResult {
   program: Program;
+  content?: string;
 }
 
 export class AstService extends Service {
   readonly type: EService = EService.AST;
-  add<T extends Plugin>(_plugin: T): void {
-
+  private plugins: AstServicePlugin[] = [];
+  add<T extends Plugin = AstServicePlugin>(plugin: T): void {
+    if (plugin instanceof AstServicePlugin) {
+      this.plugins.push(plugin);
+    } else {
+      log.e(`add plugin error, not AstServicePlugin`);
+    }
+  }
+  private get parsePlugin(): AstServicePlugin<IAstPluginParse> | undefined {
+    return this.plugins.filter(ele => ele.type === EAstPlugin.Parse).pop();
   }
   async parse(content: string): Promise<IResult> {
-    const markdown_it = markdown() as MarkdownIt;
+    this.parsePlugin?.handler?.willParse?.(content);
+
+    const markdown_it = new markdown() as MarkdownIt;
     markdown_it.set({ html: true });
     markdown_it.disable(['html_block']);  // only support inline html
 
@@ -46,9 +57,14 @@ export class AstService extends Service {
       engine: () => this.engine,
     });
     this.prepareFragment(program);
-    await program.document.createHash();
+    program.document.createHash();
     await this.prepareCodeBlock(program);
-    return { program }
+
+    const result: IResult = { program, content };
+
+    this.parsePlugin?.handler?.didParse?.(result);
+
+    return result;
   }
   private prepareFragment(program: Program) {
     if (!this.engine?.deref()?.ctx?.fragmentEnable) {
@@ -136,7 +152,7 @@ export class AstService extends Service {
               const adapted = this.engine?.deref()?.html?.render(html);
               if (adapted && adapted.length > 0) {
                 const styled = new StyledContent();
-                await styled.createHash();
+                styled.createHash();
                 styled.styled = await this.engine?.deref()?.code?.styledFromHtml(adapted);
                 program.nodes.push(styled);
                 code.append(styled);
@@ -156,6 +172,22 @@ export class AstService extends Service {
 export interface IFragment {
   enable?: boolean;
   blockMax?: number;
+}
+
+export enum EAstPlugin {
+  Unknown = 'unknown',
+  Parse = 'parse',
+}
+export interface IAstPlugin {}
+export interface IAstPluginParse extends IAstPlugin {
+  willParse?: (content: string) => void;
+  didParse?: (result: IResult) => void;
+}
+export abstract class AstServicePlugin <
+  T extends IAstPlugin = IAstPlugin,
+> extends Plugin {
+  abstract readonly type: EAstPlugin;
+  abstract readonly handler: T;
 }
 
 // export { Program, Node };

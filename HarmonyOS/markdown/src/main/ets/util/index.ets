@@ -10,3 +10,4 @@ export * from './layout';
 export * from './crypto';
 export * from './error';
 export * from './color';
+export * from './uuid';

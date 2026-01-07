@@ -136,7 +136,12 @@ export struct FragmentComponent {
         const fragment = this.fragments[index];
         const target = targets[index];
         if (fragment.updateData?.content.hash === target.hash) {
-          log.i(`${this.ID} fragment ${fragment.ID} no change, skip update`);
+          if (isLast(index)) {
+            log.i(`${this.ID} fragment ${fragment.ID} no change, skip update and will force emit fragment typing finish`);
+            this.onEmbedControllerTypingFinish({});
+          } else {
+            log.i(`${this.ID} fragment ${fragment.ID} no change, skip update`);
+          }
           continue;
         }
         if (isLast(index)) {

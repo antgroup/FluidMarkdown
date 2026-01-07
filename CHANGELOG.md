@@ -1,3 +1,12 @@
+## v1.0.4 (2026-01-07)
+### Fixed
+
+- `ohos` Use the synchronous API of the uuid library to generate the AST Node model's hash, preventing timing issues caused by the async built-in crypto library.  
+- `ohos` Fixed an issue where the typing-finish event might not be emitted when deduplicating fragments.
+
+### Added
+- `ohos` Introduced a built-in plugin for the Markdown AST parser module.
+
 ## v1.0.3 (2026-01-05)
 ### Fixed
 

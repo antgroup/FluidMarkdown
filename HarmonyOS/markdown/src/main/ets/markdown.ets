@@ -61,15 +61,16 @@ export struct Markdown {
   private lastTypingUpdateData?: ITypingUpdateData<string>;
   private dirtyTypingUpdateData?: ITypingUpdateData<string>;
   private uiArea?: Area;
-  private lastParseContent?: string;
   private mainBotScrolling: boolean = false;
-  private parseQueue: Promise<void> = Promise.resolve();
+  private parser: MarkdownParser = new MarkdownParser(this.engine);
 
   @Monitor('area') _onMarkdownAreaChange(monitor: IMonitor) {
     const value = monitor.value<IMDArea>();
     if (MDArea.isEmpty(value?.before) && this.mode === EMarkdownMode.Normal) {
-      this.parse(this.content, program => {
+      this.parser.parse(this.content).then(program => {
         this.program = program;
+      }).catch((e: Error) => {
+        log.w(`${this.ID} can not parse content after area not empty. parse failed: ${e?.message}`)
       });
     }
   }
@@ -77,32 +78,12 @@ export struct Markdown {
     const value = monitor.value<string>();
     log.i(`${this.ID} onContentChange now: ${value?.now} before: ${value?.before}`);
     if (this.mode === EMarkdownMode.Normal) {
-      this.parse(value?.now, program => {
+      this.parser.parse(value?.now || '').then(program => {
         this.program = program;
+      }).catch((e: Error) => {
+        log.w(`${this.ID} can not parse content after content changed. parse failed: ${e?.message}`)
       });
     }
-  }
-  private parse(content: string = '', callback: Callback<Program>) {
-    log.i(`${this.ID} parse content: ${JSON.stringify(content)}`);
-    this.parseQueue = this.parseQueue.then(async () => {
-      if (content === this.lastParseContent) {
-        const typingCompleted = this.fragmentController.typing.completed();
-        log.w(`${this.ID} content is same as last parse content, skip parse. typing completed: ${typingCompleted}`);
-        if (typingCompleted) {
-          log.i(`${this.ID} emit typing finish event while typing completed and content is same as last parse content. content: ${JSON.stringify(content)}`);
-          this.onMarkdownTypingCompleted({});
-        }
-        return;
-      }
-      this.lastParseContent = content;
-      try {
-        const program = (await this.sharedEngine.ast!.parse(content)).program;
-        log.i(`${this.ID} parse content success: ${JSON.stringify(program.document.summary)}`);
-        callback(program);
-      } catch (e) {
-        log.e(`${this.ID} parse content failed: ${e.message} ${e.name}`);
-      }
-    });
   }
   private bindController() {
     this.sharedEngine.ctx!.typing = () => ({
@@ -149,13 +130,16 @@ export struct Markdown {
         this.lastTypingUpdateData = { content, mode, hasMore };
         const processing = this.fragmentController.typing.processing();
         const scrolling = this.mainBotScrolling;
-        if (processing || scrolling) {
+        const parsing = this.parser.processing;
+        if (processing || scrolling || parsing) {
           this.dirtyTypingUpdateData = { content, mode, hasMore };
-          log.i(`${this.ID} catch typing update data: processing ${processing}, scrolling ${scrolling}, ${mode}, ${content}`);
+          log.i(`${this.ID} catch typing update data: processing ${processing}, scrolling ${scrolling}, parsing ${parsing}, ${mode}, ${content}`);
         } else {
-          this.parse(content, program => {
+          this.parser.parse(content).then(program => {
             log.i(`${this.ID} will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
             this.fragmentController.typing.update(program.document, mode);
+          }).catch((e: Error) => {
+            log.w(`${this.ID} can not update typing content. parse failed: ${e?.message}`);
           });
         }
       }
@@ -205,8 +189,10 @@ export struct Markdown {
       return this.onMarkdownCodeComponentContentBoxBar({ codeEvent: event });
     };
     if (!MDArea.isEmpty(this.area)) {
-      this.parse(this.content, program => {
+      this.parser.parse(this.content).then(program => {
         this.program = program;
+      }).catch((e: Error) => {
+        log.w(`${this.ID} can not parse content while aboutToAppear. parse failed: ${e?.message}`);
       });
     }
 
@@ -266,13 +252,15 @@ export struct Markdown {
             if (this.dirtyTypingUpdateData) {
               const content = this.dirtyTypingUpdateData.content;
               const mode = this.dirtyTypingUpdateData.mode;
-              this.parse(content, program => {
+              this.parser.parse(content).then(program => {
                 log.i(`${this.ID} retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${JSON.stringify(content)}`);
                 this.fragmentController.typing.update(program.document, mode);
+              }).catch((e: Error) => {
+                log.w(`${this.ID} can not retry update typing content. parse failed: ${e?.message}`)
               });
               this.dirtyTypingUpdateData = undefined;
             } else {
-              if (this.lastParseContent === this.lastTypingUpdateData?.content) {
+              if (this.parser.lastContent === this.lastTypingUpdateData?.content) {
                 log.i(`${this.ID} emit typing finish event. lastMode: ${this.lastTypingUpdateData?.mode}, lastContent: ${JSON.stringify(this.lastTypingUpdateData?.content)}`);
                 this.onMarkdownTypingCompleted({});
               } else {
@@ -295,6 +283,37 @@ export struct Markdown {
         this.onMarkdownAreaChange({ oldValue, newValue });
       })
     }
+  }
+}
+
+const log2 = newLog('MarkdownParser');
+
+class MarkdownParser {
+  private static gid: number = 0;
+  readonly ID: number = MarkdownParser.gid++;
+  private tail: Promise<Program | void> = Promise.resolve();
+  private count: number = 0;
+  private engine: Engine;
+  lastContent?: string;
+  constructor(engine: Engine) {
+    this.engine = engine;
+  }
+  parse(content: string): Promise<Program> {
+    this.lastContent = content;
+    this.count++;
+    log2.i(`${this.ID} drop parse task. count: ${this.count} content: ${JSON.stringify(content)}`);
+    const tail = this.tail.then(async () => {
+      const result = await this.engine.ast!.parse(content);
+      log2.i(`${this.ID} parse content success: document hash: ${result.program.document.hash} document children: ${result.program.document.children.length} content: ${JSON.stringify(result.content)} `);
+      return result.program;
+    }).finally(() => {
+      this.count--;
+    });
+    this.tail = tail;
+    return tail;
+  }
+  get processing(): boolean {
+    return this.count > 0;
   }
 }
 

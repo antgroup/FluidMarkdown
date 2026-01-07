@@ -2,7 +2,7 @@
 // Use of this source code is governed by a Apache 2.0 license that can be
 // found in the LICENSE file.
 
-import { Event, MDCrypto } from '../../../util';
+import { Event, MDCrypto, MDUuid } from '../../../util';
 
 export enum ENode {
   Unknown = 'unknown',
@@ -137,33 +137,33 @@ export class Node extends Event {
   get hash() {
     return this._hash;
   }
-  async createHash(): Promise<string | undefined> {
+  createHash(): string | undefined {
     const hashList: string[] = [];
     //  this
     do {
-      const hash = await this.createThisHash();
+      const hash = this.createThisHash();
       if (hash) {
         hashList.push(hash);
       }
     } while (0);
     //  children
     do {
-      const hash = await this.first?.deref()?.createHash();
+      const hash = this.first?.deref()?.createHash();
       if (hash) {
         hashList.push(hash);
       }
     } while (0);
     //  brother
     do {
-      const hash = await this.next?.deref()?.createHash();
+      const hash = this.next?.deref()?.createHash();
       if (hash) {
         hashList.push(hash);
       }
     } while (0);
-    this._hash = hashList.length > 0 ? await MDCrypto.md5(hashList.join('_')) : undefined;
+    this._hash = hashList.length > 0 ? MDUuid.md5(hashList.join('_')) : undefined;
     return this._hash;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
       this.id
     }${
@@ -177,7 +177,7 @@ export class Node extends Event {
     }${
       this.hidden
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 
   constructor(option?: INode) {
@@ -432,13 +432,13 @@ export class Heading extends Node {
     summary.level = this.level;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.level
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface ICodeSummary extends INodeSummary {
@@ -452,13 +452,13 @@ export class Code extends Node {
     summary.language = this.language;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-     await super.createThisHash()
+     super.createThisHash()
     }${
       this.language
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
   get styledContent() {
     const first = this.first?.deref();
@@ -482,13 +482,13 @@ export class List extends Node {
     summary.listType = this.listType;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.listType
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IListItemSummary extends INodeSummary {
@@ -518,9 +518,9 @@ export class ListItem extends Node {
     summary.info = this.info;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.itemType
     }${
@@ -528,7 +528,7 @@ export class ListItem extends Node {
     }${
       this.checked
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
   static isCheckNode(node?: Node) {
     if (node?.type === ENode.HtmlTag && node?.layout === ELayout.Inline) {
@@ -552,15 +552,15 @@ export class TableItem extends Node {
     summary.align = this.align;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.itemType
     }${
       this.align
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IImageSummary extends INodeSummary {
@@ -578,15 +578,15 @@ export class Image extends Node {
     summary.alt = this.alt;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.src
     }${
       this.alt
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface ILinkSummary extends INodeSummary {
@@ -601,13 +601,13 @@ export class Link extends Node {
     summary.href = this.href;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.href
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IFootnoteRefSummary extends INodeSummary {
@@ -626,9 +626,9 @@ export class FootnoteRef extends Node {
     summary.label = this.label;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.footnoteId
     }${
@@ -636,7 +636,7 @@ export class FootnoteRef extends Node {
     }${
       this.def?.deref()?.id
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IFootnoteDefSummary extends INodeSummary {
@@ -655,15 +655,15 @@ export class FootnoteDef extends Node {
     summary.label = this.label;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.footnoteId
     }${
       this.label
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface ILineBreakSummary extends INodeSummary {
@@ -678,13 +678,13 @@ export class LineBreak extends Node {
     summary.lineBreakType = this.lineBreakType;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.lineBreakType
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IEmojiSummary extends INodeSummary {
@@ -699,13 +699,13 @@ export class Emoji extends Node {
     summary.markup = this.markup;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.markup
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IHtmlTagSummary extends INodeSummary {
@@ -733,9 +733,9 @@ export class Math extends Node {
     summary.mathHash = this.mathHash;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
-    this.mathHash = await MDCrypto.md5(this.content);
-    return await super.createThisHash();
+  protected createThisHash(): string | undefined {
+    this.mathHash = MDUuid.md5(this.content || '');
+    return super.createThisHash();
   }
 }
 interface IStyledContent extends INodeSummary {
@@ -747,13 +747,13 @@ export class StyledContent extends Node {
     const summary = super.summary as IStyledContent;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.styled?.getString()
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 interface IDocumentSummary extends INodeSummary {
@@ -767,15 +767,15 @@ export class Document extends Node {
     const summary = super.summary as IDocumentSummary;
     return summary;
   }
-  protected async createThisHash(): Promise<string | undefined> {
+  protected createThisHash(): string | undefined {
     const content = `${
-      await super.createThisHash()
+      super.createThisHash()
     }${
       this.footnoteRefs.map(ele => ele.deref()?.id).join('')
     }${
       this.footnoteDefs.map(ele => ele.deref()?.id).join('')
     }`;
-    return await MDCrypto.md5(content);
+    return MDUuid.md5(content);
   }
 }
 export class Fragment extends Node {
