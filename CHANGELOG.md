@@ -1,3 +1,9 @@
+## v1.0.6 (2026-01-08)
+### Fixed
+
+- `ohos` Fixed an issue where Fragment can not refresh while @Param Node changed on Normal mode.
+
+
 ## v1.0.5 (2026-01-08)
 ### Fixed
 

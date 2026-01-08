@@ -43,6 +43,7 @@ export struct FragmentComponent {
   private dequeueFragment(index: number, node?: Node) {
     let fragment = this.fragments.slice(index, index + 1).pop();
     if (fragment) {
+      fragment.option.likelyKey = Fragment.likelyKey(index, node);
       fragment.option.node = node;
     } else {
       fragment = new Fragment({ likelyKey: Fragment.likelyKey(index, node), node });
