@@ -38,19 +38,7 @@ export struct FragmentComponent {
 
   @Monitor('node') onNodeChange(monitor: IMonitor) {
     const node = monitor.value<Node>()?.now;
-    if (node) {
-      const fragments: Fragment[] = [];
-      if (!!this.sharedEngine.ctx?.fragmentEnable) {
-        node.children.forEach((ele, index) => {
-          fragments.push(this.dequeueFragment(index, ele));
-        });
-      } else {
-        fragments.push(this.dequeueFragment(0, node));
-      }
-      this.fragments = fragments;
-    } else {
-      this.fragments = [];
-    }
+    this.attach4normal(node);
   }
   private dequeueFragment(index: number, node?: Node) {
     let fragment = this.fragments.slice(index, index + 1).pop();
@@ -72,6 +60,9 @@ export struct FragmentComponent {
   aboutToAppear(): void {
     this.onFragmentComponentBeforeAboutToAppear?.({});
     this.bindController();
+    if (this.node) {
+      this.attach4normal(this.node);
+    }
     this.onFragmentComponentAfterAboutToAppear?.({});
   }
   aboutToDisappear(): void {
@@ -108,13 +99,28 @@ export struct FragmentComponent {
         if (mode === ETypingMode.Begin) {
           this.fragments = [];
         }
-        this.update();
+        this.attach4typing();
       } else {
         log.w(`${this.ID} can not update content, node(${typeof node}) is not instance of Node`);
       }
     }
   }
-  private update() {
+  private attach4normal(node?: Node) {
+    if (node) {
+      const fragments: Fragment[] = [];
+      if (!!this.sharedEngine.ctx?.fragmentEnable) {
+        node.children.forEach((ele, index) => {
+          fragments.push(this.dequeueFragment(index, ele));
+        });
+      } else {
+        fragments.push(this.dequeueFragment(0, node));
+      }
+      this.fragments = fragments;
+    } else {
+      this.fragments = [];
+    }
+  }
+  private attach4typing() {
     if (!!this.fragment?.embedController.typing.processing()) {
       log.i(`${this.ID} fragment ${this.fragment?.ID} typing processing, will retry after finish`);
       return;
@@ -179,12 +185,12 @@ export struct FragmentComponent {
           return;
         } else {
           log.i(`${this.ID} some fragments changed, need update`);
-          this.update();
+          this.attach4typing();
         }
       } else {
         log.i(`${this.ID} typing next fragment. fragments: ${this.fragments.length}, targets: ${targets.length}`);
         this.dequeueFragment(this.fragments.length);
-        this.update();
+        this.attach4typing();
       }
     } else {
       log.w(`${this.ID} no dirty typing update data, ignore finish event`);

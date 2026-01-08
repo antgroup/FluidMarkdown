@@ -47,7 +47,7 @@ export struct BoardComponent {
                   clearInterval(timer);
                 }
               }, 100);
-            } else {
+            } else if (this.mode === EShowMode.Typing) {
               this.markdownController.typing.update(this.content, ETypingMode.Begin);
             }
           },

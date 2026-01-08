@@ -1,3 +1,9 @@
+## v1.0.5 (2026-01-08)
+### Fixed
+
+- `ohos` Fixed an issue where Fragment can not render on Normal mode.
+
+
 ## v1.0.4 (2026-01-07)
 ### Fixed
 
