@@ -136,6 +136,9 @@ export struct FragmentComponent {
         this.dequeueFragment(0);
         log.i(`${this.ID} first fragment, will dequeue: ${this.fragments.length}`);
       }
+      if (targets.length < this.fragments.length) {
+        log.w(`${this.ID} targets length less than fragments length, unexpected unintended refresh: targets(${targets.length}), fragments(${this.fragments.length})`);
+      }
       const count = Math.min(targets.length, this.fragments.length);
       log.i(`${this.ID} update fragments: ${this.fragments.length}, targets: ${targets.length}, min count: ${count}`);
       const isLast = (index: number) => (index === count - 1);
@@ -212,7 +215,7 @@ export struct FragmentComponent {
           },
         })
           .width('100%')
-      }, (fragment: Fragment) => fragment.likelyKey)
+      }, (fragment: Fragment) => `${fragment.likelyKey}_${fragment.ID}`)
     }
   }
 }

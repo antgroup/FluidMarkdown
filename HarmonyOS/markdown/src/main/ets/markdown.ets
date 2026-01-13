@@ -291,26 +291,25 @@ const log2 = newLog('MarkdownParser');
 class MarkdownParser {
   private static gid: number = 0;
   readonly ID: number = MarkdownParser.gid++;
-  private tail: Promise<Program | void> = Promise.resolve();
   private count: number = 0;
   private engine: Engine;
   lastContent?: string;
   constructor(engine: Engine) {
     this.engine = engine;
   }
-  parse(content: string): Promise<Program> {
+  async parse(content: string): Promise<Program> {
     this.lastContent = content;
-    this.count++;
-    log2.i(`${this.ID} drop parse task. count: ${this.count} content: ${JSON.stringify(content)}`);
-    const tail = this.tail.then(async () => {
-      const result = await this.engine.ast!.parse(content);
+    try {
+      this.count++;
+      log2.i(`${this.ID} drop parse task. count: ${this.count} content: ${JSON.stringify(content)}`);
+      const result = (await this.engine.ast!.parse(content));
       log2.i(`${this.ID} parse content success: document hash: ${result.program.document.hash} document children: ${result.program.document.children.length} content: ${JSON.stringify(result.content)} `);
-      return result.program;
-    }).finally(() => {
       this.count--;
-    });
-    this.tail = tail;
-    return tail;
+      return result.program;
+    } catch (e) {
+      this.count--;
+      throw Error(`${e?.message}`);
+    }
   }
   get processing(): boolean {
     return this.count > 0;

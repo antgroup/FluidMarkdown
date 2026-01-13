@@ -1,3 +1,10 @@
+## v1.0.7 (2026-01-13)
+### Changed
+
+- `ohos` AST Parser: Introduced a queue mechanism to guarantee ordered callbacks.
+- `ohos` Fragment: Switched to an append-only update strategy during single-shot streaming, improving rendering performance.
+
+
 ## v1.0.6 (2026-01-08)
 ### Fixed
 

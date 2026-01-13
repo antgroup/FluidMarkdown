@@ -212,40 +212,40 @@ export struct EmbedComponent {
 
     log.i(`${this.ID} attach for typing, mode: ${mode} offset: ${offset} targetLength: ${targetContent.length}`);
 
+    const currentContent = StyledObject.root(this.area, this.styles)
+      .on<IStyledObjectAppendEvent>(EStyledObjectEvent.DidAppend, event => {
+        if (event.target.type === EStyledObject.Embed) {
+          const embed = event.target as StyledEmbed;
+          let existedIndex: number | undefined = undefined;
+          let existed: StyledEmbed | undefined = undefined;
+          this.layers.forEach((ele, index) => {
+            if (ele.likelyKey === embed.likelyKey) {
+              existedIndex = index;
+              existed = ele;
+            }
+          });
+          if (existed !== undefined && existedIndex !== undefined) {
+            embed.reuse(existed);
+            (existed as StyledEmbed).embedController.updateEmbed(embed);
+          } else {
+            this.layers.push(embed);
+          }
+          currentLayers[embed.likelyKey] = embed;
+        }
+      })
+      .on<IStyledObjectReplaceStyleEvent>(EStyledObjectEvent.DidReplaceStyle, () => {
+        this.textComponentController.refresh();
+      });
+    const likelyUtil = new EmbedComponentLikelyUtil();
+
     this.controller?.typing.typingTimer.start(() => {
-      
+
       offset = Math.min(offset + step, targetContent.length);
 
       log.i(`${this.ID} typing onStep, offset: ${offset}`);
 
-      const currentContent = StyledObject.root(this.area, this.styles)
-        .on<IStyledObjectAppendEvent>(EStyledObjectEvent.DidAppend, event => {
-          if (event.target.type === EStyledObject.Embed) {
-            const embed = event.target as StyledEmbed;
-            let existedIndex: number | undefined = undefined;
-            let existed: StyledEmbed | undefined = undefined;
-            this.layers.forEach((ele, index) => {
-              if (ele.likelyKey === embed.likelyKey) {
-                existedIndex = index;
-                existed = ele;
-              }
-            });
-            if (existed !== undefined && existedIndex !== undefined) {
-              embed.reuse(existed);
-              (existed as StyledEmbed).embedController.updateEmbed(embed);
-            } else {
-              this.layers.push(embed);
-            }
-            currentLayers[embed.likelyKey] = embed;
-          }
-        })
-        .on<IStyledObjectReplaceStyleEvent>(EStyledObjectEvent.DidReplaceStyle, () => {
-          this.textComponentController.refresh();
-        });
-
       if (offset > 0) {
-        const likelyUtil = new EmbedComponentLikelyUtil();
-        targetContent.subStyledObjects(0, offset).forEach(ele => {
+        targetContent.subStyledObjects(currentContent.length, offset - currentContent.length).forEach(ele => {
           if (ele.object instanceof StyledObject) {
             if (ele.object.type === EStyledObject.Embed) {
               const embed = ele.object as StyledEmbed;
@@ -255,6 +255,7 @@ export struct EmbedComponent {
           currentContent.attach(ele.object);
         });
         this.content = currentContent;
+        this.textComponentController.refresh();
       }
       do {
         //  clear unused layers
