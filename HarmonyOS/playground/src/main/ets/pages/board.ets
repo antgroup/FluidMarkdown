@@ -1,4 +1,4 @@
-import { Markdown, newLog, EMarkdownMode, MarkdownController, ETypingMode } from 'fluid-markdown';
+import { Markdown, newLog, EMarkdownMode, MarkdownController, ETypingMode, EMarkdownMainBotEvent } from 'fluid-markdown';
 import { NAV, PAGE_BGCOLOR } from './shared';
 
 const log = newLog('Playground');
@@ -33,7 +33,7 @@ export struct BoardComponent {
             if (this.mode === EShowMode.Stream) {
               const message = this.content ?? '';
               let offset = 0;
-              const step = 10000;
+              const step = 20;
               const timer = setInterval(() => {
                 let mode = ETypingMode.Append;
                 if (offset === 0) {
@@ -46,15 +46,19 @@ export struct BoardComponent {
                 if (mode === ETypingMode.End) {
                   clearInterval(timer);
                 }
-              }, 100);
+              }, 200);
             } else if (this.mode === EShowMode.Typing) {
               this.markdownController.typing.update(this.content, ETypingMode.Begin);
             }
           },
-          onMarkdownAreaChange: () => {
-            // if (this.mode !== EShowMode.Normal) {
-            //   this.scroller.scrollEdge(Edge.Bottom);
-            // }
+          onMarkdownAreaChange: event => {
+            if (this.mode !== EShowMode.Normal && event.oldValue.height !== event.newValue.height) {
+              if (this.mode === EShowMode.Typing) {
+                this.scroller.scrollEdge(Edge.Bottom);
+              } else if (this.mode === EShowMode.Stream) {
+                this.scroller.scrollTo({ xOffset: 0, yOffset: Number(event.newValue.height) });
+              }
+            }
           },
           onMarkdownNodeClick: data => {
             log.i('click node: %{public}s event: %{public}s', JSON.stringify(data.node.summary), JSON.stringify(data.event));
@@ -89,6 +93,16 @@ export struct BoardComponent {
       .margin(12)
       .backgroundColor(Color.White)
       .borderRadius(14)
+      .onScrollStart(() => {
+        if (this.mode === EShowMode.Stream) {
+          getContext()?.eventHub?.emit(EMarkdownMainBotEvent.ScrollBegin);
+        }
+      })
+      .onScrollStop(() => {
+        if (this.mode === EShowMode.Stream) {
+          getContext()?.eventHub?.emit(EMarkdownMainBotEvent.ScrollEnd);
+        }
+      })
     }
     .title('Board')
     .width('100%')

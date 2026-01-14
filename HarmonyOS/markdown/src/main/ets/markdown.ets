@@ -58,11 +58,11 @@ export struct Markdown {
 
   private fragmentController: FragmentComponentController = new FragmentComponentController({});
   private fragmentComponentTypingReady: boolean = false;
-  private lastTypingUpdateData?: ITypingUpdateData<string>;
-  private dirtyTypingUpdateData?: ITypingUpdateData<string>;
   private uiArea?: Area;
   private mainBotScrolling: boolean = false;
   private parser: MarkdownParser = new MarkdownParser(this.engine);
+  private typingUpdateDataList: ITypingUpdateData<string>[] = [];
+  private typingUpdateData?: ITypingUpdateData<string>;
 
   @Monitor('area') _onMarkdownAreaChange(monitor: IMonitor) {
     const value = monitor.value<IMDArea>();
@@ -127,23 +127,48 @@ export struct Markdown {
         log.w(`${this.ID} fragment component typing not ready, skip update typing content: ${content}`);
       }
       if (typeof content === 'string') {
-        this.lastTypingUpdateData = { content, mode, hasMore };
-        const processing = this.fragmentController.typing.processing();
-        const scrolling = this.mainBotScrolling;
-        const parsing = this.parser.processing;
-        if (processing || scrolling || parsing) {
-          this.dirtyTypingUpdateData = { content, mode, hasMore };
-          log.i(`${this.ID} catch typing update data: processing ${processing}, scrolling ${scrolling}, parsing ${parsing}, ${mode}, ${content}`);
-        } else {
-          this.parser.parse(content).then(program => {
-            log.i(`${this.ID} will update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${content}`);
-            this.fragmentController.typing.update(program.document, mode);
-          }).catch((e: Error) => {
-            log.w(`${this.ID} can not update typing content. parse failed: ${e?.message}`);
-          });
-        }
+        log.i(`${this.ID} pick typing content: ${JSON.stringify(content)}, mode: ${mode}, hasMore: ${hasMore}`);
+        this.typingUpdateDataList.push({ content, mode, hasMore });
+        this.typingUpdate();
       }
     };
+  }
+  private typingUpdate() {
+    if (this.mainBotScrolling) {
+      log.i(`${this.ID} skip typing update while scrolling.`);
+      return;
+    }
+    if (this.typingUpdateData) {
+      log.i(`${this.ID} skip typing update while processing. mode: ${this.typingUpdateData.mode}, hasMore: ${this.typingUpdateData.hasMore}, content: ${this.typingUpdateData.content}`);
+      return;
+    }
+    const data = this.typingUpdateDataList.slice().pop();
+    if (data) {
+      this.typingUpdateData = data;
+      this.parser.parse(data.content).then(program => {
+        log.i(`${this.ID} will update typing content after parse. node: ${program.document.hash}, mode: ${data.mode}, hasMore: ${data.hasMore} content: ${data.content}`);
+        this.fragmentController.typing.update(program.document, data.mode);
+      }).catch((e: Error) => {
+        log.w(`${this.ID} can not update typing content after parse. parse failed: ${e?.message}`);
+        this.onTypingFinish(true);
+      });
+    }
+  }
+  private onTypingFinish(hasError?: boolean) {
+    const equal = (a?: ITypingUpdateData<string>, b?: ITypingUpdateData<string>): boolean => {
+      return !!(a?.mode === b?.mode && a?.hasMore === b?.hasMore && a?.content === b?.content);
+    };
+    const data = this.typingUpdateDataList.slice().pop();
+    const last = this.typingUpdateData
+    this.typingUpdateData = undefined;
+    if (equal(data, last)) {
+      log.i(`${this.ID} emit typing finish event. mode: ${data?.mode}, hasMore: ${data?.hasMore}, hasError: ${!!hasError} content: ${data?.content}`);
+      this.typingUpdateDataList = [];
+      this.onMarkdownTypingCompleted({});
+    } else {
+      log.i(`${this.ID} last content is not same as last typing update content, skip emit typing finish event. hasError: ${!!hasError}`);
+      this.typingUpdate();
+    }
   }
   private onMainBotScrollBegin = () => {
     log.i(`${this.ID} onMainBotScrollBegin, try to pause typing`);
@@ -154,6 +179,7 @@ export struct Markdown {
     log.i(`${this.ID} onMainBotScrollEnd, try to resume typing`);
     this.mainBotScrolling = false;
     this.controller.typing.resume();
+    this.typingUpdate();
   }
   private onMainBotStopTyping = () => {
     log.i(`${this.ID} onMainBotStopTyping, try to stop typing`);
@@ -248,26 +274,7 @@ export struct Markdown {
           onFragmentComponentBeforeAboutToDisappear: () => {
             this.fragmentComponentTypingReady = false;
           },
-          onFragmentComponentTypingFinish: () => {
-            if (this.dirtyTypingUpdateData) {
-              const content = this.dirtyTypingUpdateData.content;
-              const mode = this.dirtyTypingUpdateData.mode;
-              this.parser.parse(content).then(program => {
-                log.i(`${this.ID} retry update typing content. node: ${program.document.hash}, mode: ${mode}, content: ${JSON.stringify(content)}`);
-                this.fragmentController.typing.update(program.document, mode);
-              }).catch((e: Error) => {
-                log.w(`${this.ID} can not retry update typing content. parse failed: ${e?.message}`)
-              });
-              this.dirtyTypingUpdateData = undefined;
-            } else {
-              if (this.parser.lastContent === this.lastTypingUpdateData?.content) {
-                log.i(`${this.ID} emit typing finish event. lastMode: ${this.lastTypingUpdateData?.mode}, lastContent: ${JSON.stringify(this.lastTypingUpdateData?.content)}`);
-                this.onMarkdownTypingCompleted({});
-              } else {
-                log.i(`${this.ID} last content is not same as last typing update content, skip emit typing finish event`);
-              }
-            }
-          },
+          onFragmentComponentTypingFinish: () => this.onTypingFinish(),
         })
       }
       .position({ x: 0, y: 0 })

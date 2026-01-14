@@ -1,3 +1,9 @@
+## v1.0.8 (2026-01-14)
+### Fixed
+
+- `ohos` Resolved the incorrect callback order in AST parsing tasks caused by StyledString.styledFromHtml.
+
+
 ## v1.0.7 (2026-01-13)
 ### Changed
 

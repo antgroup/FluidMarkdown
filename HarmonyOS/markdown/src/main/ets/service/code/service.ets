@@ -7,7 +7,6 @@ import { EService, Service } from '../../engine/service';
 import { Plugin } from '../../engine/plugin';
 import { HIGHLIGHT_DEFAULT_CSS } from './style';
 import { type CssNode  } from '../css';
-import Sys from '@ohos.deviceInfo';
 
 export class CodeService extends Service {
   private _css?: CssNode;
@@ -34,15 +33,7 @@ export class CodeService extends Service {
     }
     return this._css;
   }
-  async styledFromHtml(content: string): Promise<StyledString | undefined> {
-    if (Sys.sdkApiVersion >= 19) {
-      try {
-        return await StyledString.fromHtml(content);
-      } catch (e) {
-        return undefined;
-      }
-    } else {
-      return this.engine?.deref()?.html?.toStyled(content);
-    }
+  styledFromHtml(content: string): StyledString | undefined {
+    return this.engine?.deref()?.html?.toStyled(content);
   }
 }

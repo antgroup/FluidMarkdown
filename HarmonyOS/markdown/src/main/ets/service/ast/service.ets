@@ -64,7 +64,7 @@ export class AstService extends Service {
       });
       this.prepareFragment(program);
       program.document.createHash();
-      await this.prepareCodeBlock(program);
+      this.prepareCodeBlock(program);
 
       const result: IResult = { program, content };
 
@@ -76,6 +76,9 @@ export class AstService extends Service {
     });
     this.tail = tail;
     return tail;
+  }
+  get processing(): boolean {
+    return this.count > 0;
   }
   private prepareFragment(program: Program) {
     if (!this.engine?.deref()?.ctx?.fragmentEnable) {
@@ -118,65 +121,68 @@ export class AstService extends Service {
     });
     log.i(`${this.ID} did prepare ast fragment. fragments: ${fragments.length}`);
   }
-  private async prepareCodeBlock(program: Program) {
-    await Node.traverseAsync(program.document, {
-      on: async (node) => {
-        const code = node as Code;
-        if (code.content) {
-          const page = this.engine?.deref()?.code?.parse4page(code.content, { language: code.language || '' });
-          if (page) {
-            const html = this.engine?.deref()?.html?.parse(page);
-            const css = this.engine?.deref()?.code?.css;
-            if (html && css) {
-              this.engine?.deref()?.html?.traverse(html, {
-                on: htmlNode => {
-                  const element = this.engine?.deref()?.html?.toElement(htmlNode);
-                  if (element) {
-                    const cls = element.attribs['class']?.split(' ').filter(ele => ele.length > 0) || [];
-                    if (cls && cls.length > 0) {
-                      let style = element.attribs['style'] ? `${element.attribs['style']};` : '';
-                      CssService.findAll<Rule>(css, rule => {
-                        return rule.type === 'Rule';
-                      }).forEach(rule => {
-                        const matched = CssService.find(rule.prelude, prelude => {
-                          if (prelude.type === 'ClassSelector') {
-                            return cls.indexOf(prelude.name) !== -1;
-                          }
-                          return false;
-                        });
-                        if (matched) {
-                          CssService.findAll<Declaration>(rule.block, block => {
-                            return block.type === 'Declaration';
-                          }).forEach(declaration => {
-                            style = `${style} ${declaration.property}: ${CssService.generate(declaration.value)};`;
-                          });
+  private prepareCodeBlock(program: Program) {
+    const codes: Code[] = [];
+    Node.traverse(program.document, {
+      on: node => {
+        codes.push(node as Code);
+        return true;
+      },
+      filter: node => {
+        return node.type === ENode.Code && node.layout === ELayout.Block;
+      },
+    });
+    for (const code of codes) {
+      if (code.content) {
+        const page = this.engine?.deref()?.code?.parse4page(code.content, { language: code.language || '' });
+        if (page) {
+          const html = this.engine?.deref()?.html?.parse(page);
+          const css = this.engine?.deref()?.code?.css;
+          if (html && css) {
+            this.engine?.deref()?.html?.traverse(html, {
+              on: htmlNode => {
+                const element = this.engine?.deref()?.html?.toElement(htmlNode);
+                if (element) {
+                  const cls = element.attribs['class']?.split(' ').filter(ele => ele.length > 0) || [];
+                  if (cls && cls.length > 0) {
+                    let style = element.attribs['style'] ? `${element.attribs['style']};` : '';
+                    CssService.findAll<Rule>(css, rule => {
+                      return rule.type === 'Rule';
+                    }).forEach(rule => {
+                      const matched = CssService.find(rule.prelude, prelude => {
+                        if (prelude.type === 'ClassSelector') {
+                          return cls.indexOf(prelude.name) !== -1;
                         }
+                        return false;
                       });
-                      if (style.length > 0) {
-                        element.attribs['style'] = `${style} font-size: 13;`;
+                      if (matched) {
+                        CssService.findAll<Declaration>(rule.block, block => {
+                          return block.type === 'Declaration';
+                        }).forEach(declaration => {
+                          style = `${style} ${declaration.property}: ${CssService.generate(declaration.value)};`;
+                        });
                       }
+                    });
+                    if (style.length > 0) {
+                      element.attribs['style'] = `${style} font-size: 13;`;
                     }
                   }
-                  return true;
-                },
-              });
-              const adapted = this.engine?.deref()?.html?.render(html);
-              if (adapted && adapted.length > 0) {
-                const styled = new StyledContent();
-                styled.createHash();
-                styled.styled = await this.engine?.deref()?.code?.styledFromHtml(adapted);
-                program.nodes.push(styled);
-                code.append(styled);
-              }
+                }
+                return true;
+              },
+            });
+            const adapted = this.engine?.deref()?.html?.render(html);
+            if (adapted && adapted.length > 0) {
+              const styled = new StyledContent();
+              styled.createHash();
+              styled.styled = this.engine?.deref()?.code?.styledFromHtml(adapted);
+              program.nodes.push(styled);
+              code.append(styled);
             }
           }
         }
-        return true;
-      },
-      filter: async (node) => {
-        return node.type === ENode.Code && node.layout === ELayout.Block;
       }
-    })
+    }
   }
 }
 
