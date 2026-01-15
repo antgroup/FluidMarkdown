@@ -1,3 +1,11 @@
+## v1.0.9 (2026-01-15)
+### Added
+
+- `ohos` AST Service: introduced toHtml() to convert a Node into HTML format.
+- `ohos` EHtmlTag: enum type to declare built-in HTML tag names.
+- `ohos` HtmlTag: built-in tag list extended with the div tag.
+
+
 ## v1.0.8 (2026-01-14)
 ### Fixed
 

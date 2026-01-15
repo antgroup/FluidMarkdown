@@ -20,7 +20,7 @@ import {
   Document, Heading, LineBreak, Link,
   FootnoteRef, Code, ListItem, Emoji,
   HtmlTag, Image, Math as MathNode,
-  StyledContent, List, Fragment,
+  StyledContent, List, Fragment, EHtmlTag,
 } from '../../service/ast/node';
 import { drawing } from '@kit.ArkGraphics2D';
 import { HeadingLevelStyling } from '../../theme';
@@ -678,32 +678,34 @@ class HtmlTagStyled extends Styled {
     return this.option.node as (HtmlTag | undefined);
   }
   building(option: IStyledBuild) {
-    if (this.node?.tagName === 'sup') {
+    if (this.node?.tagName === EHtmlTag.Sup) {
       this.buildingSux(option, false);
-    } else if (this.node?.tagName === 'sub') {
+    } else if (this.node?.tagName === EHtmlTag.Sub) {
       this.buildingSux(option, true);
-    } else if (this.node?.tagName === 'u') {
+    } else if (this.node?.tagName === EHtmlTag.U) {
       this.buildingU(option);
-    } else if (this.node?.tagName === 'br') {
+    } else if (this.node?.tagName === EHtmlTag.Br) {
       this.buildingBr(option);
-    } else if (this.node?.tagName === 's') {
+    } else if (this.node?.tagName === EHtmlTag.S) {
       this.buildingS(option);
-    } else if (this.node?.tagName === 'del') {
+    } else if (this.node?.tagName === EHtmlTag.Del) {
       this.buildingDel(option);
-    } else if (this.node?.tagName === 'mark') {
+    } else if (this.node?.tagName === EHtmlTag.Mark) {
       this.buildingMark(option);
-    } else if (this.node?.tagName === 'span') {
+    } else if (this.node?.tagName === EHtmlTag.Span) {
       this.buildingSpan(option);
-    } else if (this.node?.tagName === 'cite') {
+    } else if (this.node?.tagName === EHtmlTag.Cite) {
       this.buildingCite(option);
-    } else if (this.node?.tagName === 'font') {
+    } else if (this.node?.tagName === EHtmlTag.Font) {
       this.buildingFont(option);
-    } else if (this.node?.tagName === 'img') {
+    } else if (this.node?.tagName === EHtmlTag.Img) {
       this.buildingImg(option);
-    } else if (this.node?.tagName === 'a') {
+    } else if (this.node?.tagName === EHtmlTag.A) {
       this.buildingA(option);
-    } else if (this.node?.tagName === 'icon') {
+    } else if (this.node?.tagName === EHtmlTag.Icon) {
       this.buildingIcon(option);
+    } else if (this.node?.tagName === EHtmlTag.Div) {
+      this.buildingSpan(option);
     }
   }
   private buildingIcon(option: IStyledBuild) {

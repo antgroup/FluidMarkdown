@@ -5,11 +5,12 @@
 import {
   type MarkdownIt, markdown,
   plugin_footnote, plugin_emoji, plugin_sub, plugin_sup, plugin_taskList, plugin_katex,
-  type IPluginKatexOption, type IPluginTaskListOption,
+  type IPluginKatexOption, type IPluginTaskListOption, type Token,
 } from './markdown-it';
 import { Program, Node, ENode, ELayout, Code, StyledContent, Fragment } from './node';
 import { EService, Service } from '../../engine/service';
 import { Plugin } from '../../engine/plugin';
+import type { Engine } from '../../engine';
 import { CssService } from '../css';
 import type { Declaration, Rule } from '../css/csstree';
 import { newLog } from '../../util';
@@ -28,6 +29,25 @@ export class AstService extends Service {
   private tail: Promise<IResult | void> = Promise.resolve();
   private count: number = 0;
   private plugins: AstServicePlugin[] = [];
+  private markdown_it: MarkdownIt;
+  constructor(engine?: Engine) {
+    super(engine);
+    const markdown_it = new markdown() as MarkdownIt;
+    markdown_it.set({ html: true });
+    markdown_it.disable(['html_block']);  // only support inline html
+
+    const plugins = [
+      plugin_footnote,
+      plugin_emoji,
+      // plugin_sub,
+      // plugin_sup,
+    ];
+    plugins.forEach(ele => markdown_it.use(ele));
+
+    markdown_it.use<IPluginTaskListOption>(plugin_taskList, { enabled: true });
+    markdown_it.use<IPluginKatexOption>(plugin_katex, { throwOnError: false });
+    this.markdown_it = markdown_it;
+  }
   add<T extends Plugin = AstServicePlugin>(plugin: T): void {
     if (plugin instanceof AstServicePlugin) {
       this.plugins.push(plugin);
@@ -43,22 +63,7 @@ export class AstService extends Service {
     const tail = this.tail.then(async () => {
       this.parsePlugin?.handler?.willParse?.(content);
 
-      const markdown_it = new markdown() as MarkdownIt;
-      markdown_it.set({ html: true });
-      markdown_it.disable(['html_block']);  // only support inline html
-
-      const plugins = [
-        plugin_footnote,
-        plugin_emoji,
-        plugin_sub,
-        plugin_sup,
-      ];
-      plugins.forEach(ele => markdown_it.use(ele));
-
-      markdown_it.use<IPluginTaskListOption>(plugin_taskList, { enabled: true });
-      markdown_it.use<IPluginKatexOption>(plugin_katex, { throwOnError: false });
-
-      const tokens = markdown_it.parse(content, new Object());
+      const tokens = this.markdown_it.parse(content, new Object());
       const program = new Program(tokens, {
         engine: () => this.engine,
       });
@@ -79,6 +84,40 @@ export class AstService extends Service {
   }
   get processing(): boolean {
     return this.count > 0;
+  }
+  toHtml(node: Node): string {
+    const tokens: Token[] = [];
+    const document = node.document;
+    if (document) {
+      const startToken = node.token;
+      const endToken = node.next?.deref()?.token;
+      const pick = (from: number, list: Token[]) => {
+        for (let index = from; index < list.length; index++) {
+          if (list[index] === endToken) {
+            break;
+          }
+          tokens.push(list[index]);
+        }
+      };
+      const traver = (list: Token[]): boolean => {
+        for (let index = 0; index < list.length; index++) {
+          const token = list[index];
+          if (token === startToken) {
+            pick(index, list);
+            return true;
+          } else {
+            if (traver(token.children || [])) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+      if (startToken) {
+        traver(document.tokens || []);
+      }
+    }
+    return this.markdown_it.renderer.render(tokens, this.markdown_it.options, new Object());
   }
   private prepareFragment(program: Program) {
     if (!this.engine?.deref()?.ctx?.fragmentEnable) {

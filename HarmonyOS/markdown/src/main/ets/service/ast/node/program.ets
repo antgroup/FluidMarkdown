@@ -26,7 +26,7 @@ export class Program {
     });
 
     M.Node.resetID();
-    this.document = new M.Document();
+    this.document = new M.Document(tokens);
 
     this.push(this.document);
     const meet = (token: Token) => {
@@ -103,6 +103,9 @@ export class Program {
         node = _node;
         break;
       }
+    }
+    if (node) {
+      node.token = token;
     }
     return node;
   }

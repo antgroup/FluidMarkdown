@@ -2,7 +2,8 @@
 // Use of this source code is governed by a Apache 2.0 license that can be
 // found in the LICENSE file.
 
-import { Event, MDCrypto, MDUuid } from '../../../util';
+import { Event, MDUuid } from '../../../util';
+import type { Token } from '../markdown-it';
 
 export enum ENode {
   Unknown = 'unknown',
@@ -132,6 +133,8 @@ export class Node extends Event {
   last?: WeakRef<Node>;
   prev?: WeakRef<Node>;
   next?: WeakRef<Node>;
+
+  token?: Token;
 
   private _hash?: string;
   get hash() {
@@ -337,6 +340,19 @@ export class Node extends Event {
       hash: this.hash,
       children: this.children.map((node) => node.summary),
     };
+  }
+  get document(): Document | undefined {
+    if (this instanceof Document) {
+      return this;
+    }
+    let parent = this.parent?.deref();
+    do {
+      if (parent instanceof Document) {
+        return parent;
+      }
+      parent = parent?.parent?.deref();
+    } while (parent);
+    return undefined;
   }
   private static gid: number = 0;
   private static getID() {
@@ -708,6 +724,22 @@ export class Emoji extends Node {
     return MDUuid.md5(content);
   }
 }
+export enum EHtmlTag {
+  Sup = 'sup',
+  Sub = 'sub',
+  U = 'u',
+  Br = 'br',
+  S = 's',
+  Del = 'del',
+  Mark = 'mark',
+  Span = 'span',
+  Cite = 'cite',
+  Font = 'font',
+  Img = 'img',
+  A = 'a',
+  Icon = 'icon',
+  Div = 'div',
+}
 interface IHtmlTagSummary extends INodeSummary {
   tagName?: string,
 }
@@ -715,7 +747,6 @@ export class HtmlTag extends Node {
   readonly type: ENode = ENode.HtmlTag;
   readonly layout: ELayout = ELayout.Inline;
   tagName?: string;
-  //  TODO: 解析 tag-name、tag-attrs
   get summary(): IHtmlTagSummary {
     const summary = super.summary as IHtmlTagSummary;
     summary.tagName = this.tagName;
@@ -763,6 +794,11 @@ export class Document extends Node {
   readonly layout: ELayout = ELayout.Block;
   readonly footnoteRefs: WeakRef<FootnoteRef>[] = [];
   readonly footnoteDefs: WeakRef<FootnoteDef>[] = [];
+  readonly tokens?: Token[];
+  constructor(tokens?: Token[]) {
+    super();
+    this.tokens = tokens;
+  }
   get summary(): IDocumentSummary {
     const summary = super.summary as IDocumentSummary;
     return summary;
