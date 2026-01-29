@@ -12,3 +12,4 @@
 /.appanalyzer
 .js.js
 oh-package-lock.json5
+.idea/
