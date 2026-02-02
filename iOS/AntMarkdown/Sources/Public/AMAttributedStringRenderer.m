@@ -240,9 +240,15 @@
     {
         NSString* codeStr = [NSString stringWithFormat:@"\u00A0%@\u00A0", code];
         [self appendString:codeStr];
-        NSDictionary* spaceAttr = @{NSKernAttributeName:@(6),NSFontAttributeName:[UIFont systemFontOfSize:2.f]};
-        [self.buffer addAttributes:spaceAttr range:NSMakeRange(self.buffer.length - codeStr.length, 1)];
-        [self.buffer addAttributes:spaceAttr range:NSMakeRange(self.buffer.length - 1, 1)];
+        
+        NSUInteger currentLength = self.buffer.length;
+        NSUInteger codeLength = codeStr.length;
+        if (self.buffer && currentLength >= codeLength && codeLength >= 2) {
+            NSDictionary* spaceAttr = @{NSKernAttributeName:@(6),NSFontAttributeName:[UIFont systemFontOfSize:2.f]};
+            NSUInteger startIndex = currentLength - codeLength;
+            [self.buffer addAttributes:spaceAttr range:NSMakeRange(startIndex, 1)];
+            [self.buffer addAttributes:spaceAttr range:NSMakeRange(currentLength - 1, 1)];
+        }
     }
     [self.attributeStack pop];
 }
