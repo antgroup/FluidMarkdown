@@ -110,7 +110,7 @@ export struct TextComponent {
       .wordBreak(WordBreak.BREAK_ALL)
       .draggable(false)
       .selection(this.selectionStart, this.selectionEnd)
-      .copyOption(this.selectionOption.enableSelection ? CopyOptions.InApp : CopyOptions.None)
+      .copyOption(this.selectionOption.copyOption ?? CopyOptions.None)
       .bindSelectionMenu(
         TextSpanType.MIXED,
         this.selectionOption.bindSelectionMenuBuilder,
@@ -181,7 +181,7 @@ export interface ITextComponentSelectionChangeEvent extends ITextComponentEvent 
   content?: string;
 }
 export interface ITextComponentSelectionOption {
-  enableSelection?: boolean,
+  copyOption?: CopyOptions,
   bindSelectionMenuBuilder?: CustomBuilder,
   bindSelectionMenuOptions?: SelectionMenuOptions,
   editSelectionMenuOptions?: EditMenuOptions,

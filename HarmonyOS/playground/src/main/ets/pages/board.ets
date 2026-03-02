@@ -65,7 +65,7 @@ export struct BoardComponent {
           },
           onMarkdownTextComponentSelectionOption: data => {
             return {
-              enableSelection: true,
+              copyOption: CopyOptions.LocalDevice,
               bindSelectionMenuBuilder: () => {},
               bindSelectionMenuOptions: {},
               editSelectionMenuOptions: {
