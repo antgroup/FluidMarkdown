@@ -32,7 +32,7 @@ export struct FeatureDetailComponent {
             onMarkdownNodeClick: data => {},
             onMarkdownTextComponentSelectionOption: data => {
               return {
-                enableSelection: true,
+                copyOption: CopyOptions.LocalDevice,
                 bindSelectionMenuBuilder: () => {},
                 bindSelectionMenuOptions: {},
                 editSelectionMenuOptions: {
