@@ -165,8 +165,9 @@ enum TokeniserState {
                 case nullChar: // replacement
                     t.tagPending.appendTagName(replacementStr);
                     break;
-                case eof: // should emit pending tag?
+                case eof: 
                     t.eofError(this);
+                    t.emitTagPending();
                     t.transition(Data);
                     break;
                 default: // buffer underrun
